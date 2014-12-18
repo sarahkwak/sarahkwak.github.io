@@ -1,13 +1,32 @@
 /*CSS file*/
-h1 {font-color: green;
-    font-size: 24px;
-    background-color: #FFC2C2;
+* {
+  font-family: helvetica;
 }
-h2 {font-color: #00CC99;
-    font-size: 18px;
+main {
+  background-color:#F0FFFF;
 }
-h3 {font-color: #4DDBB8;
-    font-size: 16px;
+h1 {color: #cc0099;
+    font-size: 90px;
+    font-family: 'Tangerine', serif;
+    text-shadow: 4px 4px 4px #aaa;
+    text-align: right;
+    height: 60px;
+    background-color: #FFF5F5;
+    padding: 25px;
+    margin: auto;
 }
-p {font-size: 14px;
+h2 {color: #00CC99;
+    font-size: 38px;
+    padding-top: 10px
+
+}
+h3 {color: #4DDBB8;
+    font-size: 30px;
+}
+p {font-size: 18px;
+  padding: 10px;
+}
+footer {
+  background-color: #ffffcc;
+  height: 25px;
 }
