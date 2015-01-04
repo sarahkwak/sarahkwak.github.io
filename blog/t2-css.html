@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+  <title>Teach Brian How to Code</title>
+  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+  </head>
+  <body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+    <hr>
+<main>
+
+<h1>Margin, Padding and Border</h1>
+<div class="group">
+  <div class="recent-blog1">
+<img src="Screen-shot/note-MPB.jpg" class="tech-img"/>
+</div>
+<div class="recent-blog2 MPB">
+<p><strong>Margin</strong> is exactly like what we use for print paper - the areas that you want to put the contents in within the browser. "margin:auto" means that margin will automatically calculated and put contents in the exactly middle in width.</p>
+<p><strong>Padding</strong> is the pad distance between contents. In this graph, the space between contents and border are exactly 100px in each side.<p>
+<p><strong>Border</strong> is literally a border of the contents. Border has several property and I've used, border-color(#ff6699), style(dotted) and width(10px).</p>
+</div>
+</div>
+
+<h1>Display - Difference between Inline-Block and Block</h1>
+<img src="Screen-shot/Block.png"/ class="tech-img">
+<p>Block is a default setting of display and it will take up whole line of block.</p>
+<img src="Screen-shot/Inline-Block.png"/ class="tech-img">
+<p>Inline-block displays elements in inline but keep the style of block. Margin or padding can be applied in style.</p>
+<div class="DOM">
+<h1>DOM (Document Object Model)</h1>
+<p>DOM is like upside-down tree structure of the document(web). It provids a structured representation of the document. DOM is helpful to understand the relationship between objects like parents, sibling and children. These are brilliant ways to target specific element to style and action with CSS and JavaScript.</p>
+</div>
+<h1>Most Challenging concept of the week - Position : fixed, static, absolute and relative</h1>
+<p>While working with CSS, position was confused me the most. Here is how I understand the each property</p>
+<ol>
+<li>Static: Default value </li>
+<li>Fixed: Positioned related to the browser</li>
+<li>Relative: Most make sense position. This will actually move things around as I expect</li>
+<li>Absolute: Positioned related to its first positioned element - which I am still hard time to understand the concept of 'first positioned ancestor element</li>
+</ol>
+ <p>This week, I've played with a couple of CSS boxes(div width and height and background-color) to understand 'POSITION' property.</p>
+<h2>Boxes in a row</h2>
+<img src="Screen-shot/Task 2 - line.png" class="tech-img"/>
+<p>In order to make boxes in a row, CSS property - Top, Bottom, Right and Left were used.</p>
+
+<h2>Make the boxes have equal distance between them</h2>
+<img src="Screen-shot/Task 3- same distance.png" class="tech-img"/>
+<p>In order to make each boxes with same distance, I would like to use position: inline-block but failed. Instead, I calculated every box size and made manual adjustment for each position.</p>
+
+<h2>Move all the boxes into one column</h2>
+<img src="Screen-shot/Task 4-one column.png" class="tech-img"/>
+<p>In order to move all boxes into one column, I used CSS position:left property</P>
+
+<h2>Resize the boxes so they are 30% of their original size</h2>
+<img src="Screen-shot/Task 5- 30percent.png" class="tech-img"/>
+<p>I was looking for a way to complete the task with one property. I tried with resize and box-sizing property but failed. So I calculated and made adjust the size of the boxes manually. Once I find the better solution, I will re-post this.</p>
+
+<h2>Make the static div go to the bottom and have an absolute positiion (no matter what, it should always be at the bottom of the page - but not in the browser window) Make the footer 100% the width of the screen</h2>
+<img src="Screen-shot/Task 6 - Bottom.png" class="tech-img"/>
+<p>In order to make the static div stay in the bottom, I used position:fixed, bottom: 0 properties.</p>
+
+<h2>Make the absolute div a header at the top of the page with a fixed position so it's always at the top of the browser window. Make the width 95% of the entire screen and centered</h2>
+<img src="Screen-shot/Task 7 - Top fixed.png" class="tech-img"/>
+<p>In order to make absolute div stay at the top, I used position: fixed, top: 0 and width: 95%.</p>
+
+<h2>Move the relative div position to the right so it's like a right sidebar.</h2>
+<img src="Screen-shot/Task 8 - Side Bar.png" class="tech-img"/>
+<p>In oder to make the relative div position to the right, I used position:right.</p>
+<hr>
+      <footer>
+        Sarah Kwak 2015 &#169; copyrights
+      </footer>
+  </body>
+</html>
