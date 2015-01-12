@@ -80,16 +80,51 @@ a:hover {
 .main-menu:hover {
   color: tomato;
 }
-h1 {
-  font-size: 22px;
+h6 {
+  font-size: 50px;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+  color:#660066;
+  font-family: 'Montserrat', sans-serif;
+  height: 200px;
+  background-image: url("../stylesheets/coding.jpeg");
+  background-repeat: no-repeat;
+  background-position: 50% 280%;
+  background-color: white;
 }
 h2 {
-  font-size: 18px;
+  font-size: 20px;
+  text-align: right;
+}
+h3 {
+  font-size: 22px;
+  margin-left: 10px;
+  top: 0;
+}
+h5 {
+  font-size: 40px;
+  color: #660066;
+  text-align: center;
+  margin-top: 0;
 }
 .MPB {
   font-family: 'Poiret One', cursive;
 }
-/***** Contact *****/
+.text-editor {
+background-color:
+#2F462F;color: #fff;
+display: block;
+font-family: monospace;
+white-space: pre;
+text-align: left;
+font-size: 18px;
+}
+.highlight {
+  border-style: dotted;
+  border-color: tomato;
+}
+/***** Contact Page *****/
 #contact-input {
   width: 500px;
   height: 200px;
@@ -98,6 +133,15 @@ h2 {
   display: block;
   padding: 20px;
   margin-top: 10px;
+}
+/***** About Sarah Page *****/
+.main {
+  border: 15px solid #FF3399;
+  max-width: 300px;
+  max-height: 300px;
+  float: left;
+  width: 20%;
+  margin-right: 30px;
 }
 /***** Random *****/
 .DOM {

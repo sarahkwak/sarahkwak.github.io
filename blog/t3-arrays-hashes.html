@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <head>
+  <title>Teach Brian How to Code</title>
+  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+  </head>
+    <body>
+      <div class="sub-div">
+        <p><a href="../index.html">Back to Home</a></p>
+      </div>
+    <main>
+      <h6>Array [  ] and Hash {  }</h1>
+      <h2>Date: Jan 11, 2015</h2>
+      <section>
+        <h5>Array [  ]</h5>
+        <h3>Definition: Arrays are ordered, integer-indexed collections of any object</h3>
+        <p>Consider Array as a house. House of full of stuff(object). What can go into an array?</p>
+        <ul>
+          <li>String</li>
+          <li>Integer(or Fixnum)</li>
+          <li>Array</li>
+          <li>Key and Value pair</li>
+        </ul>
+        <h3>How to create an Array?</h3>
+        <p>Array can be made by using iteral constructor</p>
+        <div class="text-editor">
+          myarray = Array.new: This will return myarray = []
+          Array.new(3): This will return [nil, nil, nil]
+          Array.new(3, true): This will return [true,true,true]
+        </div>
+        <h3>Why 'array' [ ] is useful and important?</h3>
+        <p>There are several reasons. First, because array is indexed collection of object, an element can be easily retrive. Here is an examples</p>
+        <div class="text-editor">
+          #Using index to select the smallest integer in the array
+
+          def smallest_integer(list_of_nums)
+            list_of_nums.sort!
+            return list_of_nums[0]
+          end
+
+          #Using 'last' key word to select the lasrgest integer in the array
+
+          def largest_integer(list_of_nums)
+            list_of_nums.sort!
+            return list_of_nums.last
+          end
+        </div>
+        <p>It is also possible to use cool tricks in array. This is an example of using 'concat' to add two arrays</p>
+        <div class="text-editor">
+          #array_concat will return array_1 + array_2
+
+        def array_concat(array_1, array_2)
+          if array_1.empty? and array_2.empty?
+            return []
+          end
+           if array_1 == array_2
+             return array_1.concat(array_2)
+           else
+            return array_1.concat(array_2).<span class="highlight">uniq</span>
+          end
+        end
+      </div>
+      <p>The keyword <span class="highlight">'uniq'</span>  is used to get rid of duplicated element. Pretty neat, huh?</p>
+      <hr>
+      <h5>Hash {  } </h5>
+      <h3>Definition: Hash is the set of 'key' and 'value' pair</h3>
+      <p>As same as array, hash is also easy to retrive their element. The difference is array uses integer index, hash is using any object type. Hashes enumerate their values in the order that the corresponding keys were inserted. </p>
+      <h3>How to create a hash</h3>
+      <p>Similar to array, hash can be created by using iteral constructor</p>
+      <div class="text-editor">
+        myhash = Hash.new: This will return myhash = {}
+        myhash["telephone"] = 650-331-2222: This is same as
+        myhash{"telephone" => 650-331-2222 }
+        myhash[:banana]  = 3
+      </div>
+      <h3>Why 'hash' { } is useful and important?</h3>
+      <p>Because hash does have key and value pair, it is useful to store more dynamic data than array. For instance, if you are developing a 'contact list' the contact list can be consist of:</p>
+        <li>1. Name </li>
+        <li>2. Telephone number </li>
+        <li>3. Address </li>
+      <p>By using key and value pair, this can be easily achieved and stored nicely in the hash</p>
+      <div class="text-editor">
+        contact_list{"Name" => "Sarah Kwak"}
+        contact_list{"Telephone_number" => 650-332-2222}
+        contact_list{"Address" => "144 Belvedere Ave. San Carlos, CA 94070"}
+      </div>
+      <div class="text-editor">
+        #Other way to create hash
+
+        my_info = {
+        :first_name=> "Sarah",
+        :last_name=> "Kwak",
+        :hometown=> "Seoul, Korea",
+        :age=> 35
+        }
+      </div>
+      <p>The stored information can be easily retrived by using key or value. Here are some cool examples using hash</p>
+      <div class="text-editor">
+        # shortest_string is a method that takes an array of strings as its input and returns the shortest string
+
+          def shortest_string(list_of_words)
+            if list_of_words.length !=0
+             hash = {}
+             list_of_words.each do |word|
+             hash[word] = word.length
+            end
+            hash.sort_by { |key, value| value }[0][0]
+             else
+              return nil
+            end
+         end
+       </div>
+      </section>
+    </main>
+   <hr>
+      <footer>
+          Sarah Kwak 2015 &#169; copyrights
+      </footer>
+    </body>
+</html>
