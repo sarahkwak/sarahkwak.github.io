@@ -112,13 +112,23 @@ h5 {
   font-family: 'Poiret One', cursive;
 }
 .text-editor {
-background-color:
-#2F462F;color: #fff;
+background-color: #2F462F;
+color: #fff;
 display: block;
 font-family: monospace;
 white-space: pre;
 text-align: left;
 font-size: 18px;
+}
+.example {
+background-color: #99CC00;
+color: #990033;
+display: block;
+font-family: monospace;
+white-space: pre;
+text-align: left;
+font-size: 18px;
+
 }
 .highlight {
   border-style: dotted;
