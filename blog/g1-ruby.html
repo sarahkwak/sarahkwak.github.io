@@ -13,6 +13,7 @@
       <h6>Destructive and Nondestructive Method</h1>
       <h2>Date: Jan 14, 2015</h2>
 <h5>Something to Delete</h5>
+<div class=tech-div>
 <p>Sometimes you no longer need data that matches something. Create a `my_array_deletion_method` that takes an array and a letter, and deletes all the strings that contain that letter. This should modify the original because we now permanently hate that letter.</p>
 
 
@@ -24,11 +25,11 @@ This will return => ["I", 4, "pets", "but", "only", 3 ]
 
 </div>
 <div class="example">
-The second method will do same thing in Hash environment. When the 'key' was matching with the word 'thing_to_delete'
-it will delete the pair (key and value). This will also modify the original object('source' in this case).
+  The second method will do same thing in Hash environment. When the 'key' was matching with the word 'thing_to_delete'
+  it will delete the pair (key and value). This will also modify the original object('source' in this case).
 
-my_hash_deletion_method!(my_family_pets_ages, "George")
-This will return => {"Evi" => 8, "Hoobie" => 5, "Bogart" => 6, "Poly" => 6, "Annabelle" => 2, "Ditto" => 5}
+  my_hash_deletion_method!(my_family_pets_ages, "George")
+  This will return => {"Evi" => 8, "Hoobie" => 5, "Bogart" => 6, "Poly" => 6, "Annabelle" => 2, "Ditto" => 5}
 
 </div>
 
@@ -36,11 +37,7 @@ This will return => {"Evi" => 8, "Hoobie" => 5, "Bogart" => 6, "Poly" => 6, "Ann
 
 <div class="text-editor">
 def my_array_deletion_method!(source, thing_to_delete)
-    total = Array.new
-    source.each do |element|
-        source.delete_if { |element| element.to_s.include? thing_to_delete}
-    end
-   return source
+    source.delete_if { |element| element.to_s.include? thing_to_delete}
 end
 
 </div>
@@ -55,7 +52,7 @@ end
 
 </div>
 <p>"Delete_if " is also destructive method thus will change the original argument('source' in this case). </p>
- </main>
+ </div>
    <hr>
       <footer>
           Sarah Kwak 2015 &#169; copyrights

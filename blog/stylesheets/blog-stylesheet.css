@@ -1,40 +1,36 @@
 /*****Main Styling*****/
 body {
-  background-color: #FFE0E0;
   font-family: helvetica;
-  color: #14293d;
+  background-color: ;
 }
 .main-menu {
-  background-color:#F0FFFF;
-  height: 300px;
-  background-image: url(dog-computer.png);
-  background-repeat: no-repeat;
-  background-position: center;
+  /* background-color:#F0FFFF;*/
+  height: 70px;
 }
 .main-menu li {
-  background-color:#cc99ff;
-  border-radius: 5px;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 15px;
-  text-decoration: none;
-  font-size:18px;
+  font-size:20px;
   display: inline-block;
-  padding: 10px;
-  position: relative;
-  left: 10px;
-  top: 250px;
+  padding: 5px;
   text-decoration: none;
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+  box-sizing: border-box;
+  right: 10px;
 }
 .main-menu:after {
   clear: both;
 }
+
 footer {
   height: 25px;
   text-align: right;
   margin-right: 20px;
 }
 /***** Main-Divs *****/
+.index-div {
+margin-left: 10%;
+margin-right: 10%;
+
+}
 .main-div {
   line-height: 40px;
   margin: 5px;
@@ -72,13 +68,45 @@ max-width: 500px;
 }
 /***** Detailing *****/
 a:visited {
-  color: #cc0099;
+  color: #66CDAA;
   }
 a:hover {
-  color: white;
+  cursor: pointer;
+  color: yellow;
 }
 .main-menu:hover {
   color: tomato;
+}
+div p {
+  font-size: 18px;
+  line-height: 150%;
+}
+
+h1 {
+  font-size: 40px;
+}
+h2 {
+  font-size: 20px;
+  text-align: right;
+  color: grey;
+}
+h3 {
+  font-size: 22px;
+  margin-left: 10px;
+  top: 0;
+}
+h4 {
+  font-size: 30px;
+  font-weight: lighter;
+  color: grey;
+  padding: 3px;
+  bottom: 5px;
+}
+h5 {
+  font-size: 40px;
+  color: #660066;
+  text-align: center;
+  margin-top: 0;
 }
 h6 {
   font-size: 50px;
@@ -93,43 +121,52 @@ h6 {
   background-position: 50% 280%;
   background-color: white;
 }
-h2 {
-  font-size: 20px;
-  text-align: right;
-}
-h3 {
-  font-size: 22px;
-  margin-left: 10px;
-  top: 0;
-}
-h5 {
-  font-size: 40px;
-  color: #660066;
-  text-align: center;
-  margin-top: 0;
-}
 .MPB {
   font-family: 'Poiret One', cursive;
+}
+h7 {
+  font-size: 20px;
+  font-weight: lighter;
+  color: grey;
+  text-align: left;
+}
+h8 {
+  font-size: 30px;
+  font-weight: lighter;
+  color: grey;
+  display: inline-block;
+  bottom: 5px;
+  }
+.tech-div {
+  margin-right: 15%;
+  margin-left: 15%;
 }
 .text-editor {
 background-color: #2F462F;
 color: #fff;
 display: block;
 font-family: monospace;
-white-space: pre;
+white-space: pre-line;
 text-align: left;
 font-size: 18px;
+padding: 1%;
+line-height: 130%
 }
 .example {
 background-color: #99CC00;
 color: #990033;
 display: block;
 font-family: monospace;
-white-space: pre;
+white-space: pre-line;
 text-align: left;
 font-size: 18px;
-
+padding: 1%;
+line-height: 130%;
 }
+.tech_div span {
+  background-color: yellow;
+}
+
 .highlight {
   border-style: dotted;
   border-color: tomato;
@@ -143,6 +180,7 @@ font-size: 18px;
   display: block;
   padding: 20px;
   margin-top: 10px;
+  margin-bottom: 100px;
 }
 /***** About Sarah Page *****/
 .main {
@@ -157,4 +195,19 @@ font-size: 18px;
 .DOM {
   background-image: url(Screen-shot/note-DOM.png);
   background-position: center
+}
+/***** Image *****/
+.main-dog {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tech-div img {
+  border-left-width: 5px;
+  border-left-color: #99CCFF;
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
 }
