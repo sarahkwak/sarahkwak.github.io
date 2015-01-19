@@ -211,3 +211,8 @@ line-height: 130%;
   border-left-width: 5px;
   border-radius: 3px;
 }
+img.transparent {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
