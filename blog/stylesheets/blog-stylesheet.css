@@ -146,18 +146,18 @@ background-color: #2F462F;
 color: #fff;
 display: block;
 font-family: monospace;
-white-space: pre-line;
+white-space: pre;
 text-align: left;
 font-size: 18px;
 padding: 1%;
 line-height: 130%
 }
 .example {
-background-color: #99CC00;
-color: #990033;
+background-color: black;
+color: white;
 display: block;
 font-family: monospace;
-white-space: pre-line;
+white-space: pre;
 text-align: left;
 font-size: 18px;
 padding: 1%;
