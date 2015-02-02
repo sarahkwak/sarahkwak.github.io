@@ -14,7 +14,7 @@
       <h2>Date: Jan 22, 2015</h2>
 <div class=tech-div>
   <hr>
-<h4>Class, Ruby's First-Class Object</h4>
+<h4>Class. Ruby's First-Class Object</h4>
 <p><strong>Classes</strong> in ruby are first-class objects. We've used classes all alone. String, Integers, Floats, Arrays and Hashes are all the "Class" in ruby. Thus when we create them, we says </p>
 <div class=text-editor>
   arr = Array.new
@@ -57,39 +57,102 @@
 <div class=text-editor>
   sarah = Person.new
   sarah
-  # This will return => "I am a person"
+  # => "I am a person"
 
 </div>
 <p>When Person.new is called to create a new object, the 'new' method in class is run.</p>
 
-<h4>Scope of Instance and Local Variable</h4>
+<h4>Scope of Variables</h4>
+<h3>$Global and CONSTANT Variable</h3>
+<P>Global and Constant variables are similar. Both have wide global scope. The difference is that constant will throw a warning if you try to change the value while the program is running</p>
+
+<h3>@@Class and @Instance Varialbe</h3>
+<p><strong>Class veriable </strong>means that the variable exist over all instances of a class. Class variable is started with @@</p>
+<div class=text-editor>
+  class Animal
+    def initialize
+      @@num = 4
+    end
+
+    def num_leg
+      @@num
+    end
+
+    def evolved_leg(num)
+      @@num = num
+    end
+
+  end
+
+    dog = Animal.new
+    monkey = Animal.new
+    p dog.num_leg
+    p monkey.num_leg
+    puts "Here comes difference between class and instance variable"
+    p monkey.evolved_leg(2)
+    p monkey.num_leg #=>This will completely change num_leg to 2
+    p dog.num_leg #This will return 2 as well
+
+</div>
+<p>Do exactly same exercise with <strong>instance variable</strong>
+<div class=text-editor>
+  class Animal
+    def initialize
+      @num = 4
+    end
+
+    def num_leg
+      @num
+    end
+
+    def evolved_leg(num)
+      @num = num
+    end
+
+  end
+
+    dog = Animal.new
+    monkey = Animal.new
+    p dog.num_leg
+    p monkey.num_leg
+    puts "Here comes difference between class and instance variable"
+    p monkey.evolved_leg(2)
+    p monkey.num_leg #=>This will completely change num_leg to 2
+    p dog.num_leg #This will return 4 because num = 4 only applys to evolved_leg (instance) variable.
+
+</div>
+<p>To answer the qeustion of which variable to choose,
+  @@class variable will be appropriate when you want to make a variable accessible to ALL <strong>INSTANCES of the CLASS</strong>.</p>
+  <p>@instance vaiable will be appripriate when you want to make a variable accessible to ALL <strong> METHODS in the CLASS</strong></p>
+
+
 <p><strong>Instance Variables</strong> are just an object's variable. The difference of instance and local variables are - first, instance variables have @ in front of their names. Second, instance variables will be visible to different methods inside of class. Instance variable will be visible to the whole instances of the classes. On the other hand, <strong>local variables</strong> is visible only to that method or the 'block'.</p>
 
 <div class =text-editor>
-class Person
+  class Person
 
-  def fav_num
-    @fav_num = rand(9)
+    def fav_num
+      @fav_num = rand(9)
+    end
+
+    def num_friends
+      friends = rand(5)
+    end
+
+    def my_info
+     puts @fav_num
+     puts friends
+    end
+
   end
 
-  def num_friends
-    friends = rand(5)
-  end
+  sarah = Person.new
+  sarah.fav_num
+  sarah.num_friends
 
-  def my_info
-   puts @fav_num
-   puts friends
-  end
-
-end
-
-sarah = Person.new
-sarah.fav_num
-sarah.num_friends
-
-#It will return
-  4
-  2
+  # =>
+    4
+    2
 </div>
 
 <div class=text-editor>
@@ -110,54 +173,55 @@ sarah.num_friends
 
   class Person
 
-  def fav_num
-    @fav_num = rand(9)
+    def fav_num
+      @fav_num = rand(9)
+    end
+
+    def num_friends
+      @friends = rand(5)
+    end
+
+    def my_info
+     puts @fav_num
+     puts @friends
+    end
+
   end
 
-  def num_friends
-    @friends = rand(5)
-  end
+  sarah = Person.new
+  sarah.my_info
 
-  def my_info
-   puts @fav_num
-   puts @friends
-  end
-
-end
-
-sarah = Person.new
-sarah.my_info
-
-3
-4
+  # =>
+  3
+  4
 </div>
 
 <h4>Initialize</h4>
 <p>When a class is bone, one thing is always going to happen. Run initialize method. Initialize will always execute every time we create a new instance of the class. We can take advantage this automatic initialization process to set an object's state at the time of the object's creation. </p>
 <p>Inside initialize method, we can pass the valiable and value.</p>
 <div class=text-editor>
-    class Person
-      def initialize(name, sex)
-        @name = name
-        @sex = sex
-      end
-
-      def name
-        @name = name  #all these methods are returning is actual variable name
-        itself!
-      end
-
-      def sex
-        @sex = sex
-      end
+  class Person
+    def initialize(name, sex)
+      @name = name
+      @sex = sex
     end
+
+    def name
+      @name = name  #all these methods are returning is actual variable name
+      itself!
+    end
+
+    def sex
+      @sex = sex
+    end
+  end
 
 </div>
 <p>Because initialize method will run whenever Person was instantiate and called, name and sex variable will be available through out the class. This is the reason we initialize the instance variable so they can be accessed by any method called within the class </p>
 
 <h4>Getter / Setter Methods: attr_reader, attr_writer and attr_accessor</h4>
 <p>Remember that instance vaiable can be only accessed by object's own methods? This is good. Becuase in that way, we can have absolute control on our methods and variables WITHIN the class. What do I mean by 'control'?  <strong>Can we change the value of the instance vaiable from outside?</strong> This is where we need to use 'getter' method like attr_reader, writer and accessor. </p>
-<p>The attr_reader method defines the reader method for you. This is a convenient way to define variables. </p>
+<p>The attr_reader method defines the reader method for you. This is a convenient way to define variables. It is always good idea to wrap instance variables in accessor methods instead of directly referring to variables.</p>
 
 <div class=text-editor>
   # attr_reader will do this
@@ -168,8 +232,7 @@ sarah.my_info
   def tel_num=(new_num)
     @tel_num = new_num
   end
-  #
-  attr_accessor will do both of aboves
+  # attr_accessor will do both of aboves
 
 </div>
 </div>

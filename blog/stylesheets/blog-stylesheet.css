@@ -1,7 +1,6 @@
 /*****Main Styling*****/
 body {
   font-family: helvetica;
-  background-color: ;
 }
 .main-menu {
   /* background-color:#F0FFFF;*/
@@ -48,6 +47,23 @@ margin-right: 10%;
   content:" ";
   clear: both;
 }
+.thoughts li {
+  background-color: #D6FFD6;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  width: 180px;
+  height: 180px;
+  vertical-align: top;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  text-align: center;
+}
+
+.thoughts li p {
+  margin-top: 40px;
+}
 /***** Sub-Div *****/
 body {
   margin: 20px;
@@ -72,14 +88,19 @@ a:visited {
   }
 a:hover {
   cursor: pointer;
-  color: yellow;
+  color: #0099CC;
 }
-.main-menu:hover {
-  color: tomato;
+a {
+  color: #9900FF;
 }
+
 div p {
   font-size: 18px;
   line-height: 150%;
+}
+
+.group li {
+  font-size: 18px;
 }
 
 h1 {
@@ -106,7 +127,7 @@ h5 {
   font-size: 40px;
   color: #660066;
   text-align: center;
-  margin-top: 0;
+  margin-top: 20px;
 }
 h6 {
   font-size: 50px;

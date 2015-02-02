@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <head>
+  <title>Teach Brian How to Code</title>
+  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+  </head>
+    <body>
+      <div class="sub-div">
+        <p><a href="../index.html">Back to Home</a></p>
+      </div>
+    <main>
+      <h6>Blocks, Procs and Lambdas</h1>
+      <h2>Date: Jan 22, 2015</h2>
+<div class=tech-div>
+  <hr>
+<h4>Ruby's Methods</h4>
+<p>Before start talking about Blocks, Procs and Lambdas, maybe it is worth to see why ruby is called an "Object-Oriented" Language</p>
+<p>While I was learning about how to use ruby's Class, it becomes NOT so clear that why we use Class and why it is so special? And why suddenly everyone talks about 'object oriented language'? When I deal with String and Fixnum - this was much easier for me to undertnad that 'object' means. Objects have behavior and may contain data, data to which they alone control access. Then.. is Class very different than string or integer? What is class and why it is important?</p>
+
+<p style = "font-size: 20px">So what is Class?</p>
+<p><strong>Class</strong> is a blueprint for the construction of similar objects. A class defines:</p>
+<ul style = "font-size: 18px">
+  <li>Methods - definitions of behavior</li>
+  <li>Attributes - definitions of variables</li>
+</ul>
+<p>Methods get invoked in response to messages. The same method name can be defined by many different objects; it's up to ruby to find and invoke the right method of the correct object for any sent message. </p>
+
+<p>String and Fixnum are also ruby's existing <strong>Class</strong>. Although it is not visible, we instantiate string class and uses methods and attribute that allows using 'string' class.</p>
+<p>When we create an object, no matter how brilliant it is, they can not know everything possible. So they are communicate each other and exchange information. It can be called 'collaborate'. To collaborate, an object must know something about others. Knowing creates a 'dependency'. If not managed carefully, these dependencies will strangle your application.</p>
+
+<h3>Understanding Dependencies</h3>
+
+<div class=text-editor>
+  class Song
+    attr :title, :artist
+    def initialize(title, artist)
+      @title = title
+      @artist = artist
+    end
+
+    def play
+      puts "#{@title} by #{@artist} is now playing"
+    end
+  end
+
+  class Playlist
+    attr :song
+    def initialize(song)
+      @song = song
+    end
+
+    def a_list
+      Song.new(song.title, song.artist).play
+    end
+  end
+
+  bury_our_friends = Song.new("Bury our Friends", "Sleater Kinney")
+  Playlist.new(bury_our_friends).a_list
+  #This will return
+  # Bury our Friends by Sleater Kinney is now playing
+
+</div>
+<p>In this example, the Playlist class recognizes the following: </p>
+<ul style="font-size: 18px">
+  <li>The name of another class Song to exist.</li>
+  <li>The method name play to exist inside of Song class</li>
+  <li>The arguments that a Song will take are title and artist and both are accessible(becuase they are instance variable with @)</li>
+</ul>
+<h4>Blocks</h4>
+<p><strong>Blocks</strong> are one of ruby's most powerful features. In fact, blocks are actually a type of 'syntax' in the ruby language. They are a little bit different from objects and method definitions. block can be expressed by 'do...end' or {   }. The difference is that the curly braces have a higher priority inside of the ruby interpreter.</p>
+<div class=text-editor>
+  def print(&block)
+    puts "hello world"
+    block.call
+  end
+
+  puts print{puts "hello again"}
+
+  #block is expressed with '&'. It doesn't execute unless you 'call' them
+
+</div>
+<p>This example itself isn't very useful unless we like to explore many different ways to print out stuff. The reason block is a powerful tool is that there are many useful 'keywords' like 'BEGIN', 'END', 'rescue', 'raise' and 'ensure'. Let's see some examples</p>
+
+<div class=text-editor>
+  # EXAMPLE 1. rescue, ensure, raise, BEGIN and END
+  def header(&block)
+    puts "I am a header"
+    block.call
+    #rescue block will rescue from 'raised' error thus error message will
+    not be printed
+  rescue
+    puts "This is a rescue!!"
+    #No matter what happens 'ensure' block will run after error message
+  ensure
+    puts "This is the last sentence"
+  end
+
+  header { puts "This is inside of the header"
+          raise "This is an error message" #This is how to 'raise' error
+          message and it will stop code running forward
+        }
+  BEGIN {puts "THIS IS FROM BEGIN BLOCK"}
+  END {puts "THIS IS END BLOCK"}
+
+  =>
+  THIS IS FROM BEGIN BLOCK
+  I am a header
+  This is inside of the header
+  This is a rescue!!
+  This is the last sentence
+  THIS IS END BLOCK
+
+</div>
+
+<div class=text-editor>
+  # EXAMPLE2. yield
+  def call_name(&block)
+    puts "What is your name?"
+    yield name = gets.chomp
+  end
+
+  call_name { |name|
+    puts "Your name in upcase is #{name.upcase}"
+    puts "Your name is #{name}"
+    }
+  =>
+  What is your name?
+  sarah
+  Your name in upcase is SARAH
+  Your name is sarah
+
+</div>
+<p>The great thing about 'yield' statment is it gives control of the current method over the block that is passed in. Yield can also be used to send a variable value in to, or out of, a block of code. It also does not change the original variable so although the 'name' variable is same it will not upcase the original name 'sarah'. </p>
+
+<div class=text-editor>
+  # Example3. This is how we can use block in real life
+  class Speech
+  attr :title
+    def initialize
+      print "What is the speech title?"
+      @title = gets.chomp
+      @lines = []
+      while add_line
+        puts "Line added."
+      end
+    end
+
+    def add_line
+      puts "Add line: (blank line to exit)"
+      line = gets.chomp
+        if line.length > 0
+          @lines << line
+          return line
+        else
+          return nil
+        end
+    end
+
+    def each(&block)
+      @lines.each { |line| yield line }
+    end
+
+  end
+
+  my_speech = Speech.new
+  my_speech.each {|line| puts "#{my_speech.title} : #{line}" }
+
+  =>
+  What is the speech title?Test Speech
+  Add line: (blank line to exit)
+  Sarah is awesome person.
+  Line added.
+  Add line: (blank line to exit)
+  Sarah is going to be an awesome programmer.
+  Line added.
+  Add line: (blank line to exit)
+
+  Test Speech : Sarah is awesome person.
+  Test Speech : Sarah is going to be an awesome programmer.
+
+</div>
+<p>One very important lesson here. If you forget to put attr :title, this code will not run and give you error on undefined local veriable or method 'title'. Very important to put attr reader if you want to call the method outside of the class.</p>
+
+<h4>Procs and Lambdas</h4>
+<p>Procs and Lambdas are closures. They are blocks of code that can be assigned to variables. Proc (short for Process) is more meaningful and broad concept including blocks and lambdas. Therefore many rubist write in uppercase'Procs' but in lowercase 'blocks' and 'rambdas'. It is also because blocks and lambdas do not have their own class.</p>
+
+<div class=text-editor>
+  #How to create procs
+
+  my_proc = Proc.new {} # or
+  => #< Proc:0x007fa2790e5dd0@(irb):15 >
+  my_proc = proc # No argument will cause Argument Error.
+  => ArgumentError: tried to create Proc object without a block
+  my_proc = proc {}
+  => #< Proc:0x007fa278b1ecf8@(irb):18 >
+
+  #How to create lambdas
+  my_lambda = lambda {} # or
+  my_lambda -> lambda {} #'skinny arrow' can be used to create lambdas
+  => #< Proc:0x007fa278b2fdf0@(irb):20 (lambda) > #Difference when you create lambda is that it will say (lambda).
+
+</div>
+
+<p>So why use Procs and what is lambda? Basically they are 'keywords'. When we called the variable many times within the class, you want to use procs. </p>
+
+<div class=text-editor>
+  class AddressBook
+
+    def initialize(&block)
+      yield self if block_given?
+    end
+
+    def set_variable
+      return proc { |kind, value| [kind, value].join(": ") }
+    end
+
+    def name(value)
+      @name = set_variable.call "Name", value
+    end
+
+    def phone_number(value)
+      @phone_number= set_variable.call "Phone_Number", value
+    end
+
+    def e_mail(value)
+      @e_mail = set_variable.call "E-Mail", value
+    end
+
+    def display
+      puts @name
+      puts "_____________"
+      puts @phone_number
+      puts "_____________"
+      puts @e_mail
+      puts "_____________"
+    end
+  end
+
+  sarah_addressbook = AddressBook.new { |a|
+    a.name "Ryan Heffernan"
+    a.phone_number "I don't have it yet"
+    a.e_mail "Ryan.heffernan.fb.com"
+  }
+  sarah_addressbook.display
+
+  =>
+  Name: Ryan Heffernan
+  _____________
+  Phone_Number: I don't have it yet
+  _____________
+  E-Mail: Ryan.heffernan.fb.com
+  _____________
+
+</div>
+<p>Difference between procs and lambda is that when you call:
+  procs : It returns from inside of procs
+  lambdas : It has diminutive return. While proc return will stop a method and return the value provided (inside of the proc), lambdas will return their value TO the method and let the method continues on.</p>
+
+  <div class=text-editor>
+  def procs_return
+    variable = proc {return "I am procs and this is from the inside of procs"}
+    variable.call
+    return "This is from outside of the procs_return method"
+  end
+
+  def lambdas_return
+    variable = lambda {return "I am lambda and this is from the inside of lambda"}
+    variable.call
+    return "This is from outside of the lambda_return method"
+  end
+
+  puts procs_return
+  puts lambdas_return
+
+  =>
+  I am procs and this is from the inside of procs
+  This is from outside of the lambda_return method
+
+  # proc will return inside of proc
+  # lambda will continue the method and return the final return
+
+</div>
+<hr>
+      <footer>
+          Sarah Kwak 2015 &#169; copyrights
+      </footer>
+    </body>
+</html>
+

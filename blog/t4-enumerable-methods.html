@@ -18,7 +18,7 @@
 
   <p><span>Enumerable</span> provides several searching methods and ability to sort. Enumerable also provides methods like #max, #min or #sort to compare elements. Pretty neat, huh?</p>
   <p>To use these methods, the collection must implement <=> operator, as these methods rely on an ordering between numbers of the collection. </p>
-  <div class=example>
+  <div class=text-editor>
     arr = %w[Ryan Sarah Brian Bob]
     # %w is really cool trick. This will put " " in every element
     arr.max { |x, y| x.length <=> y.length}
@@ -31,14 +31,14 @@
   <p>The only requirement for Enumerable to work with a class is 'each' iterator. #each is an iterator method that comes pre-packaged with the Array and Hash and other classes. It will allow whatever you pass in right side of stuff goes through "each" item in the object you called it on and passes it to the block that you specified. </p>
 
   <p>Here is some examle of <span>'each'</span> iterator</p>
-  <div class=example>
+  <div class=text-editor>
     animal = ['dog', 'cat', 'cow', 'rabbit'].each { |a| print a + " "}
     => dog cat cow rabbit
 
   </div>
 
   <p>Some Enumerable has built in 'each' so it can go through each element's numerical position </p>
-  <div class=example>
+  <div class=text-editor>
     animal = ['dog, 'cat', 'cow', 'rabbit']
     animal.each_with_index { |x, y| puts x if y % 2== 0}
     => dog
@@ -50,14 +50,14 @@
 
   <h4>MAP</h4>
     <p> #map returns a <span>new array</span> filled with whatever gets returned by the block each time it runs.</p>
-    <div class=example>
+    <div class=text-editor>
       animal = ['dog, 'cat', 'cow', 'rabbit']
       my_fav_animal = animal.each_with_index.map { |x, y| x if y % 2== 0}
       => ["dog", nil, "cow", nil]
 
     </div>
     <p><span>#collect</span> do EXACTLY same as #map. It will returns a new array</p>
-    <div class=example>
+    <div class=text-editor>
       animal = ['dog, 'cat', 'cow', 'rabbit']
       my_fav_animal = animal.each_with_index.collect { |x, y| x if y % 2== 0}
       => ["dog", nil, "cow", nil]
@@ -68,7 +68,7 @@
       <p><span>#group_by</span> { |obj| block } returns a hash {key, value array}</p>
       <li>keys are the evaluated results from the block</li>
       <li>values are arrays of elements in the collection that corrrespond to the key</li>
-      <div class = example>
+      <div class = text-editor>
         [3,4,5].group_by { |x| x% 2 }
         => {1=>[3, 5], 0=>[4]}
 
@@ -82,7 +82,7 @@
 
      <h4>CYCLE.. The Endless Journey</h4>
      <p> <span>#cycle</span> calls block for each element of enum "repeatedly" n times or forever if none or nil is given. Note that if a non-positive number is given or the collection is empty, it does nothing. Returns nil if the loop has finished without getting interrupted.</p>
-     <div class=example>
+     <div class=text-editor>
       ["dog", "cat", "cow"].cycle {|x| print x + " " }
       dog cat cow dog cat cow dog cat cow.... forever..
 
