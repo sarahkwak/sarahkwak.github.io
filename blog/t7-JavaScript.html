@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <head>
+  <title>Teach Brian How to Code</title>
+  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+  </head>
+    <body>
+      <div class="sub-div">
+        <p><a href="../index.html">Back to Home</a></p>
+      </div>
+    <main>
+      <h6>Ruby classes vs. JavaScript constructor functions</h1>
+      <h2>Date: Feb 05, 2015</h2>
+<div class=tech-div>
+  <hr>
+  <p>Classes are very important in object-oriented programming. This is because a class tells us helpful information about objects, and you can think of an object as a particular instance of a class.</p>
+
+  <p>There are several difference between Ruby classes and JavaScript Constructor functions. First, Ruby class is can be instanciate by Class.new attribute but JavaScript needs a special function called 'prototype'. </p>
+  <p>Here is an example of Ruby's class and instantiate process. </p>
+    <div class=text-editor>
+    class Person
+      def initialize(name, phone_number, address)
+        @name = name
+        @phone_number = phone_number
+        @address = address
+      end
+
+      def print_out
+        puts "#{@name}, #{@phone_number}, #{@address}"
+      end
+    end
+
+  sarah = Person.new("Sarah Kwak", "650-3810-9918", "140 Belvedere Ave. San Carlos, CA 94070")
+
+  sarah.print_out
+  =>
+  Sarah Kwak, 650-3810-9918, 140 Belvedere Ave. San Carlos, CA 94070
+
+</div>
+<p>JavScript has 'object constructor' does do similar job but have little bit different way. Here is an example.
+
+<div class=text-editor>
+  Person = function(name, phone_number, address) {
+    this.name = name,
+    this.phone_number = phone_number,
+    this.address = address
+  };
+  sarah = new Person("Sarah Kwak", "650-381-9918", "140 Belvedere Ave. San Carlos,
+  CA 94070");
+  console.log(sarah);
+  =>
+  { name: 'Sarah Kwak',
+  phone_number: '650-381-9918',
+  address: '140 Belvedere Ave. San Carlos, CA 94070' }
+
+  </div>
+<p>The thing is that not everything can be easily inherited to the class instance. The special keyword 'prototype' allows any function to be inherited to the class instance. </p>
+<div class=text-editor>
+
+  Dog = function(name, breed, age) {
+    this.name = name,
+    this.breed = breed,
+    this.age = age
+  };
+  Dog.prototype.complain = function () {
+      console.log("My name is "+this.name +" and I need COOKIES!");
+  };
+  brian = new Dog("Brian", "puggle", 3);
+  brian.complain();
+  =>
+  My name is Brian and I need COOKIES!
+
+  </div>
+
+  <p>"Inheritance Chain" means if a property is not defined for a class, this class's prototype chain will be traversed upwards until one is found (or not) in a parent (higher) class.</p>
+
+  <div class = text-editor>
+  Animal = function(kind) {
+      this.kind = kind,
+      this.numLegs = 4
+  };
+
+  Animal.prototype.peace = function() {
+      console.log("We all love peace!");
+  };
+
+  Dog = function(name, breed, age) {
+    this.name = name,
+    this.breed = breed,
+    this.age = age
+  };
+
+  Dog.prototype = new Animal(); // This will make Brian = Dog = Animal
+  brian = new Dog("Brian", "puggle", 3);
+  console.log(brian.numLegs);
+  brian.peace();
+  =>
+  4
+  We all love peace!
+
+</div>
+
+<hr>
+      <footer>
+          Sarah Kwak 2015 &#169; copyrights
+      </footer>
+    </body>
+</html>
+
