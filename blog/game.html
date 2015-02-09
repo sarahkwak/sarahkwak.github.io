@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <body>
 
 <canvas id="ctx" width="500" height="500" style="border:10px solid #c3c3c3;"></canvas>
 
 
 <script>
-
 var ctx = document.getElementById("ctx").getContext("2d");
 ctx.font = "30px Arial";
 var HEIGHT = 500;
 var WIDTH = 500;
 var startTime = Date.now();
 var frameCount =0;
-
 // Player
 var player = {
   x: 250,
@@ -26,13 +25,12 @@ drawPlayer = function (identity) {
   ctx.fillRect(identity.x-15, identity.y-15, 20,20)
   ctx.restore();
 }
-
 document.onmousemove = function (mouse) {
   var mouseX = mouse.clientX;
   var mouseY = mouse.clientY;
-
   player.x = mouseX;
   player.y = mouseY;
+
 
   drawPlayer(player);
 
@@ -137,6 +135,10 @@ setInterval(update, 40);
 
 
 </script>
+
+  <h1 style="font-family: helvetica">Avoid Collision!</h1>
+  <h4 style="font-family:helvetica">You are a player(Green Square). When you collide with Red enermies, you will lose health</h4>
+    <h4 style="font-family:helvetica">The game will restart once your health reaches 0</h4>
 
 </body>
 </html>
