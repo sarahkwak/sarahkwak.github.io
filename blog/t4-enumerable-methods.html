@@ -82,6 +82,7 @@
 
      <h4>CYCLE.. The Endless Journey</h4>
      <p> <span>#cycle</span> calls block for each element of enum "repeatedly" n times or forever if none or nil is given. Note that if a non-positive number is given or the collection is empty, it does nothing. Returns nil if the loop has finished without getting interrupted.</p>
+
      <div class=text-editor>
       ["dog", "cat", "cow"].cycle {|x| print x + " " }
       dog cat cow dog cat cow dog cat cow.... forever..
@@ -96,6 +97,28 @@
       => nil
 
     </div>
+
+    <div class=text-editor>
+      FizzBuzz Game!!
+    def super_fizzbuzz(array)
+        array.map do |x|
+          if x%15==0
+            "FizzBuzz"
+          elsif x%5==0
+            "Buzz"
+          elsif x%3==0
+            "Fizz"
+          else
+            x
+          end
+        end
+      end
+    p super_fizzbuzz([1,2,3]) #=> [1,2, "Fizz"]
+    p super_fizzbuzz([1,2,5])  # => [1, 2, "Buzz"]
+    p super_fizzbuzz([1,2,15]) # => [1, 2, "FizzBuzz"]
+
+  </div>
+
     <p><span>Enumerator is a powerful tool.</span> The methods that are part of Enumerable rely on the "each" method to work. It is also note-worthy that some methods are destructive, some are non-destructive and some offers both. Like map and map! returns same values but map! will change the original argument to the returned value. Some methods return true or false like none? or one? </p>
 <hr>
       <footer>
