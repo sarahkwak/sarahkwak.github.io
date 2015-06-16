@@ -22,7 +22,7 @@ body a {
   clear: both;
 }
 footer {
-  height: 25px;
+  height: 50px;
   text-align: right;
   margin-right: 20px;
 }
@@ -86,15 +86,16 @@ margin-right: auto;
 max-width: 500px;
 }
 /***** Detailing *****/
-a:visited {
+/*a:visited {
   color: #66CDAA;
-  }
+  }*/
 a:hover {
   cursor: pointer;
   color: #0099CC;
+  font-size: 1.2em;
 }
 a {
-  color: #9900FF;
+  color: #66CDAA;
 }
 
 div p {
@@ -251,7 +252,7 @@ img.transparent {
 
 }
 .post-dbc p {
-  font-size: 1.8em;
+  font-size: 2em;
   text-decoration: none;
   text-align: center;
   color: black;
@@ -259,6 +260,43 @@ img.transparent {
   font-weight: 400;
 }
 
+.post-dbc a {
+  color: black;
+}
 .post-dbc:hover {
   font-size: 1.1em;
+  color: #5C8A8A;
+}
+.resume p {
+  word-wrap: break-word;
+}
+
+.main-quote {
+  font-family: 'Rock Salt', cursive;word-wrap: break-word;
+  text-align: right;
+  right: 40px;
+  padding-right: 20px;
+}
+
+.resume h7 {
+  color: #0099CC;
+}
+.resume li {
+  font-size: 1.1em;
+  line-height: 200%;
+  text-indent: 20px;
+  word-wrap: break-word;
+}
+.git-img {
+  border-left: solid 10px #C2C2D6;
+  width: 15%;
+  display: inline-block;
+}
+.linkedin-img {
+  width: 12%;
+  display:inline-block;
+}
+.left-float {
+  float: left;
+  width: 60%;
 }
