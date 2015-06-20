@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+  <title>Teach Brian How to Code</title>
+  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+  </head>
+  <body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+<main>
+  <h6>I'm an idiot. I 'git init' to whole folder</h6>
+  <h2>June 20, 2015</h2>
+  <div class=tech-div>
+    <p>I’m working on a project called ‘DBC Alumni Portal'. I’ve discussed with DBC about this since my graduation. I think that it will be awesome if we have one place finding information (mostly job related), networking and socializing. </p>
+    <p>As I am luckily belongs to two cohorts - Sea Lions and Rock Doves, I found that each cohort has different idea of connecting with each other after graduation.</p>
+    <p>Anyway, I am starting a new project called ‘DBC_alumni” and create the github repo and then, here is what I’ve done</p>
+    <div class="text-editor">
+      echo "# DBC_alumni" >> README.md
+      git init
+      git add README.md
+      git commit -m "first commit"
+      git remote add origin https://github.com/sarahkwak/DBC_alumni.git
+      git push -u origin master
+    </div>
+    <p>And guess what happened?</p>
+    </p>I've made entire Document folder as my origin/master in local machine. <strong>So How to Remove Master Branch from Local Repo?</strong></p>
+    <p>I’ve googled bunch of times like ‘how to remove master branch from local repo?’, ‘how to remove git branch from local?’, ‘remove origin/master from local?’ but no success.</p>
+    <p>Although, I found a cool stuff from stackoverflow that:</p>
+    <div class="stackoverflow">
+      <p>"In Git, a branch is just an ordered list of commits (a.k.a.: checkins). Something that can be a bit confusing for new users is that branches don't need to have a name (although in most circumstances you want one); and there is nothing particularly special about any particular branch (the master branch is just the default one that's created for you when you initialize a repository).</p>
+
+      <p>You probably already know this, but Git is different than some other version control systems like the popular "Subversion", because every "working copy" (in Subversion language) is a repository of it's own... in fact, there is nothing particularly special about any particular copy; except that one copy has been generally agreed-upon as the "canonical" one that is used to store the final product.</p>
+
+      <p>So, back to your question... the "canonical" repository that you cloned when you started your local copy contained a "master" branch by default; and it's stuck around. Now, if you had access to the computer that contains the master repository you could log in and run:</p>
+
+      <div class="command">git branch -d master</div>
+
+      <p>However, if you aren't able to do that, you can still do it from your local machine. The git branch command has a -r option which affects the remote repository. In other words, running the following command should work:</p>
+
+      <div class="command">git branch -d -r master</div>
+    </div>
+    <p>Although, i’ve found a bunch of cool articles and tried many different way to remove master branch from the local repo but no gain. Turns out that the correct way of thinking of this is: <strong>How to reverse (or redo) the git init</strong></p>
+    <p>So the simple answer was</p>
+    <div class="command">rm -rf .git</div>
+    <p class='summary'>TIL: Being a great troubleshooter comes from great google search skill.</p>
+</main>
+ <hr>
+      <footer>
+        Sarah Kwak 2015 &#169; copyrights
+      </footer>
+  </body>
+</html>

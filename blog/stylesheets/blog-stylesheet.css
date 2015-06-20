@@ -300,3 +300,15 @@ img.transparent {
   float: left;
   width: 60%;
 }
+.stackoverflow {
+  background-color:#F0F0F5;
+  padding:5px;
+}
+.command {
+  text-indent: 50px;
+  font-size: 1.2em;
+  font-style: italic;
+}
+.summary {
+  font-size: 1.5em;
+}
