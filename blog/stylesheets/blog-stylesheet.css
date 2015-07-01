@@ -289,12 +289,19 @@ img.transparent {
 }
 .git-img {
   border-left: solid 10px #C2C2D6;
-  width: 15%;
+  width: 13%;
   display: inline-block;
+}
+.git-img:hover{
+  /*background-color: #E6FFFF;*/
+  width: 15%;
 }
 .linkedin-img {
   width: 12%;
   display:inline-block;
+}
+.linkedin-img:hover {
+  width: 13%;
 }
 .left-float {
   float: left;
