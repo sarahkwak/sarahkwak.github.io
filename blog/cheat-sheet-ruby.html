@@ -10,10 +10,10 @@
     <div class="back-home">
     <p><a href="../index.html">Back to Home</a></p>
     </div>
-    <h1>Ruby Cheatsheet for Interview</h1>
+    <h1>Ruby Cheatsheet for Interview I </h1>
   <div class=main-div>
     <h2>Class vs Object</h2>
-  <p><strong> Class</strong> is the blueprint from which individual objects are created. In object-oriented terms, we say that your bicycle is an instance of the class of objects known as bicycles.</p>
+  <p><strong> Class</strong> is the <strong>blueprint </strong>from which individual objects are created. In object-oriented terms, we say that your bicycle is an instance of the class of objects known as bicycles.</p>
   <h2>Variables in a Ruby Class</h2>
   <p>Instance Variables: Instance variables are available across methods for any particular instance or object. That means that instance variables change from object to object. Instance variables are preceded by the at sign (@) followed by the variable name.</p>
 
@@ -90,8 +90,8 @@
   end
 
   class Sample
-  include A
-  include B
+  <strong>include A</strong>
+  <strong>include B</strong>
      def s1
      end
   end
@@ -100,6 +100,20 @@
   samp.a1
   samp.b1
   samp.s1
+
+</div>
+<h2>Self</h2>
+<p>Class methods do not have access to instance methods or instance variables. However instance methods can access both class methods and class variables.</p>
+<div class=text-editor>
+  class Foo
+    def self.bar // or class << self
+      puts 'class method'
+    end
+
+    def baz
+      puts 'instance method'
+    end
+  end
 </div>
   <hr>
   <footer>
