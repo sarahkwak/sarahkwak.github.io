@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <head>
+    <title>Ruby Cheatsheet 2</title>
+    <link rel="stylesheet" href="stylesheets/blog-stylesheet-cheat.css" type="text/css">
+  </head>
+
+  <body>
+    <div class="back-home">
+    <p><a href="../index.html">Back to Home</a></p>
+    </div>
+    <h1>Ruby Cheatsheet for Interview II </h1>
+  <div class=main-div>
+    <h2>Module::Namespacing</h2>
+  <p>Namespacing is a way of bundling logically related objects together. Modules serve as a convenient tool for this. This allows classes or modules with conflicting names to co-exist while avoiding collisions.</p>
+  <div class=text-editor>
+    module Perimeter
+    class Array
+      def initialize
+        @size = 400
+      end
+    end
+  end
+
+  our_array = Perimeter::Array.new
+  ruby_array = Array.new
+
+  p our_array.class =>Perimeter::Array
+  p ruby_array.class =>Array
+
+</div>
+<p>🙋 :: is a<strong> constant lookup</strong> operator that looks up the Array constant only in the Perimeter module.</p>
+  <h2>Block, Proc and Lambda</h2>
+  <p>Why use them? It's the ability to take a block of code, wrap it up in an object (called a proc), store it in a variable or pass it to a method, and run the code in the block whenever you feel like (more than once, if you want). So it's kind of like a method itself, except that it isn't bound to an object (it is an object), and you can store it or pass it around like you can with any object. </p>
+
+  <div class=text-editor>
+  def doSelfImportantly someProc
+    puts 'Everybody just HOLD ON!'
+    someProc.call
+    puts 'Ok everyone, I\'m done.'
+  end
+
+  sayHello = Proc.new do
+    puts 'hello'
+  end
+
+  sayGoodbye = Proc.new do
+    puts 'goodbye'
+  end
+
+  <strong>doSelfImportantly sayHello
+ doSelfImportantly sayGoodbye</strong>
+
+  => Everybody just HOLD ON!
+      hello
+      Ok everyone, I'm done.
+      Everybody just HOLD ON!
+      goodbye
+      Ok everyone, I'm done.
+
+</div>
+
+  <hr>
+  <footer>
+      Sarah Kwak 2015 &#169; copyrights
+  </footer>
+    </body>
+</html>
