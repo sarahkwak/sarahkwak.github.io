@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <head>
+    <title>Ruby Cheatsheet</title>
+    <link rel="stylesheet" href="stylesheets/blog-stylesheet-cheat.css" type="text/css">
+  </head>
+
+  <body>
+    <div class="back-home">
+    <p><a href="../index.html">Back to Home</a></p>
+    </div>
+    <h1>Ruby Cheatsheet for Interview</h1>
+  <div class=main-div>
+    <h2>Class vs Object</h2>
+  <p><strong> Class</strong> is the blueprint from which individual objects are created. In object-oriented terms, we say that your bicycle is an instance of the class of objects known as bicycles.</p>
+  <h2>Variables in a Ruby Class</h2>
+  <p>Instance Variables: Instance variables are available across methods for any particular instance or object. That means that instance variables change from object to object. Instance variables are preceded by the at sign (@) followed by the variable name.</p>
+
+  <p>Class Variables: Class variables are available across different objects. A class variable belongs to the class and is a characteristic of a class. They are preceded by the sign @@ and are followed by the variable name. We don't really use class variable much..</p>
+  <div class="text-editor">
+  class Customer
+   @@no_of_customers=0
+
+   def initialize(id, name, addr)
+      @cust_id=id
+      @cust_name=name
+      @cust_addr=addr
+   end
+  end
+
+  </div>
+  <h2>Ruby Pseudo-Variables</h2>
+<p>They are special variables that have the appearance of local variables but behave like constants. You can not assign any value to these variables.</p>
+<li>self: The receiver object of the current method.</li>
+<li>true: Value representing true.</li>
+<li>false: Value representing false.</li>
+<li>nil: Value representing undefined.</li>
+<li>__FILE__: The name of the current source file.</li>
+<li>__LINE__: The current line number in the source file.</li>
+
+<h2>Module</h2>
+<p>Modules are a way of grouping together methods, classes, and constants. Modules give you two major benefits.</p>
+<li>Modules provide a namespace and prevent name clashes.</li>
+<li>Modules implement the mixin facility.</li>
+
+<p>Modules define a namespace, a sandbox in which your methods and constants can play without having to worry about being stepped on by other methods and constants.</p>
+<div class=text-editor>
+  ☕Module written in support.rb file
+  module Week
+     FIRST_DAY = "Sunday"
+     def Week.weeks_in_month
+        puts "You have four weeks in a month"
+     end
+     def Week.weeks_in_year
+        puts "You have 52 weeks in a year"
+     end
+  end
+
+  ☕!/usr/bin/ruby
+  $LOAD_PATH << '.'
+  require "support"
+
+  class Decade
+  include Week
+     no_of_yrs=10
+     def no_of_months
+        puts Week::FIRST_DAY
+        number=10*12
+        puts number
+     end
+  end
+  d1=Decade.new
+  puts Week::FIRST_DAY =>"Sunday"
+  Week.weeks_in_month =>"You have four weeks in a month"
+  Week.weeks_in_year =>"You have 52 weeks in a year"
+  d1.no_of_months =>120
+
+</div>
+<h2>Mixins in Ruby</h2>
+<p>Ruby does not support multiple inheritance directly but Ruby Modules have another wonderful use called a mixin.</p>
+<div class=text-editor>
+  module A
+     def a1
+     end
+  end
+  module B
+     def b1
+     end
+  end
+
+  class Sample
+  include A
+  include B
+     def s1
+     end
+  end
+
+  samp=Sample.new
+  samp.a1
+  samp.b1
+  samp.s1
+</div>
+  <hr>
+  <footer>
+      Sarah Kwak 2015 &#169; copyrights
+  </footer>
+    </body>
+</html>
