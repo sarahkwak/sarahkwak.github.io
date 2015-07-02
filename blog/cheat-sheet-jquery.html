@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <head>
+    <title>jQuery Cheatsheet</title>
+    <link rel="stylesheet" href="stylesheets/blog-stylesheet-cheat.css" type="text/css">
+  </head>
+
+  <body>
+    <div class="back-home">
+    <p><a href="../index.html">Back to Home</a></p>
+    </div>
+    <h1>jQuery Cheatsheet for Job Interview</h1>
+  <div class=main-div>
+    <p>jQuery is a <strong> library </strong>, or set of helpful add-ons, to the JavaScript programming language. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.</p>
+  <div class=text-editor>
+  ☕ Fadeout element #noteready when the pade
+  is load
+  $(document).ready(function() {
+    $('#notready').fadeOut(1000);
+    });
+  </div>
+  <div class=text-editor>
+  ☕ Get the button element with the class
+  'continue' and change text to 'Next Step...'
+  $('button.continue').html("Next Step...")
+  </div>
+  <div class=text-editor>
+  ☕ Show the #banner-message element that is
+  hidden with  display:none in its CSS when any
+  button in #button-container is clicked.
+  $(document).ready(function() {
+    $('#button-container button').on("click",
+      function(evt) {
+      $('#banner-message').show();
+    }); //click event
+  }); //document ready event
+    </div>
+    <div class=text-editor>
+  ☕ Call a local script on the server
+  /api/getWeather with the query parameter
+  zipcode=97201 and replace the element
+  #weather-temp's html with the returned text.
+  $.ajax({
+    api: "api/getWeather",
+    data: {
+        zipcode:97201
+        },
+    }).done(function(response){
+      $('#weather-temp').html(response);
+    }).fail(function(response){
+      console.log(response + "Error")
+  });
+    </div>
+
+    <h2>Using jQuery</h2>
+    <p>CDNs can offer a performance benefit by hosting jQuery on servers spread across the globe. This also offers an advantage that if the visitor to your webpage has already downloaded a copy of jQuery from the same CDN, it won't have to be re-downloaded.</p>
+    <div class="text-editor">
+  script src="//code.jquery.com/
+  jquery-1.11.3.min.js"
+
+  ☕ Using separate jquery sheet
+  script type='text/javascript' src='script.js'
+    </div>
+
+    <p>Let’s look at a slightly more advanced animation. Make the img can go down the browser about 100px in 1000 milliseconds.</p>
+
+   <div class = text-editor>
+  $(document).ready(function(){
+    $('img').animate({ top: '+=100'}, 1000);
+    });
+  </div>
+
+  <p>Click the div and make it 'explode'</p>
+  <div class=text-editor>
+  $(document).ready(function() {
+    $('div').click(function() {
+    $(this).effect('explode');
+    });
+  });
+
+</div>
+<h2>What is 'THIS'? (DOM Element)</h2>
+<p>jQuery sets the scope of the callback function to the element which is the subject of the callback. For example, when we want to handle a mouse click event for an element we bind a handler function to the event like so:</p>
+<div class=text-editor>
+  $('#myButton').bind('click', function() {
+    alert(this.id == 'myButton');
+  });
+ ☕ 'this' is the DOM element triggered the event
+
+</div>
+<p>Just open the chrome console and type 'this', this will refer 'window' object</p>
+
+  <hr>
+  <footer>
+      Sarah Kwak 2015 &#169; copyrights
+  </footer>
+    </body>
+</html>
