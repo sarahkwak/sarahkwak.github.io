@@ -324,3 +324,11 @@ li {
   font-size: 1.2em;
   text-indent: 10px;
 }
+.visit-counter {
+  float: right;
+  padding: 20px;
+  font-size: 1.4em;
+}
+.clear {
+  clear: both;
+}
