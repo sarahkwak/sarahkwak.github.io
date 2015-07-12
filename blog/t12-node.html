@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+  <title>Teach Brian How to Code</title>
+  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+  </head>
+  <body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+<main>
+  <h6>Tree and Linked List Data Structure </h6>
+  <h2>July 10, 2015</h2>
+  <div class=tech-div>
+    <h4>SQL (Structured Query Language)</h4>
+      <p>SQL is used to communicate with a relational database. The following are the most frequently used command.</p>
+      <div class="text-editor">
+        <li>SQL SELECT - retrive data (SELECT * FROM movies)</li>
+        <li>SQL WHERE - narrowing query(WHERE hire_date < '2014-02-10')</li>
+        <li>SQL AND OR</li>
+        <li>SQL IN</li>
+        <li>SQL BETWEEN</li>
+        <li>SQL Wildcard - WHERE first_name LIKE 'A%'</li>
+        <li>SQL LIKE</li>
+        <li>SQL ORDER BY - giving query condition (ORDER BY hiring_date DESC)</li>
+        <li>SQL GROUP BY</li>
+        <li>SQL HAVING</li>
+        <li>SQL ALIAS</li>
+        <li>SQL AS</li>
+        <li>SQL SELECT UNIQUE</li>
+        <li>SQL INSERT INTO</li>
+        <li>SQL INSERT INTO SELECT</li>
+        <li>SQL UPDATE</li>
+        <li>SQL DELETE FROM</li>
+      </div>
+
+    <h4>Step 1. Think where to begin the challenge</h4>
+    <p>The first challenge I have is understanding 'Tree database structure'.</p>
+    <li>What is 'Tree structure'?</li>
+    <li>Why and when is useful</li>
+    <li>What is different from other data structure?</li>
+    <li>What resources do I have? Do I need to create the data structure or using existing library or built-in function?</li>
+
+    <h4>Step 2. Shop Around</h4>
+    <p>So I found that there is a built in rubyTree gem I can use to cover all requirements. It also have simple tree like drawing functions that I can easily implement to my tree. So what's the downside of it? </p>
+    <p>The downside is the testing. Most of core functions like determining siblings, parents and root-node are given so TDD is impossible for these. Testing can be only done on the functions that I create. </p>
+    <p>After playing around a day, I decide to build my own tree-like data structure from scratch. This will be easy. Each node have parent and child variables that I can come up with grand parents and sibling functions. </p>
+
+    <h4>Step 3. Writing Code</h5>
+
+    <div class=text-editor>
+  module Tree
+
+    class Family
+      attr :name, :children, :parent
+      def initialize(name)
+        @name = name
+        # @child_hash = Hash.new
+        @children = []
+      end
+
+      def root
+        root = self
+        root = root.parent while !root.is_root?
+        root
+      end
+
+      def is_root?
+        @parent == nil
+      end
+
+      def parent=(parent)
+        @parent = parent
+      end
+    end #class ends
+
+  end #module ends
+    </div>
+    <p>So this was easy part. The hard part was to make it search function and creating the relationship of parent - children. </p>
+    <div class=text-editor>
+  # General Tree seach function
+  def search(name)
+    if @name == name
+      return self
+    end
+    @children.each do |child|
+      result = child.search(name)
+      if result != nil
+        return result
+      end
+    end
+    return nil
+  end
+
+  def add(father, child)
+    raise ArgumentError, "Node must be added to the root" if ! is_root?
+    raise ArgumentError, "The name #{child.name} is already in the tree.
+    To have better search result, you must provide uniq name"
+    if search(child.name) != nil
+    child.parent =father
+    father.children.push(child)
+  end
+    </div>
+    <p>The complete code with rspec is available in my <a href="https://github.com/sarahkwak/Family_Tree">github </a></p>
+
+  <h4>Step 4. Optimization and Refectoring the code</h4>
+  <p>1. Data Structure</p>
+  <p>At first, I created an array and throw all nodes in the array and loop through it to find siblings, grand parents etc. This seems efficient and easy to work with the tree. So why I got rid of it?</p>
+
+  <p>: The answer was because of the source of truth for the data. Because the data is two place, one in tree and one in the array, first, it is inefficient to run any function, second, it is duplicate the effort to maintain the data. So I had to change the search function that a) can find the root node and, b) find whatever node it wants to find by following children.  It will not save any time but at least I don't have to maintain two sources of data.</p>
+
+  <p>2. Same name in the Tree</p>
+  <p>What's the big deal to have several same names in the tree? Isn't this happen in real life anyway? Well, the current tree search function will only return the first instance (or node) when they find the node with name form the root node. If there are two "Mary"s in the same family, which can be happen in real life, the current tree search function will only return the first "Mary" and then stop looking for it. I could have change the function that returns both Mary nodes but instead, I decide to raise an argument error when there is same name of node added to the tree. This may not be the best solution but at least you can trust the data it provides.</p>
+
+  <h4>Step 5. Submit the code and wait for the next step</p>
+  <p>The thing is ... you don't know how well you've done. I'll keep all of ya updated how it goes. GOOD LIGHT!</p>
+
+</main>
+ <hr>
+      <footer>
+        Sarah Kwak 2015 &#169; copyrights
+      </footer>
+  </body>
+</html>
