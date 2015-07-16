@@ -320,8 +320,7 @@ img.transparent {
   font-size: 1.5em;
 }
 li {
-  line-height: 200%;
-  font-size: 1.2em;
+  line-height: 30%;
   text-indent: 10px;
 }
 .visit-counter {
