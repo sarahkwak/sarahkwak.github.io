@@ -1,17 +1,25 @@
-$.('#submit').on('click', function() {
-  var message = $("#message").val();
-  $('#returnmessage').empty();
+$(document).ready(function() {
+  $('#contact-submit').on('click', function() {
+    console.log("hello")
+    var message = $("#contact-input").val();
+    // var subject = $('#contact-title').val();
+    $('#returnmessage').empty();
     if (message == '') {
     alert("Please write something!");
     } else {
-  $.post("contact_form.php", {
-    message1: message
-  }, function(data) {
-      $("#returnmessage").append(data); // Append returned message to message paragraph.
-      if (data == "Your Query has been received, We will contact you soon.") {
-      $("#form")[0].reset(); // To reset form fields on success.
-      }
-      });
-      }
-      });
-}) //click event
+      debugger;
+      $.ajax({
+        url: '',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {message1: message}
+      })
+      .done(function() {
+        console.log("The message is sent. Sarah will contact you if necessary! Thank you for visiting the site!");
+      })
+      .fail(function() {
+        console.log("error");
+      }) //fail
+    }; //else
+  }); //click event
+}); //document.ready

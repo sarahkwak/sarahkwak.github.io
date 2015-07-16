@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
+<head>
 <meta charset="utf-8">
   <link rel="stylesheet" href="blog/stylesheets/blog-stylesheet.css" type="text/css">
-  <script src="jquery-1.11.3.min.js"></script>
-  <script src="contact.js"></script>
 
-  </head>
-  <body>
-    <div class="main-menu">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="blog/contact.js"></script>
+</head>
+<body>
+  <div class="main-menu">
     <h8>SARAH KWAK</h8>
     <li><a href="index.html">HOME | </a></li>
     <li><a href="about.html">ABOUT | </a></li>
@@ -17,7 +18,7 @@
   </div>
     <p>If you want to contact either me or Brian, here is how</p>
   <ul>
-    <li>e-mail:<a href="sarahseyoungkwak@gmail.com"> sarahseyoungkwak@gmail.com</a></li>
+    <li>e-mail:<a href="mailto:sarahseyoungkwak@gmail.com"> sarahseyoungkwak@gmail.com</a></li>
     <li>phone: 1-650-381-9918</li>
     <li><a href="https://twitter.com/PlentyofTreats" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @PlentyofTreats</a>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></a></li>
@@ -27,8 +28,10 @@
 </div>
 <form style="clear:both">
   <p>You can also leave comment here!</p>
+  Subject :    <input type='text' size='60' id='contact-title'><br><br>
   <input type="text" size ="100" id="contact-input">
   <input type="submit" value="Submit" id="contact-submit">
+  <p class='result'></p>
 </form>
 <hr>
       <footer>

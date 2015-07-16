@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <head>
+    <title>jQuery Cheatsheet</title>
+    <link rel="stylesheet" href="stylesheets/blog-stylesheet-cheat.css" type="text/css">
+  </head>
+
+  <body>
+    <div class="back-home">
+    <p><a href="../index.html">Back to Home</a></p>
+    </div>
+    <h1>Javascript Cheatsheet for Job Interview</h1>
+  <div class=main-div>
+    <h2>Object literal and Object Constructor</h2>
+    <p>Don't forget, javascript can ack like Object Oriented Language. There are two ways to construct object and class like object.</p>
+  <div class=text-editor>
+  var sarah = {
+    name: "Sarah Kwak"
+    postcode: "94070"
+  };
+
+  var Person = function(name, postcode) {
+    this.name = name;
+    this.postcode = postcode;
+  };
+
+  sarah = new Person("Sarah Kwak", "94070")
+
+  ☕ Lets adding a function to sarah
+
+  Person.prototype.sayThat = function() {
+    console.log("I am an awesome developer!")
+  };
+
+  sarah.sayThat(); =>I am an awesome developer!
+  ryan = new Person("Ryan", "124232");
+  ryan.sayThat(); =>I am an awesome developer!
+  </div>
+  <h2>Variable Scope</h2>
+  <div class=text-editor>
+  function Person(name) {
+   this.name = first;
+   var bankBalance = 7500;
+  };
+  ☕bankBalance is the example of private method
+  in javascript
+  </div>
+  <p>Although we cannot directly access private variable - bankBalance from outside the class, there is a way to get around this. We can define a public method that returns the value of a private variable.</p>
+  <div class=text-editor>
+  this.getBalance = function() {
+    return bankBalance;
+  };
+
+  ☕This function must be defined inside of the class
+  so that it can access the private variable
+  </div>
+  <p>This is how to call the function</p>
+  <div class="text-editor">
+  var john = new Person('John');
+  console.log(john.bankBalance); => Undefined
+
+  ☕Make sure define new variable and assign the value
+  var myBalance = john.getBalance()
+  console.log(myBalance); =>7500
+    </div>
+
+    <p>There is also private method. They ack like private variables and we can access via public method inside of the class.</p>
+
+   <div class = text-editor>
+  function Person(name) {
+   this.name
+   var bankBalance = 7500;
+
+   var returnBalance = function() {
+      return bankBalance;
+   };
+  </div>
+
+  <p>This is how to access the private method</p>
+
+  <div class=text-editor>
+  this.askTeller = function() {
+    return returnBalance;
+  };
+  ☕Notice there is no () after returnBalance
+  We don't want the result, we need the method
+  </div>
+
+  <div class=text-editor>
+  sarah = new Person("Sarah")
+  var final_balance = sarah.askTeller();
+  console.log(final_balance);=> [Function]
+  console.log(final_balance()) => 7500
+  </div>
+
+
+  <hr>
+  <footer>
+      Sarah Kwak 2015 &#169; copyrights
+  </footer>
+    </body>
+</html>
