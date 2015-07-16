@@ -319,7 +319,7 @@ img.transparent {
 .summary {
   font-size: 1.5em;
 }
-li {
+sql_list {
   line-height: 30%;
   text-indent: 10px;
 }
