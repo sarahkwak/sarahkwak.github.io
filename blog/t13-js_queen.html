@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+  <title>Teach Brian How to Code</title>
+  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+  </head>
+  <body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+<main>
+  <h6>Becoming Javascript Queen</h6>
+  <h2>July 21, 2015</h2>
+  <div class=tech-div>
+    <h4>How to master JavaScript</h4>
+    <p>After two unsuccessful javascript interview, I decide to become a Queen of JavaScript.</p>
+    <div class="text-editor">
+      var func = function() {
+       return "material"
+      };
+
+      var chocolate = {};
+
+      chocolate["material"] = "cocoa butter";
+
+      chocolate[func()] // "cocoa butter"
+    </div>
+
+    <p>Note: I don't think this is super important or anything but 'Method' is function belongs to a object(so it is property of an object), function is just general scope of function</p>
+    <p>There is also term called 'Native Array Method' which is like 'unshift' and 'push' in array. Function on array comes out of box of Javascript. </p>
+    <div class="text-editor">
+      *Special key word 'arguments'
+      var add = function(a,b) {
+        console.log(arguments);
+      };
+      add(3, 4, 5)
+      // [3,4,5] in array like format
+    </div>
+    <h4>Scope scope scope!!!</h4>
+    <div class='text-editor'>
+    var extra = 'chocolate';
+    var blender = function(fruit) {
+      var x = fruit ;
+      var y = 'yogart';
+
+      var delic = function() {
+        var ingred = 'milk';
+        console.log( fruit + ' and '+ y + ' and ' + extra)
+      };
+
+      console.log("The x is " + ingred);
+      delic();
+    }
+    blender('strawberry');
+    //this will throw ReferenceError: ingred is not defined
+    </div>
+    <p>Conclusion: Parent can't access children's variables(ingred) but children can access parent's variables(x, y).</p>
+    <p> function 'delic' can't be execute outside of the parent function 'blender'. The reason is that delic is a private function of blender. </p>
+    <div class='text-editor'>
+      var outerCounter = 10;
+      var fn = function () {
+        outerCounter = outerCounter + 1;
+        ACTUAL = outerCounter;
+      };
+
+      fn();
+      expect(ACTUAL === 11).to.be.true;
+      console.log(outerCounter) // 11
+      fn();
+      expect(ACTUAL === 12).to.be.true;
+      console.log(outerCounter) // 12
+    </div>
+    <p>Because outerCounter is a global variable, it can be reset from anywhere. Compare with the following exercise</p>
+    <div class='text-editor'>
+      var fn = function () {
+        var innerCounter = innerCounter || 10;
+        innerCounter = innerCounter + 1;
+        ACTUAL = innerCounter;
+      };
+
+      fn();
+      expect(ACTUAL === 11).to.be.true;
+      fn();
+      expect(ACTUAL === 11).to.be.true;
+    </div>
+    <p>A new variable scope is created for every call to a function. </p>
+    <h4>Closure </h4>
+    <div class=text-editor>
+      var closureAlert = function() {
+        var x = 0;
+        var alerter = function() {
+          alert(++x);
+        }
+        return alerter;
+      }
+
+      myclosureAlert = closureAlert();
+      myclosureAlert();
+      // myclosureAlert is a 'closure'. It holds the reference to the environment.
+    </div>
+    <p>One thing really important to understand is why we use 'closure'. A 'closure' is to store the function inside of the function so it can be called later. So in general, the parent function will 'return' the child function (but it will NOT invoke the function) which can be stored in variable outside of the parent function. Thus it can be invoked later. </p>
+  </div>
+</main>
+ <hr>
+      <footer>
+        Sarah Kwak 2015 &#169; copyrights
+      </footer>
+  </body>
+</html>
