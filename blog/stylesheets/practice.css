@@ -29,3 +29,50 @@ a[href^=http] {
   font-size: 1.3em;
   text-indent: 20px;
 }
+footer {
+  text-align: right;
+  margin-right: 20px;
+  padding-top: 20px;
+}
+.test-pseudo {
+  background-color: #FFE8E8;
+  width: 55%;
+  font-family: 'Indie Flower', cursive;
+  float: left;
+  padding-left: 8px;
+}
+.right-float {
+  text-indent: 30px;
+  padding-left: 40px;
+  top: 50%;
+  white-space: pre;
+  font-size: 1.3em;
+}
+.clear {
+  clear: both;
+}
+.test-pseudo p:first-of-type::first-letter {
+  font-size: 3em;
+}
+
+a[href^="mailto:"]::before {
+  content: "✉   ";
+  font-size: 1.5em;
+}
+a:link {
+  text-decoration: none;
+};
+
+a[href^='http']:hover {
+  position: relative;
+}
+a[href^='http']:hover:after {
+  content: attr(href);
+  position: relative;
+  font-size: 0.3em;
+  top: 1em;
+  left: 0;
+  background-color: #FFDBFF;
+  padding: 3px 5px;
+  line-height: 1;
+}

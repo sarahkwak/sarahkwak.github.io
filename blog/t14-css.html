@@ -4,25 +4,32 @@
 <head>
   <title>Teach Brian How to Code</title>
   <link rel="stylesheet" href="stylesheets/practice.css" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
 </head>
-<div class=tech-div>
-<div class=main-head>
-<p class=go-home><a href="../index.html">Back to Home</a></p>
-</div>
-  <a href ='https://sarahkwak.github.io' class='mailto'>CSS Trick! Let's  the font-size!</a>
-  <p>Boy, how did I make this a tag so big? Here is the secret. It's pretty neat, huh?</p>
+<body>
+  <div class=tech-div>
+    <div class=main-head>
+    <p class=go-home><a href="../index.html">Back to Home</a></p>
+    </div>
+  <a href ='https://sarahkwak.github.io' class='mailto'>I am an ATag! Make me Grow!</a>
+  <p>Boy, how did I make this Atag so big? Here is the secret. It's pretty neat, huh?</p>
   <div class='box'>
     a[href^=http] {
     font-size: 3em
     };
   </div>
-
-  <h2>What is Pseudo-classes?</h2>
+  <p>In CSS, we can use regular expression to select an element starts with(^) http. </p>
+  <h2>What are the Pseudo-classes?</h2>
   <p>A pseudo-class is used to define a special state of an element. For example, it can be used to: </p>
   <li>Style an element when a user mouses over it</li>
   <li>Style visited and unvisited links differently</li>
   <li>It can be selected by position or relationship with their parent element like nth-child()
   <img src='Screen-shot/pseudo.png'>
+  <h2>What are the Pseudo-Elements?</h2>
+  <p>A CSS pseudo-element is used to style specified parts of an element. For example, it can be used to:</p>
+  <li>Style the first letter, or line, of an element</li>
+  <li>Insert content before, or after, the content of an element</li>
+  <img src='Screen-shot/pseudoele.png'>
   <h2>Last-of-type? or Last-child?</h2>
   <p>What a crazy concept. So what is type and what is child? Well, simply put, a tag like h1, div, p are type and child is depends on their parents.</p>
   <div class='box'>
@@ -31,16 +38,48 @@
   </div>
   <p>See the example below and try to understand why only 2nd div paragraph turns red.</p>
   <img src='Screen-shot/typeorchild.png'>
-  <h2>What are the Pseudo-Elements?</h2>
-  <p>A CSS pseudo-element is used to style specified parts of an element. For example, it can be used to:</p>
-  <li>Style the first letter, or line, of an element</li>
-  <li>Insert content before, or after, the content of an element</li>
-  <img src='Screen-shot/pseudoele.png'>
-  <body>
-
-  </body>
+  <h2>Disney Style, The Big First Letter</h2>
+  <div class='test-pseudo left-float'>
+    <p>Once upon a time, there is a girl name 'Sarah' and she lives in San Carlos, California. She was once in Canada and move to the state because she wants to learn Programming in 19 weeks. She is now looking for a job.</p>
+    <p>Once sunny day in August, she finally find the perfect company. After 3 hours of algorithm interviews, she got a job as a Software Engineer. She lives happily ever after. </p>
+    <p>The End.</p>
+  </div>
+  <div class='right-float'>
+      <p><strong>So, how did I make first 'O' 3em?</strong></p>
+      .test-pseudo p:first-of-type::first-letter {
+        font-size: 3em;
+      };
+  </div>
+  <div class=clear></div>
+  <h2>How to use Before and After Pseudo Element?</h2>
+  <p>Let's add little mail signe before my email address</p>
+  <a href='mailto:'>sarahseyoungkwak@gmail.com</a>
+  <div class=box>
+    a[href^="mailto:"]::before {
+      content: "✉   ";
+      font-size: 1.5em;
+    }
+  </div>
+  <p>Let's try another one. How to show http address when the user hover over the http link?</p>
+  <a href="https://www.google.com">Google Search</a>
+  <div class=box>
+    a[href^='http']:hover {
+      position: relative;
+    }
+    a[href^='http']:hover:after {
+      content: attr(href);
+      position: relative;
+      font-size: 0.3em;
+      top: 1em;
+      left: 0;
+      background-color: #FFDBFF;
+      padding: 3px 5px;
+      line-height: 1;
+    }
+  </div>
+</body>
 </div>
  <hr>
-      <footer>
-        Sarah Kwak 2015 &#169; copyrights
-      </footer>
+<footer>
+  Sarah Kwak 2015 &#169; copyrights
+</footer>
