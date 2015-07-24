@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+  <title>Teach Brian How to Code</title>
+  <link rel="stylesheet" href="stylesheets/practice.css" type="text/css">
+</head>
+<div class=tech-div>
+  <div class=main-head>
+</div>
+  <a href ='https://sarahkwak.github.io' class='mailto'>CSS Trick! Let's  the font-size!</a>
+  <p>Boy, how did I make this a tag so big? Here is the secret. It's pretty neat, huh?</p>
+  <div class='box'>
+    a[href^=http] {
+    font-size: 3em
+    };
+  </div>
+
+  <h2>What is Pseudo-classes?</h2>
+  <p>A pseudo-class is used to define a special state of an element. For example, it can be used to: </p>
+  <li>Style an element when a user mouses over it</li>
+  <li>Style visited and unvisited links differently</li>
+  <li>It can be selected by position or relationship with their parent element like nth-child()
+  <img src='Screen-shot/pseudo.png'>
+  <h2>Last-of-type? or Last-child?</h2>
+  <p>What a crazy concept. So what is type and what is child? Well, simply put, a tag like h1, div, p are type and child is depends on their parents.</p>
+  <div class='box'>
+    p:first-of-type { background-color: red; } //This will change every first p(s) against its(their) parents
+    p:first-child { background-color: red; } //This will change p if it is first-child of the parent element.
+  </div>
+  <p>See the example below and try to understand why only 2nd div paragraph turns red.</p>
+  <img src='Screen-shot/typeorchild.png'>
+  <h2>What are the Pseudo-Elements?</h2>
+  <p>A CSS pseudo-element is used to style specified parts of an element. For example, it can be used to:</p>
+  <li>Style the first letter, or line, of an element</li>
+  <li>Insert content before, or after, the content of an element</li>
+  <img src='Screen-shot/pseudoele.png'>
+  <body>
+
+  </body>
+</div>
+ <hr>
+      <footer>
+        Sarah Kwak 2015 &#169; copyrights
+      </footer>

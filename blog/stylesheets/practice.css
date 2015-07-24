@@ -1,0 +1,28 @@
+body {
+  font-family: helvetica;
+
+}
+.main-head {
+  background-image: url('http://www.w3schools.com/css/selector.gif');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 300px;
+}
+h1 {
+  text-align: left;
+}
+.tech-div {
+  margin-right: 15%;
+  margin-left: 15%;
+}
+
+a[href^=http] {
+  font-size: 3em;
+}
+.box {
+  background-color: tomato;
+  width: 100%;
+  white-space: pre;
+  font-size: 1.3em;
+  text-indent: 20px;
+}

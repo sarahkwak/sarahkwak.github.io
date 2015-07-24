@@ -29,7 +29,18 @@
       NaN === NaN //false
       true == {valueOf: function() {retur "1"}} //true - because they are trying to convert bullean value to ingeter 1. So it becomes a question of 1 == '1'
     </div>
-    <p>So when we using ==, this will increse look up time dramatically if they have to match different type of things. For instance, if they want to see if true and the function returns '1' are equal(==), then it will first see if true can be validated as something else like integer and then convert to 1. And then it will see if this will be match with the string of '1'. And then finally it will determine 1 and '1' are same thing. So this is about the performance issue, not anything else.</p>
+    <p>So, let's </p>
+    <div class="text-editor">
+      var func = function() {
+       return "material"
+      };
+
+      var chocolate = {};
+
+      chocolate["material"] = "cocoa butter";
+
+      chocolate[func()] // "cocoa butter"
+    </div>
     <p>Note: I don't think this is super important or anything but 'Method' is function belongs to a object(so it is property of an object), function is just general scope of function</p>
     <p>There is also term called 'Native Array Method' which is like 'unshift' and 'push' in array. Function on array comes out of box of Javascript. </p>
     <div class="text-editor">
@@ -103,9 +114,7 @@
       // myclosureAlert is a 'closure'. It holds the reference to the environment.
     </div>
     <p>One thing really important to understand is why we use 'closure'. A 'closure' is to store the function inside of the function so it can be called later. So in general, the parent function will 'return' the child function (but it will NOT invoke the function) which can be stored in variable outside of the parent function. Thus it can be invoked later. </p>
-    <p>Let's look at one funny example of how closure works in memory.</p>
     <img src='Screen-shot/closure.png'>
-    <p> So what a[0]();, a[0]();, a[0](); will return? The answer is 3. The green arrow will follow through the problem and pointed out the variable i which is 3. That's the reason it returns 3 every single time. One funny thing is that although i supposed to be less than 3 but it will be 3 and then it will stop the loop. That's why the answer is not 2, but 3. Pretty crazy, huh?</p>
 
   </div>
 </main>
