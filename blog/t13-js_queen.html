@@ -14,10 +14,14 @@
   <h2>July 21, 2015</h2>
   <div class=tech-div>
     <h4>How to master JavaScript</h4>
-    <p>After two unsuccessful javascript interview, I decide to become a Queen of JavaScript.</p>
-    <p>JS is a single threaded lagnauge. JS is a dynamic, weakly typed, prototype=based language with first-class functions. If you think about it, DOM is JS representation of HTML and browser. </p>
-    <p>Let's first see how javascript memory and variable works.</p>
+    <p>After two unsuccessful javascript interviews, I decide to take some time and study in depth. Like it or not, JavaScript developer positions are much more than Ruby developer positions and I just can't ignore powerful libraries and their scalability! So What is JavaScript?</p>
+    <p>JS is a single threaded lagnauge. JS is a dynamic, weakly typed, prototype-based language with <strong>first-class functions</strong>. If you think about it, DOM is JavaScript representation of HTML and browser. </p>
+    <p>First, let's see how JS memory and variable works.</p>
     <img src='Screen-shot/varmemory.png'>
+    <p>In this example, JS created the variable sum as a function and skip the function body. Next, It will create a, b and assigned to number and an object. When it try to create the variable c, it will invoke the function sum and then reads the function body. a and b becomes x and y and then it will return the result, which is 2 + 3 = 5</p>
+    <p>Let's pretend there is a new variable d. If you call d = sum(a,b), what happen?</p>
+    <p>It will still return 5. Because the system will create new variable d apart from c and assigned to sum(a,b) like they don't know nothing about c. </p>
+    <p>As you can guess, if you call c(); it will returns 7. It is because it will bring c value and then execute again.</p>
     <p>Let's observe weired behavoir of javascript double and triple equal rules</p>
     <h4> '==' and '===' :The Performance Difference </h4>
     <div class="text-editor">
