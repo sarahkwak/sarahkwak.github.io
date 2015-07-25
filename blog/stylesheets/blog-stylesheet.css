@@ -331,3 +331,7 @@ sql_list {
 .clear {
   clear: both;
 }
+.answer {
+  width: 80%;
+  background-color:#FFE8E8;
+}

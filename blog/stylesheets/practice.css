@@ -76,3 +76,11 @@ a[href^='http']:hover:after {
   padding: 3px 5px;
   line-height: 1;
 }
+
+@media (max-width: 600px) {
+  img {
+    width: 50%;
+    height: auto;
+    padding-left: 10px;
+  }
+}
