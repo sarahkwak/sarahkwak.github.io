@@ -143,6 +143,46 @@
      //so our 'NEW' function will create object sarah
      sarah.speak(); //speak function will be inherited from newobj 'Person'
     </div>
+    <h2>Call and Apply </h2>
+    <p>Call and Apply are used to invoke function. Call and Apply call a function with a given this value and arguments provided individually.</p>
+    <p>The difference between call and apply is that call takes individual argument and apply takes array of arguments</p>
+    <p> First, using call to chain constructors for an object</p>
+    <div class=text-editor>
+      var Product = function(name, price) {
+        this.name = name;
+        this.price = price;
+      };
+
+      var Food = function(name, price) {
+        Product.call(this, name, price);
+        this.category = 'food';
+      };
+
+      Food.prototype = Object.create(Product.prototype);
+      //Create new object and copy the Product.prototype
+      Food.prototype.constructor = Food;
+      //Reset the constructor from Product to Food (single inheritance)
+    </div>
+    <p>Second, using call to invoke an anonymous function</p>
+    <div class=text-editor>
+      var animals = [
+        { species: 'Lion', name: 'King' },
+        { species: 'Whale', name: 'Fail' }
+      ];
+
+      for (var i=0; i "<" animals.length; i++){
+        (function(i) {
+          this.print = function() {
+            console.log('#' + i + ' ' + this.species
+                  + ': ' + this.name);
+        }
+        this.print();
+      }).call(animals[i], i);
+     };
+     //#1 Lion: King
+     //#2 Wale: Fail
+    </div>
+    <p>The first argument of the call is always for 'this'. What we are calling the function on. The second argument is whatever we need to pass on. In this case, 'i'. Otherwise, the print function will not know 'i' and print 'undefined'. </p>
   </div>
 </main>
  <hr>
