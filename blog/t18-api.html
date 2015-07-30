@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+  <title>Teach Brian How to Code</title>
+  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+</head>
+<body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+  <main>
+    <h6>Restful (Representational State Transfer) API</h6>
+    <h2>July 29, 2015</h2>
+    <h4>What is a RESTFUL API?</p>
+    <p>An API, or <strong>application programming interface</strong>, is kind of like a coding contract: it specifies the ways a program can interact with an application. For example, if you want to write a program that reads and analyzes data from Twitter, you'd need to use the Twitter API, which would specify the process for authentication, important URLs, classes, methods, and so on. For an API or web service to be RESTful, it must do the following:</p>
+    <li>Separate the client from the server</li>
+    <li>Not hold state between requests (meaning that all the information necessary to respond to a request is available in each individual request; no data, or state, is held by the server from request to request)</li>
+    <li>Use HTTP and HTTP methods. The HTTP stands for HyperText Transfer Protocol. HyperText is text with links in it and a transfer protocol is a fancy way of saying "rules for getting something from one place to another." In this case, the rules are for transferring web pages to your browser. Use HTTPS is more secure way of communicating. Communications through an HTTPS server are encrypted by a secure certificate known as an SSL.</li>
+    <li>This is not an requirement but in general, API provide information in JSON format.</li>
+    <h4>Making XML HTTP Request</h4>
+    <div class='text-editor'>
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "https://www.codecademy.com/", false);
+      xhr.send();
+    </div>
+    <h4>The Four Verbs</h4>
+    <ol>
+      <li>GET: retrieves information from the specified source (you just saw this one!)</li>
+      <li>POST: sends new information to the specified source.</li>
+      <li>PUT (or PATCH): updates existing information of the specified source.</li>
+      <li>DELETE: removes existing information from the specified source.</li>
+    </ol>
