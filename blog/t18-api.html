@@ -22,7 +22,13 @@
     <div class='text-editor'>
       var xhr = new XMLHttpRequest();
       xhr.open("GET", "https://www.codecademy.com/", false);
+      xhr.setRequestHeader('Content-Type', 'text/xml'); //optional
       xhr.send();
+
+      //return from the server
+      xmlDocument = xhr.responseXML;
+      console.log(xmlDocument.childNodes['0'].textContent);
+
     </div>
     <h4>The Four Verbs</h4>
     <ol>
@@ -31,3 +37,14 @@
       <li>PUT (or PATCH): updates existing information of the specified source.</li>
       <li>DELETE: removes existing information from the specified source.</li>
     </ol>
+    <h4>The Response Status Codes</h4>
+    <p>A Successful request to the server results in a response, which is the message the server sends back to you, the client.</p>
+    <p>There are various status code but most important status is '200' status, which is okay. The most famous is '404' which is file not found. More detailed information about the status does are <a href='https://developer.mozilla.org/en-US/docs/Web/HTTP/Response_codes'>here</a></p>
+    <p>HTTP Response structure mirrors that of the HTTP request. It contains, HTTP status code, a header and the body.</p>
+     </main>
+</body>
+ <hr>
+<footer>
+  Sarah Kwak 2015 &#169; copyrights
+</footer>
+</html>
