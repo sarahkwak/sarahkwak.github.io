@@ -45,6 +45,12 @@
     <p>So the simple answer was</p>
     <div class="command">rm -rf .git</div>
     <p class='summary'>TIL: Being a great troubleshooter comes from great google search skill.</p>
+    <h4>How to force merge(overwirte) Remote Master?</h4>
+    <p>I started the project with rails app and then decide to throw the app and build new rails-api. I could remove the repo from my git and then create new app and then push to origin master but instead</p>
+    <div class=text-editor>
+      git push -f origin master
+    </div>
+    <p>This will override and foce my local revision to the remote repo. </p>
 </main>
  <hr>
       <footer>
