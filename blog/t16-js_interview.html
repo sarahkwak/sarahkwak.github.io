@@ -73,7 +73,10 @@
       <li>Explain AJAX in as much detail as possible.</li>
       <div class=answer><p></p></div>
       <li>Explain how JSONP works (and how it's not really AJAX).</li>
-      <div class=answer><p></p></div>
+      <div class=answer>
+        <p>JSONP is 'JSON with padding'. It's the hacky way of calling XMLHTTPRequest without violating SOP(Same Origin Policy). SOP prevent any unknown server calling API request so JSONP with callback function is pretending the request calls are from a server.</p>
+        <p>Better Interpretation: JSONP is a communication technique used in JavaScript programs running in web browsers to request data from a server in a different domain, something prohibited by typical web browsers because of the same-origin policy(SOP).</p>
+      </div>
       <li>Have you ever used JavaScript templating?</li>
       <div class=answer><p></p></div>
       <li>If so, what libraries have you used?</li>
