@@ -335,3 +335,8 @@ sql_list {
   width: 80%;
   background-color:#FFE8E8;
 }
+.blog-pic {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}

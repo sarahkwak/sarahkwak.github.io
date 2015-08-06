@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+  <title>Teach Brian How to Code</title>
+  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+</head>
+<body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+  <main>
+    <h6>JSONP and SOP</h6>
+    <h2>Aug 6, 2015</h2>
+    <h4>Why can't I call 'http GET' request from front-end JavaScript?</h4>
+      <p style='font-size: 1.2em'>Since the hackathon I've attended, I have this crazy idea in my head. No back-end, database but front-end based website. Calling API calls to get information from other providers and render the data with simple javascript, jquery and HTML. So I download Bootstrap theme and get whole page set up like in 5 mins and then add a javascript file and start to build ajax ready to talk to Yelp API, Beer API and Pinterest API.</p>
+      <img src='Screen-shot/beer_pairing.png' class='blog-pic'>
+      <p style='font-size: 1.2em'>JSONP or "JSON with padding" is a communication technique used in JavaScript programs running in web browsers to request data from a server in a different domain, something prohibited by typical web browsers because of the same-origin policy(SOP). JSONP takes advantage of the fact that browsers do not enforce the same-origin policy on script tags. Since it works through script tags, JSONP supports <strong>only the GET request method</strong>(This is suck, right?). There are significant security implications and risks associated to using JSONP unless you have no choice, CORS is usually the better choice.</p>
+      <p style='font-size: 1.2em'>So here is how to use JSONP. It's pretty easy but one thing to remember. There is no guarantee to work. Many site does not allow to use JSONP call request. After +50 hours of struggling, I realize the all of my API providers are not support JSONP method.</p>
+      <div class=text-editor>
+        var showBeer = function(data) {
+            console.log(data)
+        } //This is a call back function. JSONP must include callback.
+        $(document).ready(function() {
+          $('#beer-button').click(function(ev){
+            ev.preventDefault();
+            $.ajax({
+              url: 'http://api.brewerydb.com/v2/',
+              type: 'GET',
+              dataType: 'JSONP', //put JSON in the dataType
+              data: { q: 'goose'},
+              success: showBeer //this is how to run callback
+            }) //ajax
+            }) //beer button
+        }) //document ready
+      </div>
+      <p>Pretty easy, huh? This method is exactly same as the following script tag way</p>
+      <div class=text-editor>
+        &lt;script type="application/javascript"
+        src="http://server.example.com/Users/1234?callback=parseResponse"&gt;
+        &lt;/script&gt;
+        //In your javascript, declare callback function
+        parseResponse({"Name": "Foo", "Id": 1234, "Rank": 7});
+      </div>
+      <h4>So why SOP exists and why we care?</h4>
+      <p>Naive deployments of JSONP are subject to cross-site request forgery (CSRF or XSRF) attacks.[11] Because the HTML script tag does not respect the same-origin policy in web browser implementations, a malicious page can request and obtain JSON data belonging to another site. This will allow the JSON-encoded data to be evaluated in the context of the malicious page, possibly divulging passwords or other sensitive data if the user is currently logged into the other site.</p>
+      <p>This is problematic only if the JSON-encoded data contains sensitive information which should not be disclosed to a third party, and the server depends on the same-origin policy of the browser to block the delivery of the data in the case of an unauthorized request. This security dependency on the browser's same-origin policy can be avoided by the server determining if the request is authorized and only putting the data on the wire if it is. Exclusive use of cookies for determining if a request is authorized should be avoided as it is subject to cross-site request forgery.</p>
+
+  </main>
+</body>
+<hr>
+<footer>
+  Sarah Kwak 2015 &#169; copyrights
+</footer>
+</html>
