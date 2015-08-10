@@ -340,3 +340,6 @@ sql_list {
   margin-right: auto;
   margin-left: auto;
 }
+main p {
+  font-size: 1.2em;
+}

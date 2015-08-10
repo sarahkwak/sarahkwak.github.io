@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+  <title>Teach Brian How to Code</title>
+  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+</head>
+<body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+  <main>
+    <h6>The Elegant way of Coding - Recursion</h6>
+    <h2>Aug 10, 2015</h2>
+    <h4>Factorial</h4>
+      <p>Recursion is a programming concept whereby a function invokes itself. Recursion is typically used to solve problems that are decomposable into subproblems that are just like the original problem, but a step closer to being solved.</p>
+      <img src='Screen-shot/recursion.png'>
+      <div class=text-editor>
+      def factorial_maker(num)
+        if num == 1
+          return num
+        end #base case
+        result = num * factorial_maker(num-1)
+        return result
+      end
+      </div>
+    </h4>Print num to 0</h4>
+    <div class=text-editor>
+      def ntooh (num)
+        if num == 0
+          return num
+        end
+        p num
+        ntooh(num-1)
+      end
+    </div>
+  </h4>Add num</h4>
+    <div class=text-editor>
+     def plus(num)
+      if num == 0
+        return 0
+      end
+      result = num + plus(num-1)
+      return result
+    end
+    </div>
+    <p>The key of recursion is the base case and the 'trust'. You must trust the fact that your recursion function will return exactly what you will ask for. Base case will stop the function once the condition was NOT meet. Therefore this is a 'breaker'. It is also important that the function must specify what this recursion will return. </p>
+
+
