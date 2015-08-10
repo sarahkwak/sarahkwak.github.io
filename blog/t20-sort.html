@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+  <title>Teach Brian How to Code</title>
+  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+</head>
+<body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+  <main>
+    <h6>Let's Sort Things Out</h6>
+    <h2>Aug 10, 2015</h2>
+    <h4>Bubble Sort - The Basic Sort</h4>
+    <p>Bubble sort is one of the most basic sorting algorithm. If you are not familiar with the bubble sort, watch <a href= 'https://en.wikipedia.org/wiki/File:Bubble-sort-example-300px.gif'>this</a>. Bubble sort is sometimes reffered as sinking sort, is a simple sorking algorithm that REPEATEDLY steps through the list to be sorted. Because it's refetitive chatacter, performance of the average complexity is O(n2). We will talk about the performance at the end of this blog. Let's code.</p>
+    <div class=text-editor>
+      def bubble_sort(arr)
+        (arr.length).times do
+          for i in 0..(arr.length-2)
+            target = arr[i]
+            next_target = arr[i+1]
+            if target > next_target
+              arr[i+1] = target
+              arr[i] = next_target
+              # target = arr[i+1] This won't work.
+              # next_target = arr[i] This won't work.
+            end
+          end
+        end
+        arr
+      end
+    </div>
+    <p>There are two important things. First, when we switch the position of target and next_target, first, I was reassigned the target and next_target values. This is wrong. Once I assigned the variable like target and next_target here, there value are not arr[i] but the value of arr[0] in this case, whatever the first number in the "arr". So even though the target and next_target value switched, the order of the arr will not be changed. Instead, vaiable name to the arr[i+1] and arr[i]. In this way, I am able to switch the position. </p>
+    <P>Second, the for i loop should be stop arr.length-2. Otherwise, there will be error because there is no next_target.</P>
+    <h4>Merge Sort - Smarter Sort</h4>
+      <p>Merge sort is most well known in computer science. Because of its efficiency. The performance of mergesort is O(n log n) so it's significantly faster than bubble sort. Mergesort is a devide and conquer algorithm that was constantly rearrange numbers from the ordered list. If you are not familiar with a mergesort, check <a href='https://en.wikipedia.org/wiki/Merge_sort#/media/File:Merge-sort-example-300px.gif'>this</a> out. Threre are two steps are involved to create the merge sort. First, break down the element by 1 so it can be sorted. Second, arrange the sorted number to the new array.</p>
+      <div class=text-editor>
+      def merge_sort(arr)
+        if arr.length ==1
+          return arr
+        end #base case
+        first_arr = arr[0..arr.length/2-1]
+        second_arr = arr[arr.length/2..-1]
+        final1 = merge_sort(first_arr)
+        final2 = merge_sort(second_arr)
+        result_arr = []
+        i = 0
+        j = 0
+        until result_arr.length == arr.length
+          if (final1[i] and final2[j] and final1[i] '<' final2[j]) or (final1[i] and final2[j] == nil)
+            result_arr.push(final1[i])
+            i +=1
+          elsif final1[i] == nil or final1[i] > final2[j]
+            result_arr.push(final2[j])
+            j +=1
+          end
+        end
+       return result_arr
+      end
+    </div>
+    <p>In order to master this mergesort, the first thing to do is master recursion. Recursion is based on 'trust'. You must trust the fact that your recuring fuction will return exactly what you are expect to. For instance, the first_arr and second_arr will split to the arr length of 1. final1 and final2 will do exactly same thing until base case is satisfied, which is arr.length == 1. If you need to understand more about recursion. I recommend to watch <a href='https://www.youtube.com/watch?v=t4MSwiqfLaY'>CS50- recursion</a> or go to my next <a href='t21-recursion.html'>blog</a>. </p>
+    </div>
+
+  </main>
+</body>
+<hr>
+<footer>
+  Sarah Kwak 2015 &#169; copyrights
+</footer>
+</html>
