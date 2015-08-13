@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+  <title>Teach Brian How to Code</title>
+  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+</head>
+<body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+  <main>
+    <h6>Algorithm Practice with Ruby</h6>
+    <h2>Aug 13, 2015</h2>
+    <h4>The Magic of Ruby Hash - Wood Chuck Puzzle </h4>
+    <div class='answer'>
+      Find the most common word in the sentence.
+      ""First off hi back at ya, in My neck of the woods (Northern Michigan) the NA tribes used wood wood wood both snapping turtle neck skin and wood chuck hide. The woodchuck hide was and is looks pretty cool. Here's a pic of a Potawatomi bow with the original is string....it's from the Peabody Museum. Sorta looks like one big string silencer to me, the eh? we we we we we"
+    </div>
+    <p>There are bunch of ways to solve this problem. First in my mind was set variable frequency and then loop through whole array bunch of times to change the frequency value as it find the same word. This works but expensive program. The cost of this operation is n power over n. Instead we can use powerful ruby Hash class. <p>
+    <p>We all know that Hash (or Map in Python) is the answer for most of algorithm solution. It's because of their handy methods and easy lookup. By definition, A Hash is a collection of key-value pairs. It is similar to an Array, except that indexing is done via arbitrary keys of any object type, not an integer index. Hashes enumerate their values in the order that the corresponding keys were inserted.</p>
+      <div class=text-editor>
+        def frequent_word(sentence)
+          sentence_array = sentence.split(" ")
+          word_hash = Hash.new(0) //there is a reason we put '0' as an arg
+          sentence_array.each do |word|
+            word_hash[word]+=1
+          end
+            max_value = word_hash.values.max
+            word_hash.select {|key, value| p key if value == max }
+        end
+      </div>
+      <p>Let's break down. There are several key Hash functions in this problem. Hash.new(0), hash[key] += 1, max and select.</p>
+      <div class='tutorial'>
+        hash = Hash.new(0) =>This means that new hash will have default value of '0' if there is no value given to the key. For instance,
+
+        h['a'] = 17
+        h['c'] #this will return 0
+        So initiate the hash with default value of '0' make it no ncessary to set another variable like counter.
+        hash[word] += 1
+        Under the hood, this function will set up the key as a 'word' and then create the new key-value pair. Of course the vlaue will be '1' since it will  While it is in the each loop, if it finds the same key, instead of create new key-value pair, it will increate the value.
+
+        {"First"=>1, "off"=>1, "hi"=>1, "back"=>1, "at"=>1, "ya,"=>1, "in"=>1, "My"=>1, "neck"=>1, "of"=>1, "the"=>2, "woods"=>1, "(Northern"=>1, "Michigan)"=>1}
+        {"First"=>1, "off"=>1, "hi"=>1, "back"=>1, "at"=>1, "ya,"=>1, "in"=>1, "My"=>1, "neck"=>1, "of"=>1, "the"=>2, "woods"=>1, "(Northern"=>1, "Michigan)"=>1, "NA"=>1}
+        {"First"=>1, "off"=>1, "hi"=>1, "back"=>1, "at"=>1, "ya,"=>1, "in"=>1, "My"=>1, "neck"=>1, "of"=>1, "the"=>2, "woods"=>1, "(Northern"=>1, "Michigan)"=>1, "NA"=>1, "tribes"=>1}
+        {"First"=>1, "off"=>1, "hi"=>1, "back"=>1, "at"=>1, "ya,"=>1, "in"=>1, "My"=>1, "neck"=>1, "of"=>1, "the"=>2, "woods"=>1, "(Northern"=>1, "Michigan)"=>1, "NA"=>1, "tribes"=>1, "used"=>1}
+        {"First"=>1, "off"=>1, "hi"=>1, "back"=>1, "at"=>1, "ya,"=>1, "in"=>1, "My"=>1, "neck"=>1, "of"=>1, "the"=>2, "woods"=>1, "(Northern"=>1, "Michigan)"=>1, "NA"=>1, "tribes"=>1, "used"=>1, "wood"=>1}
+
+        .max
+        .max will return the max of the value. If max function isn't available, another loop function to find out the max value.
+
+        .select
+        I was initially throught that:
+          return hash.key(max)
+        will return the key if value == max. and it does. Only problem is that it will NOT return keys but only one instance. So it was necessary to select all keys from the hash and then return it..select function will return any key or value (or both) if it meets the condition.
+
+        .key(value)
+        It is also notable that .key method will not return anything unless argument(value) is passed.
+      </div>
+
+
+      </div>
+
+
+  </main>
+</body>
+<hr>
+<footer>
+  Sarah Kwak 2015 &#169; copyrights
+</footer>
+</html>

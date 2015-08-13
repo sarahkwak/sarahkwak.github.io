@@ -88,6 +88,41 @@
     </table>
   </div>
 
+  <h4>Inner Join(Common Element), Outer Join(Everything) and Left and Right</h4>
+  <h5>Inner Join</h5>
+  <p>Let's say we have a two column a and b. a has 1, 2, 3, 4 and b has 3, 4, 5, 6.
+    Inner join is to find the same element from the each column. So it will return 3, 4 the common element from the both column. </p>
+    <div class='tutorial'>
+      SELECT * FROM a INNER JOIN b on a.a = b.b;
+      SELECT a.*, b.* FROM a, b WHEWRE a.a = b.b;
+
+      Note that there is no double or tripple equal sign for SQL.
+    </div>
+    <h5>Left Outer Join</h5>
+    <p>First, don't be intimidated by 'left' side of it. Left always means that it is the anchor of the other columns. In our above example, 'a' is going to be an 'left' side of it. Left Outer Join returns everything from 'left' side (so it will be 'a' column) and any common element from other side of it. So it will return 1, 2, 3, 4 from a and 3, 4 from b.</p>
+    <div class='tutorial'>
+      SELECT * FROM a INNER LEFT JOIN b on a.a = b.b;
+      SELECT a.*, b.* FROM a, b WHERE a.a = b.b(+);
+    </div>
+    <h5>Full Outer Join</h5>
+    <p>This is very generous joining. This will return everything from a and b. It is also notable that this will not only return every individual element but it will match the number of elements and return null value for the columns that empty. For instance, if a has null, null, 1, 2, 3, 4 and b has 3, 4, 5, 6, null, null, Full Outer Join will return null, null, 1, 2, 3, 4, 3, 4, 5, 6, null, null. </p>
+    <div class='tutorial'>
+      SELECT * FROM a FULL OUTER JOIN b on a.a = b.b;
+
+      SELECT * FROM a FULL OUTER JOIN b on a.null = b.null will return everythin except common element. So it will return null, null, 1, 2, 5, 6, null, null
+    </div>
+    <h5>Left and Right Join</h5>
+    <p>Left Join will return all elements from left and nothing from right. Right join will return every elements from right column. This join will naturally returns common elements from other side.</p>
+    <div class=tutorial>
+      SELECT * FROM a LEFT JOIN b on a.a = b.b;
+      SELECT * FROM a RIGHT JOIN b on a.a = b.b;
+
+      SELECT * FROM a LEFT JOIN b on a.a = b.null; will return uniq a elements only
+      SELECT * FROM a RIGHT JOIN b on a.null = b.b; will return uniq b elements only
+    </div>
+
+    <p>Full details about join sql command can be found in <a href='http://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins'>here</a></p>
+    <img src='http://www.codeproject.com/KB/database/Visual_SQL_Joins/Visual_SQL_JOINS_orig.jpg'>
 </main>
  <hr>
       <footer>

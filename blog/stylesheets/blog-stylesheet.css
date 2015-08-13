@@ -179,6 +179,11 @@ font-size: 18px;
 padding: 1%;
 line-height: 130%
 }
+.tutorial {
+  background-color: #FAFFEB;
+  display: block;
+  white-space: pre;
+}
 .example {
 background-color: black;
 color: white;
