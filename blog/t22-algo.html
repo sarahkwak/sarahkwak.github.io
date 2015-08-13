@@ -41,18 +41,11 @@
         Under the hood, this function will set up the key as a 'word' and then create the new key-value pair.
         While it is in the each loop, if it finds the same key, instead of create new key-value pair, it will increate the value.
 
-        {"First"=>1, "off"=>1, "hi"=>1, "back"=>1, "at"=>1, "ya,"=>1, "in"=>1, "My"=>1, "neck"=>1,
-        "of"=>1, "the"=>2, "woods"=>1, "(Northern"=>1, "Michigan)"=>1}
-        {"First"=>1, "off"=>1, "hi"=>1, "back"=>1, "at"=>1, "ya,"=>1, "in"=>1, "My"=>1, "neck"=>1,
-         "of"=>1, "the"=>2, "woods"=>1, "(Northern"=>1, "Michigan)"=>1, "NA"=>1}
-        {"First"=>1, "off"=>1, "hi"=>1, "back"=>1, "at"=>1, "ya,"=>1, "in"=>1, "My"=>1, "neck"=>1,
-         "of"=>1, "the"=>2, "woods"=>1, "(Northern"=>1, "Michigan)"=>1, "NA"=>1, "tribes"=>1}
-        {"First"=>1, "off"=>1, "hi"=>1, "back"=>1, "at"=>1, "ya,"=>1, "in"=>1, "My"=>1, "neck"=>1,
-         "of"=>1, "the"=>2, "woods"=>1, "(Northern"=>1, "Michigan)"=>1, "NA"=>1, "tribes"=>1,
-         "used"=>1}
-        {"First"=>1, "off"=>1, "hi"=>1, "back"=>1, "at"=>1, "ya,"=>1, "in"=>1, "My"=>1, "neck"=>1,
-         "of"=>1, "the"=>2, "woods"=>1, "(Northern"=>1, "Michigan)"=>1, "NA"=>1, "tribes"=>1,
-         "used"=>1, "wood"=>1}
+        {"First"=>1, "off"=>1, "hi"=>1, "back"=>1, "at"=>1, "ya,"=>1, "in"=>1, "My"=>1, "neck"=>1, "of"=>1, "the"=>2, "woods"=>1, "(Northern"=>1, "Michigan)"=>1}
+        {"First"=>1, "off"=>1, "hi"=>1, "back"=>1, "at"=>1, "ya,"=>1, "in"=>1, "My"=>1, "neck"=>1, "of"=>1, "the"=>2, "woods"=>1, "(Northern"=>1, "Michigan)"=>1, "NA"=>1}
+        {"First"=>1, "off"=>1, "hi"=>1, "back"=>1, "at"=>1, "ya,"=>1, "in"=>1, "My"=>1, "neck"=>1, "of"=>1, "the"=>2, "woods"=>1, "(Northern"=>1, "Michigan)"=>1, "NA"=>1, "tribes"=>1}
+        {"First"=>1, "off"=>1, "hi"=>1, "back"=>1, "at"=>1, "ya,"=>1, "in"=>1, "My"=>1, "neck"=>1, "of"=>1, "the"=>2, "woods"=>1, "(Northern"=>1, "Michigan)"=>1, "NA"=>1, "tribes"=>1, "used"=>1}
+        {"First"=>1, "off"=>1, "hi"=>1, "back"=>1, "at"=>1, "ya,"=>1, "in"=>1, "My"=>1, "neck"=>1, "of"=>1, "the"=>2, "woods"=>1, "(Northern"=>1, "Michigan)"=>1, "NA"=>1, "tribes"=>1, "used"=>1, "wood"=>1}
 
         .max
         .max will return the max of the value. If max function isn't available, another loop function to find out the max value.
@@ -60,9 +53,8 @@
         .select
         I was initially throught that:
           return hash.key(max)
-        will return the key if value == max. and it did. Only problem is that it will NOT return all the keys which as max value but the first instance and stop running.
-        So it was necessary to select all keys from the hash and then return it.
-        .select function will return any key or value (or both) if it meets the condition.
+        will return the key if value == max. and it did. Only problem is that it will NOT return all the keys which as max value but the first instance and stop running. So it was necessary to select all keys from the hash and then return it.
+        '.select' function will return any key or value (or both) if it meets the condition.
 
         .key(value)
         It is also notable that .key method will not return anything unless argument(value) is passed.
