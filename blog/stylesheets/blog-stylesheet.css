@@ -173,7 +173,7 @@ background-color: #2F462F;
 color: #fff;
 display: block;
 font-family: monospace;
-white-space: pre;
+white-space: pre-line;
 text-align: left;
 font-size: 18px;
 padding: 1%;
@@ -182,7 +182,7 @@ line-height: 130%
 .tutorial {
   background-color: #FAFFEB;
   display: block;
-  white-space: pre;
+  white-space: pre-line;
 }
 .example {
 background-color: black;
