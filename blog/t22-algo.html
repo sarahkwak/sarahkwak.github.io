@@ -15,7 +15,8 @@
     <h4>The Magic of Ruby Hash - Wood Chuck Puzzle </h4>
     <div class='answer'>
       Find the most common word in the sentence.
-      ""First off hi back at ya, in My neck of the woods (Northern Michigan) the NA tribes used wood wood wood both snapping turtle neck skin and wood chuck hide. The woodchuck hide was and is looks pretty cool. Here's a pic of a Potawatomi bow with the original is string....it's from the Peabody Museum. Sorta looks like one big string silencer to me, the eh? we we we we we"
+
+      "First off hi back at ya, in My neck of the woods (Northern Michigan) the NA tribes used wood wood wood both snapping turtle neck skin and wood chuck hide. The woodchuck hide was and is looks pretty cool. Here's a pic of a Potawatomi bow with the original is string....it's from the Peabody Museum. Sorta looks like one big string silencer to me, the eh? we we we we we"
     </div>
     <p>There are bunch of ways to solve this problem. First in my mind was set variable frequency and then loop through whole array bunch of times to change the frequency value as it find the same word. This works but expensive program. The cost of this operation is n power over n. Instead we can use powerful ruby Hash class. <p>
     <p>We all know that Hash (or Map in Python) is the answer for most of algorithm solution. It's because of their handy methods and easy lookup. By definition, A Hash is a collection of key-value pairs. It is similar to an Array, except that indexing is done via arbitrary keys of any object type, not an integer index. Hashes enumerate their values in the order that the corresponding keys were inserted.</p>
@@ -66,9 +67,44 @@
         .key(value)
         It is also notable that .key method will not return anything unless argument(value) is passed.
       </div>
+      <h4>Common Array Question - Find, Arrange, Rearrange Array Element</h4>
+      <div class='answer'>
+        Given an array of positive integers, write a function which returns all the unique pairs which add (equal) up to 100.
 
+        ample_data = [0, 1, 100, 99, 0, 10, 90, 30, 55, 33, 55, 75, 50, 51, 49, 50, 51, 49, 51]
+        sample_output = [[1,99], [0,100], [10,90], [51,49], [50,50]]
 
       </div>
+
+      <p>This problem can be solved by many different ways. The brute force way is n(O2) notation, using two loops.</p>
+      <div class=text-editor>
+        def make_100(arr)
+          result_arr = []
+          for i in 0..arr.length-1
+            for j in 0..arr.length-1
+              if i != j and arr[i] + arr[j] == 100
+                result_arr.push(arr[i], arr[j]].sort)
+              end
+            end
+          end
+          return result_arr
+        end
+
+      </div>
+      <p>The briliant part of this method is that you can push the two elements from the arr by using [arr[i], arr[j]] and then '.sort' will guarantee that the array is unique. This way works perfectly. It is just expensive. As always, using Hash gives you same result with cheaper(faster). </p>
+      <div class='text-editor'>
+        def make_100(arr)
+          hash = Hash.new
+          arr.each do |element|
+            pair = 100 - element
+            hash[element] = pair if arr != pair and arr.include?(pair)
+          end
+          return hash
+        end
+
+      </div>
+      <p>With hash, I don't have to push to another arry and sort it again. Hash's key will only </p>
+    </div>
 
 
   </main>
