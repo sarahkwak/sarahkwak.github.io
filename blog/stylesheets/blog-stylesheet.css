@@ -343,6 +343,14 @@ sql_list {
   font-size: 1.2em;
   padding-left: 20px;
 }
+.interview {
+  width: 80%;
+  background-color: #FAFFEB;
+  white-space: pre;
+  line-height: 1.2em;
+  font-size: 1.2em;
+  padding-left: 20px;
+}
 .blog-pic {
   display: block;
   margin-right: auto;

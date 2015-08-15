@@ -15,27 +15,27 @@
     <div class=tech-div>
     <ol>
       <li>Explain event delegation</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>Explain how this works in JavaScript</li>
-      <div class=answer>
+      <div class=interview>
         <p>'This' is in general referring to the objects that the function can be called. For instance within a function this.name = name; means whatever instance of the object's name will be called. In summary, 'this' in general refer something left side of dog notation. If not, it is usually refer 'window'. Because everything ouside of the scoup of the function belongs to 'window'</p>
       </div>
       <li>Explain how prototype inheritance works</li>
-      <div class=answer>
+      <div class=interview>
         <p>In object oriented concept, prototype will inherite whatever right side of prototype notation to be inherited to left side of the object. prototype can also inherite constructor function so that left side of the object can be a constructor for other objects with 'new' keyword.</p>
       </div>
       <li>What do you think of AMD vs CommonJS?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>Explain why the following doesn't work as an IIFE: function foo(){ }();.</li>
-      <div class=answer>
+      <div class=interview>
         <p>First, to invoke the function we need to wrap the whole function within '()'. so (foo(){})(); this could invoke the function immediately.</p>
       </div>
       <li>What needs to be changed to properly make it an IIFE?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>What's the difference between a variable that is: null, undefined or undeclared? How would you go about checking for any of these states?</li>
-      <div class=answer><p>(foo(){})();</p></div>
+      <div class=interview><p>(foo(){})();</p></div>
       <li>What is a closure, and how/why would you use one?</li>
-      <div class=answer>
+      <div class=interview>
         <p>To simply put, a closure is the function that returns other function. The reason this is important is that we can call the function later (or as a matter of fact) whenever we want. For instance,</p>
         <div class=text-editor>
         var foo = function() {
@@ -51,58 +51,58 @@
         <p>For this case, function foo will never be invoked until we called newfn. That's a closure. <p>
       </div>
       <li>What's a typical use case for anonymous functions?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>How do you organize your code? (module pattern, classical inheritance?)</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>What's the difference between host objects and native objects?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>Difference between: function Person(){}, var person = Person(), and var person = new Person()?</li>
-      <div class=answer>
+      <div class=interview>
         <p>function Person(){} is a constructor function so that can be instanciate other Person type object. var person = new Person() is exactly how to do it. person is going to inherite all of traits from Person constructor. </p>
       </div>
       <li>What's the difference between .call and .apply?</li>
-      <div class=answer>
+      <div class=interview>
         <p>.call will call the function with arguments that are passing. The difference between .call and .apply is that apply will take array as an arguments. </p>
       </div>
       <li>Explain Function.prototype.bind.</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>When would you use document.write()?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>What's the difference between feature detection, feature inference, and using the UA string?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>Explain AJAX in as much detail as possible.</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>Explain how JSONP works (and how it's not really AJAX).</li>
-      <div class=answer>
+      <div class=interview>
         <p>JSONP is 'JSON with padding'. It's the hacky way of calling XMLHTTPRequest without violating SOP(Same Origin Policy). SOP prevent any unknown server calling API request so JSONP with callback function is pretending the request calls are from a server.</p>
         <p>Better Interpretation: JSONP is a communication technique used in JavaScript programs running in web browsers to request data from a server in a different domain, something prohibited by typical web browsers because of the same-origin policy(SOP).</p>
       </div>
       <li>Have you ever used JavaScript templating?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>If so, what libraries have you used?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>Explain "hoisting".</li>
-      <div class=answer>
+      <div class=interview>
         <p>If function is created without 'var' keyward, it will be hosisted to the top of the function so it can be called wherever in the script.</p>
       </div>
       <li>Describe event bubbling.</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>What's the difference between an "attribute" and a "property"?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>Why is extending built-in JavaScript objects not a good idea?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>Difference between document load event and document ready event?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>What is the difference between == and ===?</li>
-      <div class=answer>
+      <div class=interview>
         <p>Thank you for asking. In short, javascript developers should never use '==' unless they know exactly what they are doing. '===' which is strick equal sign confirms that the two objects in right and left sides are same in every way like type and value. In performance wise, to determine two objects are '==', a machine have to go through significant process to try to match up two objects. </p>
       </div>
       <li>Explain the same-origin policy with regards to JavaScript.</li>
-      <div class=answer>
+      <div class=interview>
         <p></p>
       </div>
       <li>Make this work: duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]</li>
-      <div class=answer>
+      <div class=interview>
         <div class=text-editor>
           var duplicator = function(args) {
             var newarr = [];
@@ -117,11 +117,11 @@
         </div>
       </div>
       <li>Why is it called a Ternary expression, what does the word "Ternary" indicate?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>What is "use strict";? what are the advantages and disadvantages to using it?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>Create a for loop that iterates up to 100 while outputting "fizz" at multiples of 3, "buzz" at multiples of 5 and "fizzbuzz" at multiples of 3 and 5</li>
-      <div class=answer>
+      <div class=interview>
         <div class=text-editor>
           for (var i=1; i<101; i++) {
             if (i % 3 ===0 && i % 5 === 0) {
@@ -137,31 +137,31 @@
         </div>
       </div>
       <li>Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>Why would you use something like the load event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>Explain what a single page app is and how to make one SEO-friendly.</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>What is the extent of your experience with Promises and/or their polyfills?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>What are the pros and cons of using Promises instead of callbacks?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>What tools and techniques do you use debugging JavaScript code?</li>
-      <div class=answer>
+      <div class=interview>
         <p>Chrome developer is great.</p>
       </div>
       <li>What language constructions do you use for iterating over object properties and array items?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>Explain the difference between mutable and immutable objects.</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>What is an example of an immutable object in JavaScript?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>What are the pros and cons of immutability?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
       <li>How can you achieve immutability in your own code?</li>
-      <div class=answer><p></p></div>
+      <div class=interview><p></p></div>
     </ol>
  </main>
 </body>
