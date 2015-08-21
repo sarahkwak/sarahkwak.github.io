@@ -362,7 +362,7 @@ sql_list {
 main p {
   font-size: 1.2em;
 }
-@media (min-width: 500px) {
+@media (max-width: 500px) {
   main img {
     width: 70%;
   }
