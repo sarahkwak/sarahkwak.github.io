@@ -362,6 +362,12 @@ sql_list {
 main p {
   font-size: 1.2em;
 }
+
+main img {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
 @media (max-width: 500px) {
   main img {
     width: 70%;
