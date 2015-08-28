@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <head>
+    <title>🐾 Teach Brian How to Code</title>
+    <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+  </head>
+  <body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+    <main>
+      <h6>Rails Form Helper</h6>
+      <h2>Aug 28, 2015</h2>
+      <h4>Link_to</h4>
+      <p>Over the couple of days, I was working on rails projects. The point is to brush up overall rails structure and be familiar with troubleshooting. As any other learning experience, more you play with, more you will enjoy. The most time consuming part of these rails project was creating user interactive forms and links. How to call the new forms and send the form data to the exact controller and the action were the key of the exercise.</p>
+      <p>Although, overall rail does have fantastic documentation, I found that compare to other part of the rails functions, the form helper part wasn't well written.</p>
+      <p>The most popular use of the form helper functions are link_to, form_for and button_to. </p>
+      <p>Because there are many ways to set routes, there are many ways to make the form helper work. Here are a few example of simples.</p>
+      <h4>link_to </h4>
+      <div class=text-editor>
+        <%= link_to "Sign out", signout_path, id: "sign_out" %>
+        <%= link_to "Profile", profile_path(@profile) %>
+            # => <a href="/profiles/1">Profile</a>
+        <%= link_to "Profile", controller: "profiles", action: "show", id: @profile %>
+            # => <a href="/profiles/show/1">Profile</a>
+        <%= link_to "Profiles", profiles_path %>
+            # => <a href="/profiles">Profiles</a>
+
+        #Using External URL
+        <%= link_to "Visit Other Site", "http://www.rubyonrails.org/", data: { confirm: "Are you sure?" } %>
+            # => <a href="http://www.rubyonrails.org/" data-confirm="Are you sure?">Visit Other Site</a>
+      </div>
+      <h4>button_to</h4>
+      <p>Similar to link_to, button_to is to creat a button and then the action will be assigned once the button has been pushed.</p>
+      <div class=text-editor>
+        <%= button_to 'Favorite', "/foods/#{food.id}/favorite", :style=> "margin-left: 20px" %>
+        <%= button_to "New", new_articles_path %>
+        #:style is an option to do simple styling to the button
+      </div>
+      <h4>form_for</h4>
+      <p>Form_for is to get user inputs and then send to the specific controller and the action.</p>
+      <div class=text-editor>
+        <%= form_for @review, url: reviews_path(food, current_user) do |f| %>
+            <p>Rating: <%= f.text_field :rating %>
+            Comment: <%= f.text_field :comment %>
+            <%= f.submit "Review" %></p>
+        <% end %>
+
+        <%= form_for @review, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+        # html class is to give the form the class attribute for css
+
+        <%= form_for(@review, url: reviews_path(@revuew), html: {method: "patch"}) %>
+        #In order to use @review, you must speicify @review in the current controller. (e.g. @review = Review.new)
+
+      </div>
+      <h4>Edit Function - How to pre-filled form in Edit Form</h4>
+      <div class=text-editor>
+        # View/html.erb =>This will send a user to the edit form. Don't be confused to send a user to 'update', right away.
+
+        <%= link_to "Edit", edit_story_path(story), method: :get %>
+
+        # edit form =>This time, we will send the form to the 'update' function.
+        <%= form_for :story, :method => 'patch', :url => { :action => 'update'} do |f| %>
+          <p><%= f.label :title%></p>
+          <p><% @story = Story.find(params[:id]) %></p>
+          <p><%= f.text_field :title, value: @story.title, :size=>"85x3" %></p>
+          <p><%= f.label :contents %></p>
+          <%= f.text_area :contents, value: @story.contents, size: "60x12" %><br>
+          <%= f.submit "Update" %>
+        <% end %>
+
+        #value with @story.title will pre-fill for a user
+
+          # story controller, update function
+          def update
+            @story = Story.find(params[:id])
+            if @story.update(
+              title: params[:story][:title],
+              contents: params[:story][:contents]
+              )
+              redirect_to '/'
+            else
+              render 'edit'
+            end
+          end
+
+      </div>
+      <h4>Delete function - Standard way</h4>
+      <div class=text-editor>
+        # html.erb file
+        <%= link_to 'Delete', story, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+        # controller destroy (or delete) function
+        def destroy
+          @story = Story.find(params[:id])
+          @story.destroy!
+          respond_to do |format|
+            format.html { redirect_to '/', notice: 'Story was successfully destroyed.' }
+            format.json { head :no_content }
+          end
+        end
+      </div>
+
+    </main>
+  </body>
+  <hr>
+
+<footer>
+  Sarah Kwak 2015 &#169; copyrights
+</footer>
+</html>
