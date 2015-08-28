@@ -21,15 +21,15 @@
       <div class=text-editor>
         <%= link_to "Sign out", signout_path, id: "sign_out" %>
         <%= link_to "Profile", profile_path(@profile) %>
-            # => <a href="/profiles/1">Profile</a>
+            # => &lt;a href="/profiles/1"&lt;Profile&lt;/a&gt;
         <%= link_to "Profile", controller: "profiles", action: "show", id: @profile %>
-            # => <a href="/profiles/show/1">Profile</a>
+            # => &lt;a href="/profiles/show/1"&lt;Profile&lt;/a&gt;
         <%= link_to "Profiles", profiles_path %>
-            # => <a href="/profiles">Profiles</a>
+            # => &lt;a href="/profiles"&lt;Profiles&lt;/a&gt;
 
         #Using External URL
         <%= link_to "Visit Other Site", "http://www.rubyonrails.org/", data: { confirm: "Are you sure?" } %>
-            # => <a href="http://www.rubyonrails.org/" data-confirm="Are you sure?">Visit Other Site</a>
+            # => &lt;a href="http://www.rubyonrails.org/" data-confirm="Are you sure?">Visit Other Site&lt;/a&gt;
       </div>
       <h4>button_to</h4>
       <p>Similar to link_to, button_to is to creat a button and then the action will be assigned once the button has been pushed.</p>
@@ -41,10 +41,11 @@
       <h4>form_for</h4>
       <p>Form_for is to get user inputs and then send to the specific controller and the action.</p>
       <div class=text-editor>
-        <%= form_for @review, url: reviews_path(food, current_user) do |f| %>
-            <p>Rating: <%= f.text_field :rating %>
-            Comment: <%= f.text_field :comment %>
-            <%= f.submit "Review" %></p>
+        <%= form_for @review, url: reviews_path(food, current_user) do |f| %><code>
+            &lt;p&gt;Rating: <%= f.text_field :rating %>
+                Comment: <%= f.text_field :comment %>
+                <%= f.submit "Review" %>&lt;/p&gt;
+              </code>
         <% end %>
 
         <%= form_for @review, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
@@ -62,11 +63,11 @@
 
         # edit form =>This time, we will send the form to the 'update' function.
         <%= form_for :story, :method => 'patch', :url => { :action => 'update'} do |f| %>
-          <p><%= f.label :title%></p>
-          <p><% @story = Story.find(params[:id]) %></p>
-          <p><%= f.text_field :title, value: @story.title, :size=>"85x3" %></p>
-          <p><%= f.label :contents %></p>
-          <%= f.text_area :contents, value: @story.contents, size: "60x12" %><br>
+          <%= f.label :title%>
+          <% @story = Story.find(params[:id]) %>
+          <%= f.text_field :title, value: @story.title, :size=>"85x3" %>
+          <%= f.label :contents %>
+          <%= f.text_area :contents, value: @story.contents, size: "60x12" %>
           <%= f.submit "Update" %>
         <% end %>
 
@@ -105,7 +106,6 @@
     </main>
   </body>
   <hr>
-
 <footer>
   Sarah Kwak 2015 &#169; copyrights
 </footer>
