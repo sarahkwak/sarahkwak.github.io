@@ -15,7 +15,7 @@
       <p>I've been blessed enough to done some contract work for a company last week. It was great learning opportunity and meeting interesting people. My task was creating newsfeed for the site. It was rails app using haml, scss and coffee script. I wasn't familiar with haml and scss but it was rails app so I wasn't so intimidated. When I complete the feature and push to the master branch I realized that I forget to write rspec.</p>
       <p>Before getting into details about RSpec, two things always taken care of. One is setting or knowing test environment config and simply how to run rspec. </p>
       <p>For instance, the test database need to be set up. </p>
-      <div class='text-tutorial'>
+      <div class='tutorial'>
         rake db:test:prepare
       </div>
       <p>What it actually does is that it <strong> runs any pending migrations on the development environment and updates db?schema.rb The rake db:test:load recreats the test database from the current db/schema.rb. </strong> On subsequent attemps, it is a good idea to first run db:test:prepare, as it first checks for pending migrations and warns you appropriately. Basically it handles cloning the database so you don't have to run the migrations against test to update the test database. For more information, check <a href='http://stackoverflow.com/questions/15169894/what-does-rake-dbtestprepare-actually-do'>here</a>.</p>
