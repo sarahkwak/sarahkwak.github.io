@@ -98,6 +98,18 @@
 
       Note that there is no double or tripple equal sign for SQL.
     </div>
+    <div class=text-editor>
+      def inner_join(arr1, arr2)
+        arr_hash = Hash.new(0)
+        arr1.each do |num|
+          arr_hash[num] = 1
+        end
+        arr2.each do |num|
+          arr_hash[num]+=1
+        end
+        arr_hash.select { |k,v| puts k if v == 2 }
+      end
+    </div>
     <h5>Left Outer Join</h5>
     <p>First, don't be intimidated by 'left' side of it. Left always means that it is the anchor of the other columns. In our above example, 'a' is going to be an 'left' side of it. Left Outer Join returns everything from 'left' side (so it will be 'a' column) and any common element from other side of it. So it will return 1, 2, 3, 4 from a and 3, 4 from b.</p>
     <div class='tutorial'>
@@ -112,6 +124,18 @@
       SELECT * FROM a FULL OUTER JOIN b on a.null = b.null will return everythin except common element.
       So it will return null, null, 1, 2, 5, 6, null, null
     </div>
+    <div class=text-editor>
+      def full_outter_join(arr1, arr2)
+        arr_hash = Hash.new(0)
+        arr1.each do |num|
+          arr_hash[num] = 1
+        end
+        arr2.each do |num|
+          arr_hash[num]+=1
+        end
+        arr_hash.select { |k,v| puts k if v <= 1 }
+      end
+    </div>
     <h5>Left and Right Join</h5>
     <p>Left Join will return all elements from left and nothing from right. Right join will return every elements from right column. This join will naturally returns common elements from other side.</p>
     <div class=tutorial>
@@ -121,7 +145,18 @@
       SELECT * FROM a LEFT JOIN b on a.a = b.null; will return uniq a elements only
       SELECT * FROM a RIGHT JOIN b on a.null = b.b; will return uniq b elements only
     </div>
-
+    <div class=text-editor>
+      def left_join(arr1, arr2)
+        arr_hash = Hash.new(0)
+        arr1.each do |num|
+          arr_hash[num] = 1
+        end
+        arr2.each do |num|
+          arr_hash[num]-=1
+        end
+        arr_hash.select { |k,v| puts k if v == 1 }
+      end
+    </div>
     <p>Full details about join sql command can be found in <a href='http://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins'>here</a></p>
     <img src='http://www.codeproject.com/KB/database/Visual_SQL_Joins/Visual_SQL_JOINS_orig.jpg'>
 </main>

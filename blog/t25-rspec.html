@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <head>
+    <title>🐾 Teach Brian How to Code</title>
+    <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+  </head>
+  <body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+    <main>
+      <h6>RSPEC</h6>
+      <h2>Sep 10, 2015</h2>
+      <p>I've been blessed enough to done some contract work for a company last week. It was great learning opportunity and meeting interesting people. My task was creating newsfeed for the site. It was rails app using haml, scss and coffee script. I wasn't familiar with haml and scss but it was rails app so I wasn't so intimidated. When I complete the feature and push to the master branch I realized that I forget to write rspec.</p>
+      <p>Before getting into details about RSpec, two things always taken care of. One is setting or knowing test environment config and simply how to run rspec. </p>
+      <p>For instance, the test database need to be set up. </p>
+      <div class='text-editor'>
+        rake db:test:prepare
+      </div>
+      <p>What it actually does is that it <strong> runs any pending migrations on the development environment and updates db?schema.rb The rake db:test:load recreats the test database from the current db/schema.rb. </strong> On subsequent attemps, it is a good idea to first run db:test:prepare, as it first checks for pending migrations and warns you appropriately. Basically it handles cloning the database so you don't have to run the migrations against test to update the test database. For more information, check <a href='http://stackoverflow.com/questions/15169894/what-does-rake-dbtestprepare-actually-do'>here</a>.</p>
+      <p>The second important thing is how to run the spec. </p>
+      <div class='tutorial'>
+        #This will run the particular line in the specific page thus fast to run
+          rspec spec/models/foo_spec.rb:2
+
+        # Run only model specs
+          bundle exec rspec spec/models
+
+        # Run only specs for AccountsController
+          bundle exec rspec spec/controllers/accounts_controller_spec.rb
+      </div>
+      <p>The following commend will run every rspec you have under the rspec directory.</p>
+      <div class='tutorial'>
+        bundle exec rspec
+      </div>
+
+      <p>I don't have much experience in writing test specs but I never consider spec is difficult. As anything else, once you learn it, it will be piece of cake. Let's face it. No one will complain about quality of the test code and it will be just fine as long as it covers 100% test subject. WRONG! Completely Wrong!</p>
+      <p>When they review my code, they put special attention to rpec and told me that these specs are not only insufficient but completely wrong. Here is the example of controller specs I wrote</p>
+      <div class='text-editor'>
+        describe "DELETE 'delete'" do
+          it 'destroys the article'
+            let(:new_article) { create :new_article }
+            new_article.delete
+            expect { response.should be_success }
+            expect(new_article.count).to eq(0)
+          end
+        end
+      </div>
+      <p>This is seriously wrong. This test is actually using ActiveRecord's 'delete' function rather than controller's 'delete' function. Here is what we can test for delete function: </p>
+      <div class='text-editor'>
+        RSpec.describe Admin::NewsItemsController, :type => :controller do
+          let!(:news_item) { create :news_item }
+
+          describe "POST 'create'" do
+            let(:title) {'this is new title'}
+            let(:contents) {'this is new contents'}
+
+            it "creates instance of NewsItem" do
+              post :create, {news_item: {title: title, contents: contents}}, valid_session
+              expect(NewsItem.count).to eq(2)
+              expect(NewsItem.last.title).to eq(title)
+              expect(NewsItem.last.contents).to eq(contents)
+            end
+
+            it 'raises error if mandatory arguments are not passed' do
+              post :create, {news_item: {title: title, contents: contents}}, valid_session
+              expect { response.should_not be_success }
+            end
+          end
+
+          describe "GET 'new'" do
+            it "returns http success and includes latest news items" do
+              get :new, nil, valid_session
+              expect { response.should be_success }
+              expect(response.body).to include(news_item.title)
+            end
+          end
+
+          describe "GET 'show'" do
+            it "returns http success and shows specific news item" do
+              get :show, {id: news_item.id}, valid_session
+              expect { response.should be_success }
+              expect(response.body).to include(news_item.title)
+            end
+          end
+
+          describe "PUT 'update'" do
+            let(:new_title) {'this is new'}
+            it "updates updates the contents" do
+              put :update, {id: news_item.id, news_item:{title: new_title, contents: news_item.contents }}, valid_session
+              expect(news_item.reload.title).to eq(new_title)
+            end
+          end
+
+          describe "DELETE 'delete'" do
+            it "destroys the requested vehicle" do
+              delete :delete, {id: news_item.id}, valid_session
+              expect { response.should be_success }
+              expect(NewsItem.count).to eq(0)
+            end
+          end
+        end
+      </div>
+      <p>For more information, <a href='https://github.com/rspec/rspec-rails'>github rspec section</a> has much useful information than others (like <a href='https://www.relishapp.com/rspec'> relish</a>). </p>
+
+</main>
+ <hr>
+      <footer>
+        Sarah Kwak 2015 &#169; copyrights
+      </footer>
+  </body>
+</html>
