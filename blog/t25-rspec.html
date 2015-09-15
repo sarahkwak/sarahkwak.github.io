@@ -48,6 +48,14 @@
         end
       </div>
       <p>This is seriously wrong. This test is actually using ActiveRecord's 'delete' function rather than controller's 'delete' function. Here is what we can test for delete function: </p>
+      <p>The rails 3 will provide RSpec scaffolds and the generated controller specs pass along session parameters: </p>
+      <div class='tutorial'>
+        get :index, {}, valid_session
+        # second argument is optional to pass params. e.g.
+        get :show, {id: news_item.id}, valid_session
+        get :new, nil, valid_session
+      </div>
+      <p>To read more about How To: Test controllers with Rails 3 and 4 (and RSpec), click <a href='https://github.com/plataformatec/devise/wiki/How-To:-Test-controllers-with-Rails-3-and-4-(and-RSpec)'> here </a></p>
       <div class='text-editor'>
         RSpec.describe Admin::NewsItemsController, :type => :controller do
           let!(:news_item) { create :news_item }
