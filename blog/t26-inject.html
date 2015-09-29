@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <head>
+    <title>🐾 Teach Brian How to Code</title>
+    <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+  </head>
+  <body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+    <main>
+      <h6>Ruby The magic Inject Method</h6>
+      <h2>Sep 29, 2015</h2>
+       <p>I haven't used inject method much it's probably because I didn't understand fully what it can do. I came across the interview question to write a single line of code that prints the Fibonacci sequence of any length as an array using 'inject' function. </p>
+       <p>I was hella confused. What do you mean by using inject function?</p>
+       <p>So, I was reading inject method from ruby docs and found that there are much more I can do other than iterate numbers and add them all.</p>
+       <div class=tutorial>
+        #The most common use of inject is add all values
+        (1..5).inject{|sum, num| sum+num } #15
+        (1..5).inject(0){ |sum, num| sum+num } #15
+        (1..5).inject(10){ |sum, num| sum+num } #25
+        [1,2,3,4,5].inject{ |sum, num| sum+num } #15
+        [1,2,3,4,5].inject(:+) #15
+       </div>
+       <p>The argument after inject is optional but if it is passed, it will iterate through the element and 'add/dump' in there. </p>
+       <div class=tutorial>
+        (1..5).inject([]){|result, element| result.push(element) } #[1, 2, 3, 4, 5]
+       </div>
+       <p>In the above example, this is exactly same operation as: </p>
+       <div class=text-editor>
+        result = []
+        for element in 1..5
+          result.push(element)
+        end 
+       </div>
+       <p>Now that I am more comfortable with basic inject, time to explore real beauty of the method.</p>
+       <h4>Building a hash</h4>
+       <p>This is how to build a hash out of array.</p>
+       <div class=text-editor>  
+        arr = [[:first_name, "sarah"], [:last_name, "Kwak"]]
+        hash = {}
+        arr.each do |ind|
+          hash[ind.first] = ind.last
+        end
+        # {:first_name=>"sarah", :last_name=>"Kwak"}
+       </div>
+       <p>This isn't the most readable way but you can establish same thing with inject. </p>
+       <div class=tutorial>
+        hash = [[:first_name, 'Shane'], [:last_name, 'Harvie']].inject({}) do |result, element| 
+          result[element.first] = element.last
+          result
+        end
+       </div>
+       <p>As the example shows, I start with an empty hash (the argument to inject) and I iterate through each element in the array adding the key and value one at a time to the result. The interesting thing is that the result of the block is the next yielded result, I need to add to the hash, but <strong> explicitly return the result on the following line.</strong></p>  
+
+       <h4>Chaining method with Inject</h4>
+       <p>If you want to feel smart and powerful, I strongly suggest using inject method with bunch of other methods chain them together. It is not super readable but it makes you feel awesome.</p>
+       <div class='tutorial'>
+        [1,2,3,4,5,6].inject([]){ |result, num| result<< num.to_s if num%2 == 0 
+        result}
+       </div>
+
+       <h4>Building Fibonacci numbers with Inject function</h4>
+       <p>In order to make fibonacci sequence, we need at least 3 variables so that it can predict the third element by adding first two elements. This is standard way of build the sequence</p>
+       <div class='text-editor'>
+        def fibonacci_sequence(num)
+          p first = 1
+          p second = 1
+          third = first + second
+          (num-2).times do 
+            first = second
+            second = third
+            p third = first + second
+          end 
+        end
+       </div>
+       <p>To use inject function, making a fibonacci sequence is easier than ever! All I need to do is add third element, which is the sum of first two elements.</p>
+       <div class='tutorial'>
+        (1..10).inject([1,1]) {|result, element| result<< result.last(2).inject(:+) }
+        #The below will do exactly same thing
+        (1..10).inject([1,1]) {|result, element| result<< result.last(2).inject{ |sum, num| sum+num }}
+       </div>
+       <p>The first range of number means how many times this program will run. There is no other meaning. Result is an array with prefixed element which is first two fibonacci sequence. Regardless of the element, all this does is to add last two elements in result array and then add to the sum. </p>
+    </main>
+ <hr>
+  <footer>
+    Sarah Kwak 2015 &#169; copyrights
+  </footer>
+  </body>
+</html>
