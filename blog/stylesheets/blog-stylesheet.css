@@ -183,6 +183,8 @@ h8 {
   background-color: #FAFFEB;
   display: block;
   white-space: pre;
+  font-size: 18px;
+  line-height: 130%;
 }
 .example {
   background-color: black;
