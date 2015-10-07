@@ -63,8 +63,8 @@ randomEnermy = function (){
   var name = Math.random();
   var x = Math.random()*WIDTH;
   var y = Math.random()*HEIGHT;
-  var spdx = 5 + Math.random() * 15;
-  var spdy = 5 + Math.random() * 20;
+  var spdx = 5 + Math.random() * 55;
+  var spdy = 5 + Math.random() * 15;
   var height = 10+ Math.random() * 5;
   var width = 1+ Math.random() * 30;
   Enermy(name, x, y, spdx, spdy, height, width);
@@ -74,7 +74,9 @@ randomEnermy();
 randomEnermy();
 randomEnermy();
 randomEnermy();
-
+randomEnermy();
+randomEnermy();
+randomEnermy();
 
 console.log(evilList);
 distancebytwo = function(obj1, obj2) {
@@ -85,7 +87,7 @@ distancebytwo = function(obj1, obj2) {
 
 collision = function(entity1, entity2) {
   var distance = distancebytwo(entity1, entity2);
-  return distance < 40;
+  return distance < 70;
 };
 
 // Enermy function
@@ -115,10 +117,8 @@ update = function() {
       if (isColliding) {
           player.health = player.health -1;
           if (player.health <= 0) {
-            // setTimeout(function() {alert('GAME OVER');},1250);
             var survivalTime = Date.now() - startTime;
-
-            ctx.fillText("GAME OVER. You've survived for "+ survivalTime + " ms.", 250,250);
+            setTimeout(function() {alert("GAME OVER You've survived for "+ survivalTime/1000 + " second. Good Job!!!");}, -10);
             startTime = Date.now();
             player.health = 10;
           }
