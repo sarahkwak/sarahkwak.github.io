@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
+<head>
+<link rel="stylesheet" type="text/css" href="stylesheets/blog-stylesheet.css">
+<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+</head>
 <body>
-<div class=right>
-  <h1 style="font-family:helvetica;">Avoid Collision!</h1>
-  <h4 style="font-family:helvetica">You are a <em style='color:green;'>player(Green Square)</em>. When you collide with <em style='color:red;'> Red enermies</em>, you will lose health</h4>
-  <h4 style="font-family:helvetica">The game will restart once your health reaches 0</h4>
+<canvas class='game_left' id="ctx" width="500" height="500" style="border:10px solid #c3c3c3;"></canvas>
+<div class='game_right'>
+  <h1>Avoid Collision!</h1>
+  <h4>You are a <em style='color:green;'>player(Green Square)</em>. When you collide with <em style='color:red;'> Red enermies</em>, you will lose health</h4>
+  <h4>The game will restart once your health reaches 0</h4>
+  <h4>Good luck!</h4>
 </div>
-<canvas class=left id="ctx" width="500" height="500" style="border:10px solid #c3c3c3;"></canvas>
-
+<div class=clear></div>
 <script>
 var ctx = document.getElementById("ctx").getContext("2d");
 ctx.font = "30px Arial";
