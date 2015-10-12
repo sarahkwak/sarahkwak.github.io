@@ -15,6 +15,7 @@
     <h4>Factorial! </h4>
       <p>Recursion is a programming concept whereby a function invokes itself. Recursion is typically used to solve problems that are decomposable into subproblems that are just like the original problem, but a step closer to being solved.</p>
       <img src='Screen-shot/recursion.png'>
+      <br/>
       <div class=text-editor>
       def factorial_maker(num)
         if num == 1
@@ -44,9 +45,82 @@
       return result
     end
     </div>
+    <h4>More advance recursion - Regular Sort</h4>
+    <p>Regular short is to find the smallest number in the array and then push to the new array. This operation cost n2 time. Not the best and the fastest way of doing it but with power of recursion, the code is clean and readable.</p>
+    <div class=text-editor>
+      def regular_sort(arr) 
+        result = []
+        smallest = arr.first
+        if arr.length == 0
+          return result
+        end 
+        for i in 1..arr.length-1
+          if smallest >= arr[i]
+            smallest = arr[i]
+          end 
+        end
+        arr.delete_at(arr.rindex(smallest))
+        result.push(smallest)
+        result+=stack_sort(arr)
+      end
+    </div>
+    <h4>Stack and Queue Sort</h4>
+    <p>The purpose of these exercise is to 1. understand the stack and queue in the database and make sort function with limited methods. The stack_sort is to use 'pop' and 'push' only and queue_sort is to use 'shift and unshift'. </p>
+    <div class='text-editor'>
+      #Stack_Sort
+      def stack_sort(arr)
+        sorted_arr = []
+        smallest = arr.pop
+        temp = [smallest]
+        final = []
+        if arr.length == 0 
+          return sorted_arr
+        end
+        while arr.length > 0
+          if smallest >= arr.last
+            smallest = arr.last
+          end
+          temp.push(arr.pop)
+        end
+        while temp.length > 0 
+          if temp.last == smallest
+            sorted_arr.push(temp.last)
+          else
+            final.push(temp.last)
+          end
+          temp.pop
+        end
+        sorted_arr += stack_sort(final)
+      end
+    </div>
+    <br/>
+    <div class='text-editor'>
+      # Queue_Sort 
+      def queue_sort(arr)
+        biggest = arr.shift
+        temp = [biggest]
+        sorted_arr = []
+        rest = []
+        if arr.length == 0
+          return sorted_arr
+        end
+        while arr.length > 0
+          if arr.first > biggest
+            biggest = arr.first
+          end 
+          temp.push(arr.shift)
+        end 
+        while temp.length > 0
+          if temp.first == biggest
+            sorted_arr.push(temp.shift)
+          else
+            rest.push(temp.shift)
+          end
+        end 
+        sorted_arr+=queue_sort(rest)
+      end
+    </div>
     <p>The key of recursion is the base case and the 'trust'. You must trust the fact that your recursion function will return exactly what you will ask for. Base case will stop the function once the condition was NOT meet. Therefore this is a 'breaker'. It is also important that the function must specify what this recursion will return. </p>
-
-
   </main>
 </body>
 <hr>

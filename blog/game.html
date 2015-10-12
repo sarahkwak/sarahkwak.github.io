@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
-
 <body>
-
-<canvas id="ctx" width="500" height="500" style="border:10px solid #c3c3c3;"></canvas>
-
+<div class=right>
+  <h1 style="font-family:helvetica;">Avoid Collision!</h1>
+  <h4 style="font-family:helvetica">You are a <em style='color:green;'>player(Green Square)</em>. When you collide with <em style='color:red;'> Red enermies</em>, you will lose health</h4>
+  <h4 style="font-family:helvetica">The game will restart once your health reaches 0</h4>
+</div>
+<canvas class=left id="ctx" width="500" height="500" style="border:10px solid #c3c3c3;"></canvas>
 
 <script>
 var ctx = document.getElementById("ctx").getContext("2d");
@@ -25,7 +27,7 @@ drawPlayer = function (identity) {
   ctx.fillRect(identity.x-15, identity.y-15, 20,20)
   ctx.restore();
 }
-document.onmousemove = function (mouse) {
+document.onmousemove = function(mouse) {
   var mouseX = mouse.clientX;
   var mouseY = mouse.clientY;
   player.x = mouseX;
@@ -40,9 +42,10 @@ document.onmousemove = function (mouse) {
       mouseX = WIDTH;
     } if (mouseY < 0) {
       mouseY = 0;
-    } if (mouseY > HEIGHT)
+    } if (mouseY > HEIGHT) {
       mouseY = HEIGHT;
     }
+}
 
 
 // Enermy
@@ -78,7 +81,6 @@ randomEnermy();
 randomEnermy();
 randomEnermy();
 
-console.log(evilList);
 distancebytwo = function(obj1, obj2) {
   var vx = obj1.x - obj2.x;
   var vy = obj1.y - obj2.y;
@@ -128,18 +130,9 @@ update = function() {
     ctx.fillText(player.health + "Health", 0, 30);
 };
 
-
 setInterval(update, 40);
 
-
-
-
 </script>
-
-  <h1 style="font-family: helvetica">Avoid Collision!</h1>
-  <h4 style="font-family:helvetica">You are a player(Green Square). When you collide with Red enermies, you will lose health</h4>
-    <h4 style="font-family:helvetica">The game will restart once your health reaches 0</h4>
-
 </body>
 </html>
 
