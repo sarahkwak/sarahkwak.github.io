@@ -72,7 +72,6 @@
         sorted_arr = []
         smallest = arr.pop
         temp = [smallest]
-        final = []
         if arr.length == 0 
           return sorted_arr
         end
@@ -82,15 +81,9 @@
           end
           temp.push(arr.pop)
         end
-        while temp.length > 0 
-          if temp.last == smallest
-            sorted_arr.push(temp.last)
-          else
-            final.push(temp.last)
-          end
-          temp.pop
-        end
-        sorted_arr += stack_sort(final)
+        sorted_arr.push(smallest)
+        temp.delete_at(temp.index(smallest))
+        sorted_arr+=stack_sort(temp)
       end
     </div>
     <br/>
