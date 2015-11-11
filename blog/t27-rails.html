@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <head>
+    <title>🐾 Teach Brian How to Code</title>
+    <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+  </head>
+  <body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+    <main>
+      <h6>What's on Rails 4.2?</h6>
+      <h2>Nov 10, 2015</h2>
+       <p>I've develped a couple of rails app recently and learned some neat tricks and tips I would like to share. Some of them are little pick from Rails 4.2 new release. </p>
+       <h4>Rails 4.2 Adequate Record</h4>
+       <p>Adequate Record is a set of performance improvements in Active Record that makes common find and find_by calls and some association queries up to 2x faster.</p>
+       <div class='tutorial'>
+        Post.find(1)  # First call generates and cache the prepared statement
+        Post.find(2)  # Subsequent calls reuse the cached prepared statement
+         
+        Post.find_by_title('first post')
+        Post.find_by_title('second post')
+         
+        Post.find_by(title: 'first post')
+        Post.find_by(title: 'second post')
+         
+        post.comments
+        post.comments(true)
+
+        Post.find_by('published_at < ?', 2.weeks.ago)
+       </div>
+
+       <h4>Rails 4.2 Web Console</h4>
+       <p>New applications generated with Rails 4.2 now come with the Web Console gem by default. Web Console adds an interactive Ruby console on every error page and provides a console view and controller helpers.</p>
+
+       <h4>Rails 4.2 Foreign Key Support</h4>
+       <p>The migration DSL now supports adding and removing foreign keys. They are dumped to schema.rb as well. At this time, only the mysql, mysql2 and postgresql adapters support foreign keys.</p>
+       <div class='tutorial'>
+        # add a foreign key to `articles.author_id` referencing `authors.id`
+        add_foreign_key :articles, :authors
+         
+        # add a foreign key to `articles.author_id` referencing `users.lng_id`
+        add_foreign_key :articles, :users, column: :author_id, primary_key: "lng_id"
+         
+        # remove the foreign key on `accounts.branch_id`
+        remove_foreign_key :accounts, :branches
+         
+        # remove the foreign key on `accounts.owner_id`
+        remove_foreign_key :accounts, column: :owner_id
+       </div>
+       <h4>Rails 4.2 Deprecations - Timestamp</h4>
+       <p>Removed unused :timestamp type. Transparently alias it to :datetime in all cases. Fixes inconsistencies when column types are sent outside of Active Record, such as for XML serialization.</p>
+     </main>
+  <hr>
+  <footer>
+    Sarah Kwak 2015 &#169; copyrights
+  </footer>
+  </body>
+</html>
