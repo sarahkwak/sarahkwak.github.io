@@ -1,0 +1,144 @@
+game.html
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="stylesheets/blog-stylesheet.css">
+<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<canvas class='game_left' id="ctx" width="500" height="500" style="border:10px solid #c3c3c3;"></canvas>
+<div class='game_right'>
+  <h1>Avoid Collision!</h1>
+  <h4>You are a <em style='color:green;'>player(Green Square)</em>. When you collide with <em style='color:red;'> Red enermies</em>, you will lose health</h4>
+  <h4>The game will restart once your health reaches 0</h4>
+  <h4>Good luck!</h4>
+</div>
+<div class=clear></div>
+<script>
+var ctx = document.getElementById("ctx").getContext("2d");
+ctx.font = "30px Arial";
+var HEIGHT = 500;
+var WIDTH = 500;
+var startTime = Date.now();
+var frameCount =0;
+// Player
+var player = {
+  x: 250,
+  y: 250,
+  health: 10
+};
+drawPlayer = function (identity) {
+  ctx.save();
+  ctx.fillStyle = 'green';
+  ctx.fillRect(identity.x-15, identity.y-15, 20,20)
+  ctx.restore();
+}
+document.onmousemove = function(mouse) {
+  var mouseX = mouse.clientX;
+  var mouseY = mouse.clientY;
+  player.x = mouseX;
+  player.y = mouseY;
+
+
+  drawPlayer(player);
+
+    if (mouseX < 0) {
+      mouseX = 0;
+    } if (mouseX > WIDTH) {
+      mouseX = WIDTH;
+    } if (mouseY < 0) {
+      mouseY = 0;
+    } if (mouseY > HEIGHT) {
+      mouseY = HEIGHT;
+    }
+}
+
+
+// Enermy
+evilList = {};
+Enermy = function(name, x, y, spdx, spdy, height, width) {
+  var enermy3 = {
+      x: x,
+      y: y,
+      spdx: spdx,
+      spdy: spdy,
+      height: height,
+      width: width
+      }
+      evilList[name] = enermy3;
+};
+
+randomEnermy = function (){
+  var name = Math.random();
+  var x = Math.random()*WIDTH;
+  var y = Math.random()*HEIGHT;
+  var spdx = 5 + Math.random() * 55;
+  var spdy = 5 + Math.random() * 15;
+  var height = 10+ Math.random() * 5;
+  var width = 1+ Math.random() * 30;
+  Enermy(name, x, y, spdx, spdy, height, width);
+}
+randomEnermy();
+randomEnermy();
+randomEnermy();
+randomEnermy();
+randomEnermy();
+randomEnermy();
+randomEnermy();
+randomEnermy();
+
+distancebytwo = function(obj1, obj2) {
+  var vx = obj1.x - obj2.x;
+  var vy = obj1.y - obj2.y;
+  return Math.sqrt(vx*vx + vy*vy);
+};
+
+collision = function(entity1, entity2) {
+  var distance = distancebytwo(entity1, entity2);
+  return distance < 70;
+};
+
+// Enermy function
+entityupdate = function(identity) {
+  identity.x += identity.spdx;
+  identity.y += identity.spdy;
+  ctx.save();
+  ctx.fillStyle = 'red';
+  ctx.fillRect(identity.x, identity.y, 30,30)
+  ctx.restore();
+
+    if (identity.x>WIDTH || identity.x<0) {
+      identity.spdx = -identity.spdx;
+  }
+    if (identity.y>HEIGHT || identity.y<0) {
+      identity.spdy = -identity.spdy;
+  }
+};
+
+update = function() {
+    ctx.clearRect(0,0, WIDTH, HEIGHT);
+
+    for (var key in evilList) {
+      entityupdate(evilList[key]);
+    }
+    var isColliding = collision(player, evilList[key]);
+      if (isColliding) {
+          player.health = player.health -1;
+          if (player.health <= 0) {
+            var survivalTime = Date.now() - startTime;
+            setTimeout(function() {alert("GAME OVER You've survived for "+ survivalTime/1000 + " second. Good Job!!!");}, -10);
+            startTime = Date.now();
+            player.health = 10;
+          }
+      }
+
+    drawPlayer(player);
+    ctx.fillText(player.health + "Health", 0, 30);
+};
+
+setInterval(update, 40);
+
+</script>
+</body>
+</html>
+
