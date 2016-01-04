@@ -115,7 +115,8 @@
     end
   end
 
-  <p>Self can also help to organize classes by separating responsibilities. Here is the example. </p>
+  <p>Self can also help to organize classes by separating 
+    responsibilities. Here is the example. </p>
   <div class=text-editor>
     # app/models/order.rb
     class Order
@@ -124,7 +125,7 @@
       end
     end 
 
-      
+
     # app/models/order_conversion.rb
     class OrderConversion
       attr_reader :order
@@ -139,10 +140,8 @@
     end
   </div>
 
-  <p>In order to convert order to pdf </p>
-  <div class=tutorial>
-    @order.converter.to_pdf
-  </div>
+  <p>In order to convert order to pdf 
+    <strong>@order.converter.to_pdf</strong></p>
 </div>
   <hr>
   <footer>
