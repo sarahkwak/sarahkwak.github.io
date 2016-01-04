@@ -109,8 +109,14 @@
     <p>One thing really important to understand is why we use 'closure'. A 'closure' is to store the function inside of the function so it can be called later. So in general, the parent function will 'return' the child function (but it will NOT invoke the function) which can be stored in variable outside of the parent function. Thus it can be invoked later. </p>
     <p>Let's look at one funny example of how closure works in memory.</p>
     <img src='Screen-shot/closure.png'>
-    <p> So what a[0]();, a[0]();, a[0](); will return? The answer is 3. The green arrow will follow through the problem and pointed out the variable i which is 3. That's the reason it returns 3 every single time. One funny thing is that although i supposed to be less than 3 but it will be 3 and then it will stop the loop. That's why the answer is not 2, but 3. Pretty crazy, huh?</p>
-    <h2>Prototype Inheritance. What does 'NEW' keyword do?</h2>
+    <p> So what a[0]();, a[0]();, a[0](); will return? The answer is 3. Let me walk through this.</p>
+    <ol>
+      <li>The for loop will create 3 different functions. a[0], a[1], a[3]. That's all what the for loop does. Nothing else. </li>
+      <li>At the begining, variable i will start as 0. and then when it create 3 function, it will change to 1 and 2. </li>
+      <li>When it becomes 3, for loop will stop. Because for loop supposed to take i less than 3. But i remained as 3.</li>
+      <li>So when a[0]() or any other two functions called, it alerts '3'. </li>
+    </ol>
+    <h4>Prototype Inheritance. What does 'NEW' keyword do?</h4>
     <div class=text-editor>
       var Person = function(name) {
         this.name = name;

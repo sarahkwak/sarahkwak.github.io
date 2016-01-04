@@ -114,6 +114,35 @@
       puts 'instance method'
     end
   end
+
+  <p>Self can also help to organize classes by separating responsibilities. Here is the example. </p>
+  <div class=text-editor>
+    # app/models/order.rb
+    class Order
+      def converter
+        OrderConversion.new(self)
+      end
+    end 
+
+      
+    # app/models/order_conversion.rb
+    class OrderConversion
+      attr_reader :order
+      def initialize(order)
+        @order = order
+      end
+
+      def to_pdf
+        ...
+      end
+
+    end
+  </div>
+
+  <p>In order to convert order to pdf </p>
+  <div class=tutorial>
+    @order.converter.to_pdf
+  </div>
 </div>
   <hr>
   <footer>

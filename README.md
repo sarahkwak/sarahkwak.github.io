@@ -1,1 +1,2 @@
-My awesome DBC phase 0 github page!
+# Teach Brian (my dog) How to Code
+Personal Technical Blog
