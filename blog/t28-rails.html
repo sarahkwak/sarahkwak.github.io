@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <head>
+    <title>🐾 Teach Brian How to Code</title>
+    <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+  </head>
+  <body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+    <main>
+    <h6>What I've learn about Rails so far</h6>
+      <h2>Sept 26 2015</h2>
+    <p>It's been 9 months since I worked as a professional rails developer. What have I learned? </p>
+    <h4>In a big picture, what matters the most is...</h4>
+    	<p><strong>Why using instance method is better than using variables(@articles) in the controller</strong></p>
+	    	<p>When you working on rails app, and need to create API that contains customized information from database, I was told that make instance variables like @articles, @reviews are the best way. Here is example from my Favorite Food Truck app</p>
+	<div class="tutorial">
+		  def index
+		    @review = Review.new
+		    @foods = Food.all
+		    @foods_page = Food.paginate(:page => params[:page], :per_page => 15)
+		  end
+		end
+	</div>
+	    	<p>There is nothing wrong with above code. @review is new instance of Review class, @foods represents all Food instance ... This is definitely how I learned to do.</p>
+	    	<p>Compaire with this controller.</p>
+	<div class="tutorial">
+		def index
+		  investors_only!
+		  return if performed?
+		end
+	</div>
+	    	<p>I guarantee you there are lots of stuff going on index.html.erb file. There are several model rendering, display user information, startup accounts ... but where are the methods? </p>
+	    	<p>They are mostly in the view. Technically speaking, it is in model. Instead of making instance variable, each time when we need information, just call the method and get information from database. Here is the example</p>
+<div class="tutorial">
+	<em>#This is model: event.rb</em>
+	def upcoming_events
+	    other_events.select{ |e| e.time > Time.now}.sort_by { |k,v| k.time }
+	end
+
+	 <em>#This is view: event.html.erb</em>
+	  <% deal.upcoming_events.each do |event| %>
+		  <%= event.name %>
+		  <%= event.date %>
+	  <% end %>
+</div>
+			<p>So Why this is better than having @other_events in controller? First, In case there is an error on the instance method, let's say we called @events, which returns all events and render 1) event.name and 2) event.date. What happen if one of event doesn't have a date? As soon as you load the event.html.erb, it will throw an error. You don't want that. If there is going to be an issue, you want to have it as smallest scale as possible. </p>
+			<p>Second, functions can be used everywhere but instance variable in the controller isn't. You need to keep specify what @events are in the each controller.</p>
+			<p>Last, it is much easier to test functions in the model than controller.</p>
+			<p>Thus, the argument of fat model vs thin controller.</p>
+			<p><strong>Fat Model and Thin Controller</strong></p>
+			<p>Controller is the happening place. If route.rb is the map of the app, the controller is the agency to hook up with actions and views. It dictates what to do - like CRUD, and what will render. The reason I am a big fan of thin controller is that it will make easier to figure out what is going on or what is wrong. Because as the app grow, it will have more complicated routes and actions. So I like to have all functions in the model and keep controller small.</p>
+			<p>DRYer code - Another benefit of moving functions to the model is recyclability of your code(functions). When you made functions in the model, you can use everywhere as long as you can call it via its instance (or class). </p>
+
+    <h4>Rails Helper Functions</h4>
+    	<p><strong>Concerns</strong></p>
+    	<p>One fine afternoon, I've landed in a task to check all the urls in every model and put 'http://' if it is external link. For instance, our startup model has attribute - company_url, document model has video_url, user has facebook_url, linkedin_url etc.</p> 
+    	<p>So whenever new instance of these class created, check the external url related attribute and put http:// if there is non (e.g. www.youtube.com).</p>
+    	<p>I had pretty good idea how to check url related attribute and change it but the question is <em> Where am I gonna put this function??</em></p>
+    	<p>First, my reaction is 'helper' folder - more exact, application_helper.rb. The great thing about application_help is that these functions are available cross the stack. You can call it anywhere! But how can I check the class attributes with functions?</p>
+    	<p>You may have noticed that Rails 4 creates concerns file under 'controller' and 'model'. What is concern and how we can use it?</p>
+    	<p>Here comes 'concerns'</p>
+    	<strong><em>Concerns are essentially modules that allow you to encapsulate model roles into separate files to DRY up your code.</em></strong>
+    	<img src='Screen-shot/concerns.png' style='width:65%; margin-left:0.5%;'>
+    	<p>Here you can use concern in the model</p>
+    	<div class="tutorial">
+	class Deal < ActiveRecord::Base
+  		include UrlFilter
+  		before_save :url_convertor
+	end
+    	</div>
+    	<p>This callback(url_convertor) will run before_save evern instance of the model.</p>
+
+    	<p><strong>Services Object</strong></p>
+
+    <h4>Scope and Direct Query from PostgreSQL</h4>
+    <h4>Selective Validation</h4>
+	    <p><strong>Delegte</strong></p>
+    	<p><strong>validates on: </strong></p>
+    	<p><strong>Lamda</strong></p>
+    	<p><strong>relationships and alias</strong></p>
+    	<p><strong>Polimophism (as: )</strong></p>
+
+    <h4>Small but handy tricks</h4>
+	    <p>self.lookup</p>
+	    <p>read_attribute(:url).try(:downcase)</p>
+	    <p>Spec - Trust me. Something is wrong here</p>
+
+
+
+	    
+    </main>
+  </body>
+</html>
