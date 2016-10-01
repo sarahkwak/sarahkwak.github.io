@@ -35,12 +35,12 @@
 	    	<p>I guarantee you there are lots of stuff going on index.html.erb file. There are several model rendering, display user information, startup accounts etc. but where are the methods? </p>
 	    	<p>They are mostly in the view. Technically speaking, it is in model. Instead of making instance variable, each time when we need information, just call the method and get information from database. Here is the example</p>
 <div class="tutorial">
-	<em>#This is model: event.rb</em>
+	<em># event.rb</em>
 	def upcoming_events
 	    other_events.select{ |e| e.time > Time.now}.sort_by { |k,v| k.time }
 	end
 
-	 <em>#This is view: event.html.erb</em>
+	 <em># event.html.erb</em>
 	  <% deal.upcoming_events.each do |event| %>
 		  <%= event.name %>
 		  <%= event.date %>
