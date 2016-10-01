@@ -10,7 +10,7 @@
       <p><a href="../index.html">Back to Home</a></p>
     </div>
     <main>
-    <h6>What I've learn about Rails so far</h6>
+    <h6>What I've learn about Rails so far I </h6>
       <h2>Sept 26 2015</h2>
     <p>It's been 9 months since I worked as a professional rails developer. What have I learned? </p>
     <h4>In a big picture, what matters the most is...</h4>
@@ -71,26 +71,31 @@
   		before_save :url_convertor
 	end
     	</div>
-    	<p>This callback(url_convertor) will run before_save evern instance of the model.</p>
+    	<p>This callback(before_save) will run before any instance saved and call url_convertor. This magic is all posible due to <em>ActiveSupport::Concern</em></p>
+    	<p>If you are wondering why I used self.send(url), please read <a href='http://stackoverflow.com/questions/7849521/set-attribute-dynamically-of-ruby-object'>this</a>.</p>
 
     	<p><strong>Services Object</strong></p>
-
-    <h4>Scope and Direct Query from PostgreSQL</h4>
-    <h4>Selective Validation</h4>
-	    <p><strong>Delegte</strong></p>
-    	<p><strong>validates on: </strong></p>
-    	<p><strong>Lamda</strong></p>
-    	<p><strong>relationships and alias</strong></p>
-    	<p><strong>Polimophism (as: )</strong></p>
-
-    <h4>Small but handy tricks</h4>
-	    <p>self.lookup</p>
-	    <p>read_attribute(:url).try(:downcase)</p>
-	    <p>Spec - Trust me. Something is wrong here</p>
-
-
-
-	    
+    	<p>So far I've reasoned why we need to maintain controller skinny. But how? We've already moved all object related methods to the model and we've used <em> ActiveSupport::Concerns</em> to even dry up more for common methods like changing external url address starting to http://. Can we do more? </p>
+    	<p>Happens to be, our app does use lots of mailers. We triggers mail when a user register our website, request to change password, get more points, new deals opened etc. So each controller action, for instance, when we create new 'deal', it triggers "UserMailer:new_deal_announcement". The mailer is different and the email contents are different but put all these details in the controller seem little unfair. Well then, where should I move to? </p>
+    	<em><strong>Service Object implements the user’s interactions with the application</strong></em>
+    	<p>The common way of using service object is 3 stages: </p>
+    	<li>Initialization</li>
+    	<li>User Input</li>
+    	<li>Return Results</li>
+    	<p>You might suspect that services will be used on the boundary between user interface and application - and you’d be right! In the context of Rails, this boundary is the controller. An application using services would instantiate them in controller actions, tell them to perform work and respond back to the user. Let’s see an example:</p>
+    	<div class="tutorial">
+	  def publish
+	    this_deal.publish!
+	 
+	    Services::ApprovePublishing.new(this_deal).call
+	    redirect_to :back
+	  end
+    	</div>
+    	<p>So, we see how we call it from the controller, so what this service object look like: </p>
+    	<img src='Screen-shot/services.png' style="margin-left:0.5%; width:45%;" />
+    	<p>The service object's action contains one thing and one thing only. Triggers mailer. But now that we have removed this from the controller, we can keep our controller skinny and focus on what they need to do - publish and redirect. The rest of them will be taken cared by service object. This also help to DRY your code in case you need to send this email from other controller action.</p>
+    	<p>If you want to read more about Service object, check this <a href="https://www.netguru.co/blog/service-objects-in-rails-will-help">article</a>.</p>
+    
     </main>
   </body>
 </html>
