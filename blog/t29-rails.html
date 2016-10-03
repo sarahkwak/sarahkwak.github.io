@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <head>
+    <title>🐾 Teach Brian How to Code</title>
+    <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+  </head>
+
+  <body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+    <main>
+    <h6>What I've learn about Rails so far II </h6>
+      <h2>Sept 26 2015</h2>
+		<p><strong>Scope and Direct Query from PostgreSQL</p></strong>
+		<p><em>Scoping allows you to specify commonly-used queries which can be referenced as method calls on the association objects or models(e.g. Article.reviewed) With these scopes, you can use every method previously covered such as where, joins and includes. All scope methods will return an ActiveRecord::Relation object which will allow for further methods - chain (such as other scopes) to be called on it.</em></p>
+		<img src="Screen-shot/scope.png" style="width: 65%; margin-left: 0.5%;" />
+		<p>When there are boolean data-type attributes, scope gives very easy way of accessing data. e.g. closed -> funding_closed: true. I found that scope could takes lots of efforts if you are not familiar with SQL commands. Let's take a look at scope 'pipeline'. 
+		<p><em> pipeline -> { joins(:startup).merge(Startup.not_rejected).not_published.where(funding_opened: false, invest_group_id: nil).order(created_at: :desc) }</em></p>
+		<p>When you call Deal.pipeline, it will go to Deal's table and find associated Startup(that's essentially what join(:startup) does), and then select Deals that their startup is not rejected and then call .not_published and so on. I've always temped to use scope instead of using method because it is fun to play around. It is compeletely developer's call to use either scope of method. </p>
+		<img src='Screen-shot/conditional_scope.png' style="width: 55%; margin-left: 0.5%;"/>
+		<p>For instance when you using conditional in the scope, this is unclear which is better approach. One thing I want to remind to use cocnditional scope is that, <em>A scope will always return an ActiveRecord::Relation object, even if the conditional evaluates to false, whereas a class method, will return nil. This can cause NoMethodError when chaining class methods with conditionals, if any of the conditionals return false.</em></p>
+    <p><strong>Selective Validation</p></strong>
+	    <p><strong>Delegte</strong></p>
+    	<p><strong>validates on: </strong></p>
+    	<p><strong>Lamda</strong></p>
+    	<p><strong>relationships and alias</strong></p>
+    	<p><strong>Polimophism (as: )</strong></p>
+
+    <p><strong>Small but handy tricks</p></strong>
+	    <p>self.lookup</p>
+	    <p>read_attribute(:url).try(:downcase)</p>
+	    <p>Spec - Trust me. Something is wrong here</p>
+
+    </main>
+	</body>
+<hr>
+<footer>
+  Sarah Kwak 2015 &#169; copyrights
+</footer>
+</html>
+
+
+	    
