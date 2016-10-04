@@ -30,14 +30,10 @@
     <img src='Screen-shot/delegate.png' style="width: 55%; margin-left: 0.5%;"/>
     <p>Delegate is very useful with ActiveRecord Association. Let's take look at a simple example.</p>
 
-  	<p><strong>relationships and alias</strong></p>
-  	<p><strong>Polimophism (as: )</strong></p>
-
-    <p><strong>Small but handy tricks</p></strong>
-    <p>self.lookup</p>
-    <p>read_attribute(:url).try(:downcase)</p>
-    <p>Spec - Trust me. Something is wrong here</p>
-
+  	<p><strong> polymorphic associations (as: :nick_name )</strong></p>
+  	<p><em>With polymorphic associations, a model can belong to more than one other model (as: ), on a single association.</em></p>
+  	<img src='Screen-shot/polymorphic.png' style="width: 55%; margin-left: 0.5%;"/>
+  	<p>To retrive pictures, @employee.pictures or @product.pictures. To retrive who own the picture, it should be @picture.imageable. @picture.employee or @picture.product will throw invalid error. </p>
     </main>
 	</body>
 <hr>
