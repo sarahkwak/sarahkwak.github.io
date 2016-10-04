@@ -22,16 +22,21 @@
 		<img src='Screen-shot/conditional_scope.png' style="width: 55%; margin-left: 0.5%;"/>
 		<p>For instance when you using conditional in the scope, this is unclear which is better approach. One thing I want to remind to use cocnditional scope is that, <em>A scope will always return an ActiveRecord::Relation object, even if the conditional evaluates to false, whereas a class method, will return nil. This can cause NoMethodError when chaining class methods with conditionals, if any of the conditionals return false.</em></p>
     <p><strong>Selective Validation</p></strong>
-	    <p><strong>Delegte</strong></p>
-    	<p><strong>validates on: </strong></p>
-    	<p><strong>Lamda</strong></p>
-    	<p><strong>relationships and alias</strong></p>
-    	<p><strong>Polimophism (as: )</strong></p>
+    <p>Rails allow easy validation on attributes in the model. But problem raises when you want to save data from other sources. For instance, you want to allow user to be saved their applications although mandatory fields are NOT all filled. In this case, with partial or selective valication, we can save the application by each step without satisfying all requirements. </p>
+    <img src='Screen-shot/validation.png' style="width: 55%; margin-left: 0.5%;"/>
+    <p>In this example, offline_amount_raised and outside_investor_count can be only validated from controller action - apply and onboarding. </p>
+    <p><strong>Delegate</strong></p>
+    <p><em>Delegate provides a delegate class method to easily expose contained objects’ public methods as your own.</em></p>
+    <img src='Screen-shot/delegate.png' style="width: 55%; margin-left: 0.5%;"/>
+    <p>Delegate is very useful with ActiveRecord Association. Let's take look at a simple example.</p>
+
+  	<p><strong>relationships and alias</strong></p>
+  	<p><strong>Polimophism (as: )</strong></p>
 
     <p><strong>Small but handy tricks</p></strong>
-	    <p>self.lookup</p>
-	    <p>read_attribute(:url).try(:downcase)</p>
-	    <p>Spec - Trust me. Something is wrong here</p>
+    <p>self.lookup</p>
+    <p>read_attribute(:url).try(:downcase)</p>
+    <p>Spec - Trust me. Something is wrong here</p>
 
     </main>
 	</body>
