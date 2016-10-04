@@ -417,3 +417,46 @@ main img {
     text-indent: -1em;
     padding-left: 1em;
 }
+/*submarine*/
+#submarine {
+  width: 20%;
+  position: relative;
+  display: none;
+  animation-name: submarine;
+  animation-duration: 5s;
+  animation-timing-function: easy-in-out;
+  animation-delay: 2s;
+  animation-iteration-count: 10;
+  animation-direction: alternate;
+  transform: rotate(7deg);
+  z-index: -1;
+}
+@keyframes submarine {
+  0%   {left:0px; top:0px;-webkit-transform: rotate(20deg);}
+  25%  {left:400px; top:0px;-webkit-transform: rotate(-20deg)}
+  50%  {left:400px; top:200px;-webkit-transform: rotate(20deg);}
+  75%  {left:0px; top:200px;-webkit-transform: rotate(-25deg)}
+  100% {left:0px; top:0px;-webkit-transform: rotate(20deg);}
+}
+.skills {
+  display: inline;
+}
+#ruby {
+  display: none;
+  width: 8%;
+  position: relative;
+  display: inline;
+  animation-name: ruby;
+  animation-duration: 5s;
+  animation-timing-function: linear;  
+  animation-iteration-count: 3;
+  animation-direction: alternate;
+  z-index: -1;
+}
+@keyframes ruby {
+  0%   {left:0px; -webkit-transform: rotate(20deg);}
+  25%  {left:200px; -webkit-transform: rotate(-180deg)}
+  50%  {left:800px; -webkit-transform: rotate(200deg);}
+  75%  {left:600px; -webkit-transform: rotate(-180deg)}
+  100% {left:0px; -webkit-transform: rotate(20deg);}
+}

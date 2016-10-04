@@ -4,6 +4,7 @@
 <title>🐾 Teach Brian How to Code</title>
 <meta charset="utf-8">
   <link rel="stylesheet" href="blog/stylesheets/blog-stylesheet.css" type="text/css">
+  <script   src="http://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
   </head>
   <body style="height:100%">
     <div class="main-menu">
@@ -23,7 +24,9 @@
       </div>
       <a href="https://github.com/sarahkwak"><img class="git-img" src="blog/stylesheets/git.png"></a>
       <a href="https://www.linkedin.com/in/sarahkwak"><img class="linkedin-img" src="blog/stylesheets/linkedin_circle.png"></a>
-      <h4 class="clear" style="clear:both">SKILLS</h4>
+      <div class="clear"></div>
+      <h4 class='skills'>SKILLS</h4>
+      <img src='blog/Screen-shot/ruby.png' id='ruby'/>
           <p>HTML5, CSS, SCSS, JavaScript, jQuery, Ruby, Rails, PostgreSQL, Git, Project Management, Internal Auditing</p>
       <h4>QUALIFICATIONS</h4>
       <div class="recent-blog1">
@@ -52,6 +55,7 @@
           <li>19-week intensive web development curriculum that focuses on Ruby, JavaScript, Ruby on Rails, popular JavaScript libraries, SQL, HTML5 and CSS, as well as Git, pair programming, agile and test-driven development</li>
         </ul>
         <h7>Quality Assurance Auditor | Babcock Canada, Oct 2011 - Mar 2014</h7>
+        <img id="submarine" src='blog/Screen-shot/submarine.jpg'/>
         <ul>
           <li>40+ Lead quality / safety / environmental / security audits on Victoria class Submarines</li>
           <li>Engage with Canadian National Defense audit team and conduct scheduled or ‘surprise’ audits</li>
@@ -102,6 +106,16 @@
     </div>
 
   <hr class="clear" style="clear:both">
+  <script type="text/javascript">
+    window.setTimeout(function() {
+      $('#submarine').css('display', 'inline');
+      $('#submarine').css('animation-timing-function', 'easy-in-out');
+    }, 2000);
+    window.setTimeout(function(){
+      console.log("hi ")
+      $('#ruby').fadeOut('slow');
+    }, 8000);
+  </script>
 </body>
 <footer>
   Sarah Kwak 2015 &#169; copyrights
