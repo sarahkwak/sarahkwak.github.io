@@ -461,7 +461,7 @@ main img {
   100% {left:0px; -webkit-transform: rotate(20deg);}
 }
 .brian-top {
-  margin-top: 50px;
+  margin-top: 7%;
   height: 340px;
   width: 45%;
   background-size: contain;
@@ -472,4 +472,8 @@ main img {
 .brian-right {
   float: right;
   width: 50%;
+}
+#myCanvas {
+  background-size: contain;
+  background-image: url("../../blog/Screen-shot/green-background.jpeg");
 }
