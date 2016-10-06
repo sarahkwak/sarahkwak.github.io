@@ -21,34 +21,34 @@ var timerText;
 
 
 window.onload = function() {
-	var canvas = document.getElementById('myCanvas');
+  var canvas = document.getElementById('myCanvas');
   context = canvas.getContext('2d');
   context.canvas.width = WIDTH;
   context.canvas.height = HEIGHT;
   stage = new createjs.Stage("myCanvas");
 
-// queue is the object we create to load the assests before javascript
+  // queue is the object we create to load the assests before javascript
   queue = new createjs.LoadQueue(false);
   queue.installPlugin(createjs.Sound);
   queue.on("complete", queueLoaded, this);
 // loadManifest is createJS function 
 	queue.loadManifest([
-    {id: 'backgroundImage', src: '../../blog/Screen-shot/green-background.jpeg'},
-    {id: 'poopbag', src: '../../blog/Screen-shot/poop_bag.jpg'},
-    {id: 'poop', src: '../../blog/Screen-shot/unicorn_poop.jpg'},
-    {id: 'fart_sound', src: '../../blog/Screen-shot/dog_front.jpeg'},
-    {id: 'dog_bark', src: '../../blog/Screen-shot/dog_bark.mp3'},
-    {id: 'sunny_day', src: '../../blog/Screen-shot/sunny_day.mp3'}
+    {id: 'backgroundImage', src: 'game_images/background.png'},
   ]);
 	queue.load();
 
 	// setInterval does update. It will triggers function updateTime in every sec.
-	gameTimer = setInterval(updateTime, 1000);
+    gameTimer = setInterval(updateTime, 1000);
+    //A Bitmap represents an Image, Canvas, or Video in the display list
 } //end of window initialize
 
-//A Bitmap represents an Image, Canvas, or Video in the display list
 function queueLoaded(event){
-	// add background image
-	
+  // add background image
+  var backgroundImage = new createjs.Bitmap(queue.getResult("backgroundImage"))
+    stage.addChild(backgroundImage);
+
 } // queueLoaded(event)
-	
+  
+updateTime = function() {
+
+};
