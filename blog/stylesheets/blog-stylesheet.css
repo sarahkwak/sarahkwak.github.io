@@ -475,5 +475,5 @@ main img {
 }
 #myCanvas {
   background-size: contain;
-  background-image: url("../../blog/Screen-shot/green-background.jpeg");
+  /*background-image: url("../../blog/Screen-shot/green-background.jpeg");*/
 }
