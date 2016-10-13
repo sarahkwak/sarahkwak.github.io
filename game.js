@@ -34,6 +34,8 @@ window.onload = function() {
 // loadManifest is createJS function 
 	queue.loadManifest([
     {id: 'backgroundImage', src: 'game_images/background.png'},
+    {id: 'poop', src: 'game_images/unicorn_poop.png'},
+    {id: 'poop_bag', src: 'game_images/poop_bag.png'}
   ]);
 	queue.load();
 
@@ -44,9 +46,19 @@ window.onload = function() {
 
 function queueLoaded(event){
   // add background image
-  var backgroundImage = new createjs.Bitmap(queue.getResult("backgroundImage"))
-    stage.addChild(backgroundImage);
-
+  // var background = new createjs.Bitmap(queue.getResult('backgroundImage'));
+  // stage.addChild(background);
+  
+  // add score text
+  var scoreText = new createjs.Text("1UP: " + score.toString());
+  scoreText.x = 10;
+  scoreText.y = 10;
+  stage.addChild(scoreText);
+  // add Timer
+  var timerText = new createjs.Text("Time " + gameTime.toString());
+  timerText.x = 800;
+  timerText.y = 10;
+  stage.addChild(timerText);
 } // queueLoaded(event)
   
 updateTime = function() {
