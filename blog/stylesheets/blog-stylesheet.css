@@ -169,21 +169,19 @@ h8 {
   margin-left: 15%;
 }
 .text-editor {
-  background-color: #2F462F;
-  color: #fff;
-  display: block;
+  background-color: LemonChiffon;
   font-family: monospace;
   white-space: pre;
   text-align: left;
-  font-size: 18px;
+  font-size: 14px;
   padding: 1%;
   line-height: 130%
 }
 .tutorial {
   background-color: #FAFFEB;
-  display: block;
+  font-family: monospace;
   white-space: pre;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 130%;
 }
 .example {
