@@ -164,6 +164,21 @@ h8 {
   display: inline-block;
   bottom: 5px;
   }
+.blog_title {
+  width: 100%;
+  background: url('../Screen-shot/exploring.png');
+  background-size: 100% auto;
+  height: 400px;
+}
+.blog_title h1 {
+  font-family: 'Pacifico', cursive;
+  color: #660066;
+  display: inline-block;
+}
+.blog_title h2 {
+  margin-right: 20px;
+}
+
 .tech-div {
   margin-right: 15%;
   margin-left: 15%;

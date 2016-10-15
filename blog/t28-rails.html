@@ -3,6 +3,7 @@
 <meta charset="utf-8">
   <head>
     <title>🐾 Teach Brian How to Code</title>
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Pacifico" rel="stylesheet">
     <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
   </head>
   <body>
@@ -10,8 +11,10 @@
       <p><a href="../index.html">Back to Home</a></p>
     </div>
     <main>
-    <h6>What I've learn about Rails so far I </h6>
+    <div class="blog_title">
+    	<h1>What I've learn about Rails so far II </h1>
       <h2>Sept 26 2015</h2>
+    </div>
     <p>It's been 9 months since I worked as a professional rails developer. What have I learned? </p>
     <h4>In a big picture, what matters the most is...</h4>
     	<p><strong>Instance Variable (@article) vs Calling method</strong></p>
@@ -75,7 +78,7 @@
     	<p>If you are wondering why I used self.send(url), please read <a href='http://stackoverflow.com/questions/7849521/set-attribute-dynamically-of-ruby-object'>this</a>.</p>
 
     	<p><strong>Services Object</strong></p>
-    	
+
     	<p>So far I've reasoned why we need to maintain controller skinny. But how? We've already moved all object related methods to the model and we've used <em> ActiveSupport::Concerns</em> to even dry up more for common methods like changing external url address starting to http://. Can we do more? </p>
     	<p>Happens to be, our app does use lots of mailers. We triggers mail when a user register our website, request to change password, get more points, new deals opened etc. So each controller action, for instance, when we create new 'deal', it triggers "UserMailer:new_deal_announcement". The mailer is different and the email contents are different but put all these details in the controller seem little unfair. Well then, where should I move to? </p>
     	<em><strong>Service Object implements the user’s interactions with the application</strong></em>
