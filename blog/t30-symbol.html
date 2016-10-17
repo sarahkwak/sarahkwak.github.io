@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8">
+	<head>
+	  <title>🐾 Teach Brian How to Code</title>
+	  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Pacifico" rel="stylesheet">
+	  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+	</head>
+
+	<body>
+	  <div class="sub-div">
+	    <p><a href="../index.html">Back to Home</a></p>
+	  </div>
+	  <main>
+	    <div class="blog_title">
+	    	<h1>Awesome simple object - Symbol</h1>
+	      <h2>Oct 16, 2015</h2>
+	    </div>
+			<p><strong>What is Ruby's Symbol and why is it awesome? </p></strong>
+			<p>A Symbol is the most basic Ruby object you can create. It's just a name and an internal ID. Symbols are useful because a given symbol name refers to the same object throughout a Ruby program. Symbols are more efficient than strings. Two strings with the same contents are two different objects, but for any given name there is only one Symbol object. This can save both time and memory.</p>
+			<p>In database, when we use hash, it is perfectly make sense that we use symbol as a key rather than string. </p>
+			<img src='Screen-shot/object_id.png' class='sublime' />
+			<p>Notice that the object_id of user and user1 are same? Because the keys are symbol.</p>
+			<p>Most use case of symbol in rails are in the model. Many object name and attribute names can be stored in symbol. This includes method names, fixed concepts, directions, shapes, configuration option names ... Here is the example.</p>
+			<img src='Screen-shot/symbol.png' class='sublime' />
+		</main>
+		<p>Within a method, most common way of using symbol is perhaps using with Proc ('&'). '&' operator takes its operand, converts it to a Proc object. With proc, we can use symbols like :+, :- </p>
+		<div class="tutorial">
+	[1,2,3].inject(:*)   # => 6
+	[1,2,3].inject(&:*)   # => 6
+	words = %w(hello world)   # => ["hello", "world"]
+	words.map(&:upcase)   # => ["HELLO", "WORLD"]
+		</div>
+	</body>
+
+	<hr>
+	<footer>
+	  Sarah Kwak 2015 &#169; copyrights
+	</footer>
+</html>
+

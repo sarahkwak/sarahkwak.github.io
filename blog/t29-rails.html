@@ -18,24 +18,24 @@
     </div>
 		<p><strong>Scope and Direct Query from PostgreSQL</p></strong>
 		<p><em>Scoping allows you to specify commonly-used queries which can be referenced as method calls on the association objects or models(e.g. Article.reviewed) With these scopes, you can use every method previously covered such as where, joins and includes. All scope methods will return an ActiveRecord::Relation object which will allow for further methods - chain (such as other scopes) to be called on it.</em></p>
-		<img src="Screen-shot/scope.png" style="width: 65%; margin-left: 0.5%;" />
+		<img src="Screen-shot/scope.png" class='bigger_sublime' />
 		<p>When there are boolean data-type attributes, scope gives very easy way of accessing data. e.g. closed -> funding_closed: true. I found that scope could takes lots of efforts if you are not familiar with SQL commands. Let's take a look at scope 'pipeline'. 
 		<p><em> pipeline -> { joins(:startup).merge(Startup.not_rejected).not_published.where(funding_opened: false, invest_group_id: nil).order(created_at: :desc) }</em></p>
 		<p>When you call Deal.pipeline, it will go to Deal's table and find associated Startup(that's essentially what join(:startup) does), and then select Deals that their startup is not rejected and then call .not_published and so on. I've always temped to use scope instead of using method because it is fun to play around. It is compeletely developer's call to use either scope of method. </p>
-		<img src='Screen-shot/conditional_scope.png' style="width: 55%; margin-left: 0.5%;"/>
+		<img src='Screen-shot/conditional_scope.png' class='sublime'/>
 		<p>For instance when you using conditional in the scope, this is unclear which is better approach. One thing I want to remind to use cocnditional scope is that, <em>A scope will always return an ActiveRecord::Relation object, even if the conditional evaluates to false, whereas a class method, will return nil. This can cause NoMethodError when chaining class methods with conditionals, if any of the conditionals return false.</em></p>
     <p><strong>Selective Validation</p></strong>
     <p>Rails allow easy validation on attributes in the model. But problem raises when you want to save data from other sources. For instance, you want to allow user to be saved their applications although mandatory fields are NOT all filled. In this case, with partial or selective valication, we can save the application by each step without satisfying all requirements. </p>
-    <img src='Screen-shot/validation.png' style="width: 55%; margin-left: 0.5%;"/>
+    <img src='Screen-shot/validation.png' class='sublime'/>
     <p>In this example, offline_amount_raised and outside_investor_count can be only validated from controller action - apply and onboarding. </p>
     <p><strong>Delegate</strong></p>
     <p><em>Delegate provides a delegate class method to easily expose contained objects’ public methods as your own.</em></p>
-    <img src='Screen-shot/delegate.png' style="width: 55%; margin-left: 0.5%;"/>
+    <img src='Screen-shot/delegate.png' class='sublime'/>
     <p>Delegate is very useful with ActiveRecord Association. Let's take look at a simple example.</p>
 
   	<p><strong> polymorphic associations (as: :nick_name )</strong></p>
   	<p><em>With polymorphic associations, a model can belong to more than one other model (as: ), on a single association.</em></p>
-  	<img src='Screen-shot/polymorphic.png' style="width: 55%; margin-left: 0.5%;"/>
+  	<img src='Screen-shot/polymorphic.png' class='sublime'/>
   	<p>To retrive pictures, @employee.pictures or @product.pictures. To retrive who own the picture, it should be @picture.imageable. @picture.employee or @picture.product will throw invalid error. </p>
     </main>
 	</body>
