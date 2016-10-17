@@ -170,12 +170,27 @@ h8 {
   background-size: 100% auto;
   height: 400px;
 }
+.c_title {
+  width: 100%;
+  background: url('../Screen-shot/desert.png');
+  background-size: 100% auto;
+  height: 400px;
+}
 .blog_title h1 {
   font-family: 'Pacifico', cursive;
   color: #660066;
   display: inline-block;
 }
 .blog_title h2 {
+  margin-right: 20px;
+}
+.c_title h1 {
+  font-family: 'Pacifico', cursive;
+  color: #660066;
+  display: inline-block;
+  margin-left: 10px;
+}
+.c_title h2 {
   margin-right: 20px;
 }
 
