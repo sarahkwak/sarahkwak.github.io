@@ -86,12 +86,11 @@
   def header(&block)
     puts "I am a header"
     block.call
-    #rescue block will rescue from 'raised' error thus error message will
-    not be printed
-  rescue
+    #rescue block will rescue from 'raised' error thus error message will not be printed
+    rescue
     puts "This is a rescue!!"
     #No matter what happens 'ensure' block will run after error message
-  ensure
+    ensure
     puts "This is the last sentence"
   end
 
