@@ -86,16 +86,16 @@
   def header(&block)
     puts "I am a header"
     block.call
-    #rescue block will rescue from 'raised' error thus error message will not be printed
+    # rescue block will rescue from 'raised' error thus error message will not be printed
     rescue
     puts "This is a rescue!!"
-    #No matter what happens 'ensure' block will run after error message
+    # No matter what happens 'ensure' block will run after error message
     ensure
     puts "This is the last sentence"
   end
 
   header { puts "This is inside of the header"
-          raise "This is an error message" #This is how to 'raise' error
+          raise "This is an error message"
           message and it will stop code running forward
         }
   BEGIN {puts "THIS IS FROM BEGIN BLOCK"}
@@ -110,9 +110,9 @@
   THIS IS END BLOCK
 
 </div>
-
+<h4>Yield</h4>
+<p>You invoke a block by using the yield statement. You can pass the argument(parameters) for invoking the block. Let's see the example. In this example, 'name' is given as a parameters for invoking call_name block. You can pass as many parameters you wish and it can be used in block between two pipes("||", in this case "|name|").</p>
 <div class=text-editor>
-  # EXAMPLE2. yield
   def call_name(&block)
     puts "What is your name?"
     yield name = gets.chomp
@@ -183,6 +183,7 @@
 <h4>Procs and Lambdas</h4>
 <p>Procs and Lambdas are closures. They are blocks of code that can be assigned to variables. Proc (short for Process) is more meaningful and broad concept including blocks and lambdas. Therefore many rubist write in uppercase'Procs' but in lowercase 'blocks' and 'lambdas'. It is also because blocks and lambdas do not have their own class.</p>
 
+
 <div class=text-editor>
   #How to create procs
 
@@ -199,8 +200,10 @@
   => #< Proc:0x007fa278b2fdf0@(irb):20 (lambda) > #Difference when you create lambda is that it will say (lambda).
 
 </div>
+<p>Here is a example of using skinny lambda in model scope. The important component is the "-> {}" </p>
+<img src= 'Screen-shot/lambda.png' class='bigger_sublime' />
 
-<p>So why use Procs and what is lambda? Basically they are 'keywords'. When we called the variable many times within the class, you want to use procs. </p>
+<p>So why use Procs and lambda? Basically they are 'keywords'. Proc objects are blocks of code that have been bound to a set of local variables. Once bound, the code may be called in different contexts and still access those variables. This is probably how Ruby's class and its instance variables are set. </p>
 
 <div class=text-editor>
   class AddressBook
@@ -235,25 +238,25 @@
     end
   end
 
-  sarah_addressbook = AddressBook.new { |a|
-    a.name "Ryan Heffernan"
-    a.phone_number "I don't have it yet"
-    a.e_mail "Ryan.heffernan.fb.com"
+  brian_addressbook = AddressBook.new { |a|
+    a.name "Brian theDog"
+    a.phone_number "777-666-5555"
+    a.e_mail "brian@thedog.com"
   }
-  sarah_addressbook.display
+  brian_addressbook.display
 
   =>
-  Name: Ryan Heffernan
+  Name: Brian theDog
   _____________
-  Phone_Number: I don't have it yet
+  Phone_Number: 777-666-5555
   _____________
-  E-Mail: Ryan.heffernan.fb.com
+  E-Mail: brian@thedog.com
   _____________
 
 </div>
-<p>Difference between procs and lambda is that when you call:
+<p>Difference between procs and lambda is that when you call
   procs : It returns from inside of procs
-  lambdas : It has diminutive return. While proc return will stop a method and return the value provided (inside of the proc), lambdas will return their value TO the method and let the method continues on.</p>
+  lambdas : It has diminutive return like Ruby. While proc return will stop a method and return the value provided (inside of the proc), lambdas will return their value TO the method and let the method continues on. </p>
 
   <div class=text-editor>
   def procs_return
@@ -269,10 +272,12 @@
   end
 
   puts procs_return
+  puts "___________"
   puts lambdas_return
 
   =>
   I am procs and this is from the inside of procs
+  ___________
   This is from outside of the lambda_return method
 
   # proc will return inside of proc
