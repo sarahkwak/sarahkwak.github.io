@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8">
+	<head>
+	  <title>🐾 Teach Brian How to Code</title>
+	  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Pacifico" rel="stylesheet">
+	  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+	</head>
+
+	<body>
+	  <div class="sub-div">
+	    <p><a href="../index.html">Back to Home</a></p>
+	  </div>
+	  <main>
+	    <div class="blog_title">
+	    	<h1> &nbsp;	N+1 Problem - Database Quiry</h1>
+	      <h2>Oct 16, 2016</h2>
+	    </div>
+			<p><strong>When your database slow, what will you do? </p></strong>
+			<p>Have you heard about N+1 problems in rails? When we make associations in ActiveRecord and call the associations, it may hit the database unnecessarily more than you may wish.</p>
+			<div class="tutorial">
+	#deal.rb
+	has_many :experts
+
+	#deals_controller.rb
+	def index
+	 @deals = Deal.all
+	end
+
+	#index.html.erb
+	<% @deals.each do |d| %>
+	 <% d.experts.each do |e| %>
+	  <%= e.first_name %>
+	  <% end %>
+	<% end %>
+			</div>
+		<p>This operation hit total deals number * experts number to just render each expert's name. Instead of we can individually hit deal and its experts database, we can 'preload' experts when we load deal. </p>
+		<h4>Preload</h4>
+		<div class="tutorial">
+  @deals = Deal.preload(:experts)
+		</div>
+		<p>This will preload all experts instance associated with all deals. I actually had to limit(3) because the data was too big so I wasn't able to trace. </p>
+		<img src='Screen-shot/preload.png' class='sublime' />
+		<p>Preload will actually show 'join' record. So it doesn't have to go back to database every instance. There is another way to solve this problem - eager loading. eager_load is much popular because it allows using 'select' statements.</p>
+		<h4>Eater Load</h4>
+		<div class="tutorial">
+ @deals = Deal.eager_load(:experts).where(experts {name: 'Sarah'}).limit(10)
+		</div>
+		<p>Eager loading is actually using LEFT OUTER JOIN. In terms of performance, eger_load nad preload are pretty similar. So which one to use?</p>
+		<h4>Includes</h4>
+		<p>Ya know that rails is pretty smart. They figure out and make '.includes' for you. </p>
+		<div class="tutorial">
+	@deals = Deal.includes(:experts).where(experts {name: 'Sarah'}).limit(10)
+		</div>
+		<p>Includes makes a decision to use either eager_load or preload. If you are not use .where, it will use preload otherwise it will use eager_load. This is pretty cool, huh?</p>
+		<h4>Count - Customized database quiry</h4>
+		<p>Let's say you want to show how many experts are in individual deals.</p>
+		<div class="tutorial">
+  @deals = Deal.all
+  <% @deals.each do |d| %>
+   <%= d.experts.count %>
+  <% end %>
+		</div>
+		<p>Let's say we have expert and expert_category classes.</p>
+		<div class="tutorial">
+  # expert_category.rb
+  has_many :expert
+  expert_type = ExpertCategory.create(description: 'Developer')
+
+  # expert.rb 
+  belongs_to :expert_category 
+  expert = Expert.create(first_name: 'sarah', expert_category: 1)
+		</div>
+		<p>In order to render experts number by expert_category, we will do operation like this: </p>
+		<div class="tutorial">
+  <% @expert_category = ExpertCategory.all %>
+  <% @expert_category.each do |ec| %>
+   <%= ec.experts.count %>
+  <% end %>
+		</div>
+  <img src='Screen-shot/custom_quiry.png' class='sublime'/>
+  <p>In this case, unfortunately, includes or eager_load do not make the quiry different. Becuase it is separate quiry. Although expert_category and experts are loaded, the count operation need to be done separately. In this case we can make hash of the each count by using 'group' method. </p>
+  <div class="tutorial">
+@experts_category_counts = Expert.group("experts.expert_category_id").count
+=>
+{
+    2 => 60,
+    1 => 53,
+    7 => 67,
+    5 => 208
+}
+<% @experts_category = ExpertCategory.all %>
+<% @experts_category.each do |ec| %>
+ <% ec.experts.each do |ex| %>
+	<%= ex.first_name + @experts_category_counts[ex.id] %>
+ <% end %>
+<% end %>
+  </div>
+		</div>
+		</main>
+	</body>
+
+	<hr>
+	<footer>
+	  Sarah Kwak 2015 &#169; copyrights
+	</footer>
+</html>
