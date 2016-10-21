@@ -13,7 +13,7 @@
 	  </div>
 	  <main>
 	    <div class="blog_title">
-	    	<h1> &nbsp;	N+1 Problem - Database Quiry</h1>
+	    	<h1> &nbsp;	N+1 Problem - Database Query</h1>
 	      <h2>Oct 20, 2016</h2>
 	    </div>
 			<p><strong>When your database slow, what will you do? </p></strong>
@@ -52,8 +52,8 @@
 		<div class="tutorial">
 	@deals = Deal.includes(:experts).where(experts {name: 'Sarah'}).limit(10)
 		</div>
-		<p>Includes is flexible so it can be either eager_load or preload. If you are not use '.where' at the end of the quiry, it will use preload otherwise it will use eager_load. This is pretty cool, huh?</p>
-		<h4>Count - Customized database quiry</h4>
+		<p>Includes is flexible so it can be either eager_load or preload. If you are not use '.where' at the end of the query, it will use preload otherwise it will use eager_load. This is pretty cool, huh?</p>
+		<h4>Count - Customized database query</h4>
 		<p>Let's say you want to show how many experts in individual expert_category.</p>
 		<div class="tutorial">
   # expert_category.rb
@@ -71,8 +71,8 @@
    <%= ec.experts.count %>
   <% end %>
 		</div>
-  <img src='Screen-shot/custom_quiry.png' class='sublime'/>
-  <p>In this case, unfortunately, includes or eager_load do not make the quiry faster. Becuase it is separate quiry. Although expert_category and experts are loaded(or preloaded), the count operation need to be done separately. In this case we can make hash of the each count by category_id by using 'group' method. </p>
+  <img src='Screen-shot/custom_query.png' class='sublime'/>
+  <p>In this case, unfortunately, includes or eager_load do not make the query faster. Becuase it is separate query. Although expert_category and experts are loaded(or preloaded), the count operation need to be done separately. In this case we can make hash of the each count by category_id by using 'group' method. </p>
   <div class="tutorial">
 @experts_category_counts = Expert.group("experts.expert_category_id").count
 =>
