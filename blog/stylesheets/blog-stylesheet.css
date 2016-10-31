@@ -552,3 +552,7 @@ main img {
   width: 40%;
   margin-left: 0.5%;
 }
+.small-img {
+  width: 7%;
+  display: inline;
+}

@@ -22,7 +22,7 @@
 			<h4>Page and Action Caching</h4>
 			<p>Page caching is disabled in Rails 4. It is basically allows the request for a generated page ot be fulfilled by the webserver. This is super fast but need to be caucious about implementing caching expiration. Page caching is also can't be applied if, for instance, the page require authentication. In this case, <strong>Action Caching</strong> is the helper! Action caching works like Page Caching except the incoming web request hits the Rails stack so that before filters can be run on it before the cache is served. This allows authentication and other restrictions to be run while still serving the result of the output from a cached copy. Action caching is also disabled in Rails 4.</p>
 
-			<h4>Fragment Caching / Russian Doll Caching</h4>
+			<h4>Fragment Caching / Russian Doll Caching<img src='Screen-shot/russian_doll.jpg' class='small-img' /></h4>
 			<p>When different parts of the page need to be cached and expired separately you can use Fragment Caching. Fragment caching is basically wrap up the fragment of the page in the block. It looks like this.</p>
 			<img src='Screen-shot/caching.png' class='sublime' />
 			<p>This works great but unless you are using different page, this values will not be updated. Becuase cache is using url as a key to store caching value. So this will be useful for nav bar or any sections that require minimum updates but somewhat heavy load. The problem of the Fragment Caching is that the associated values are not trigger caching expires. Let's see the example.</p>
@@ -48,7 +48,7 @@
 		<p> :counter_cache </p>
 		<p>The :counter_cache option can be used to make finding the number of belonging objects more efficient. This will add column in the containing model so it will effectively retrive counter of the objects.</p>
 
-
+		<p>Of course, for more detailed information about Rail's caching, <a href='http://guides.rubyonrails.org/caching_with_rails.html'>here </a> is the Rails Guide.</p>
 		</main>
 	</body>
 
