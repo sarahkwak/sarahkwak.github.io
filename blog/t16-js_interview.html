@@ -15,8 +15,20 @@
     <div class=tech-div>
     <ol>
       <li>Explain event delegation</li>
+      <p>Event delegation is tagetting element may not exist in current DOM and attach the event when they show up. Here is the example. $(this) is the special variable represents the target element. </p>
+      <div class="tutorial">
+  #index.html
+  &lt;ol class='dog-group'&gt;
+  &lt;/ol&gt;
+
+  #main.js
+  $(".dog-group").on('click', 'li', function() {
+    $(this).addClass('highlight');
+  });
+      </div>
+      <p>This function will get the element of '.dog-group' and target 'li' and attach the function which addClass 'highlight'.</p>
       <div class=interview><p></p></div>
-      <li>Explain how this works in JavaScript</li>
+      <li>Explain how 'this' works in JavaScript</li>
       <div class=interview>
         <p>'This' is in general referring to the objects that the function can be called. For instance within a function this.name = name; means whatever instance of the object's name will be called. In summary, 'this' in general refer something left side of dog notation. If not, it is usually refer 'window'. Because everything ouside of the scoup of the function belongs to 'window'</p>
       </div>
@@ -30,27 +42,42 @@
       <div class=interview>
         <p>First, to invoke the function we need to wrap the whole function within '()'. so (foo(){})(); this could invoke the function immediately.</p>
       </div>
-      <li>What needs to be changed to properly make it an IIFE?</li>
       <div class=interview><p></p></div>
       <li>What's the difference between a variable that is: null, undefined or undeclared? How would you go about checking for any of these states?</li>
-      <div class=interview><p>(foo(){})();</p></div>
+      <p>variable = null; is intentionally to make the value as a null. variable = undefined is something is declared but not assigned. For instance, </p>
+      <div class="tutorial">
+  var Foo = function(sound) {
+    var its_sound = sound;
+  }
+  bar = new Foo('bowwow!');
+  bar.its_sound //undefined
+      </div>
+      <p>Because it is simply undefined because the scope of var its_sound is only valid inside of Foo function.</p>
       <li>What is a closure, and how/why would you use one?</li>
       <div class=interview>
-        <p>To simply put, a closure is the function that returns other function. The reason this is important is that we can call the function later (or as a matter of fact) whenever we want. For instance,</p>
+        <p>To simply put, a closure is the function that returns other function to reveal variables inside of the function. The reason this is important is that we can call the function later (or as a matter of fact) whenever we want. </p>
         <div class=text-editor>
         var foo = function() {
-          bar = 'my friend';
+          var bar = 'my friend';
           return function() {
-            console.log("im inside of a closure");
+            console.log("im inside of a closure, " + bar);
           }
         };
 
         var newfn = foo();
         newfn(); //im inside of a closure, my friend
         </div>
-        <p>For this case, function foo will never be invoked until we called newfn. That's a closure. <p>
+        <p>For this case, the returned function will access variable 'bar' and print out. <p>
       </div>
       <li>What's a typical use case for anonymous functions?</li>
+      <p>Anoymous function is useful when it is asigned to other varialbes. This is called Anonymous Function Expression. Look at this example.</p>
+      <div class="tutorial">
+  var addNumber = function(num1, num2) {
+    result = num1 + num2;
+    return result;
+  };
+      </div>
+      <p>When we call addNumber(4,5), addNumber variable is invoking anonymous function to add two parameters.</p>
       <div class=interview><p></p></div>
       <li>How do you organize your code? (module pattern, classical inheritance?)</li>
       <div class=interview><p></p></div>
@@ -83,10 +110,51 @@
       <div class=interview><p></p></div>
       <li>Explain "hoisting".</li>
       <div class=interview>
-        <p>If function is created with the'var' keyward, it will be hosisted to the top of the function so it can be called wherever in the script.</p>
+        <p>If function is created with the'var' keyward, it will be hosisted to the top of the function so it can be called wherever in the script. </p>
       </div>
+      <div class="tutorial">
+  function foo() {
+    var message = 'hello';
+    console.log(message);
+    (function bar() {
+      console.log(message);
+    })();
+  };
+  foo(); //hello hello
+  *****compare with this*****
+  function foo() {
+    var message = 'hello';
+    console.log(message);
+    (function bar() {
+      console.log(message);
+      var message = 'hi there!';
+    })();
+  };
+  foo(); //hello undefined
+      </div>
+      <p>This is caused by hoisting. var message; is hoisted but the expression is not so it resulted in undefined. </p>
       <li>Describe event bubbling.</li>
-      <div class=interview><p></p></div>
+      <div class=interview>
+        <p>
+          When there is series of targets selected for the event, it triggers for all the elements. For instance, 
+        </p>
+      </div>
+      <div class="tutorial">
+   &lt;ol class='articles'&gt;
+     &lt;li&gt;article1&lt;/li&gt;
+     &lt;li&gt;article2&lt;/li&gt;
+     &lt;li&gt;article3&lt;/li&gt;
+   &lt;/ol&gt;
+
+   #main.js
+   $(".articles").click(function() {
+     **This will invoke functions for every li elements
+   });
+   ***compare with this***
+   $(".articles").on('click', 'li', function() {
+      $(this).addClass('highlight');
+   });
+      </div>
       <li>What's the difference between an "attribute" and a "property"?</li>
       <div class=interview><p></p></div>
       <li>Why is extending built-in JavaScript objects not a good idea?</li>
@@ -95,7 +163,7 @@
       <div class=interview><p></p></div>
       <li>What is the difference between == and ===?</li>
       <div class=interview>
-        <p>Thank you for asking. In short, javascript developers should never use '==' unless they know exactly what they are doing. '===' which is strick equal sign confirms that the two objects in right and left sides are same in every way like type and value. In performance wise, to determine two objects are '==', a machine have to go through significant process to try to match up two objects. </p>
+        <p>In short, unless you know exactly what you are doing, you should never use'=='. '===' which is strick equal sign confirms that the two objects in right and left sides are same in every way like type and value. In performance wise, to determine two objects are '==', a machine have to go through significant process to try to match up two objects. The example of how dangerous to use '==' is '1' == 1 returns 'true' </p>
       </div>
       <li>Explain the same-origin policy with regards to JavaScript.</li>
       <div class=interview>
@@ -113,6 +181,11 @@
               newarr.push(args[i])
             }
             return newarr;
+          };
+
+          ***or***
+          function duplicator(input) {
+            return input + "," + input
           };
         </div>
       </div>
@@ -137,7 +210,9 @@
         </div>
       </div>
       <li>Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?</li>
-      <div class=interview><p></p></div>
+      <div class=interview>
+        <p>Probably because global scope can be used literally globally, you will never know where it is ended up. </p>
+      </div>
       <li>Why would you use something like the load event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?</li>
       <div class=interview><p></p></div>
       <li>Explain what a single page app is and how to make one SEO-friendly.</li>
@@ -150,7 +225,6 @@
       <div class=interview><p></p></div>
       <li>What tools and techniques do you use debugging JavaScript code?</li>
       <div class=interview>
-        <p>Chrome developer is great.</p>
       </div>
       <li>What language constructions do you use for iterating over object properties and array items?</li>
       <div class=interview><p></p></div>
