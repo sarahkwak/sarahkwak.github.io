@@ -497,13 +497,14 @@ main img {
   width: 48%;
   background-repeat: none;
   float: left;
+  margin-top: 10px;
 }
 .brian-right {
   float: right;
   width: 50%;
 }
-.brian-right h1 {
-  margin-top: 0;
+.brian-right p {
+  margin: 0;
 }
 .brian-photo {
   margin-left: 15%;
@@ -555,4 +556,20 @@ main img {
 .small-img {
   width: 7%;
   display: inline;
+  /*Brian's page*/
+}
+.brian-right, .brian-div{
+  font-family: 'Amatic SC', cursive;
+}
+.brian-div h1{
+  font-size: 3em;
+  text-align: center;
+  color: #006600;
+}
+
+.brian-right p {
+  font-size: 1.5em;
+}
+.big-img {
+  width: 80%;
 }
