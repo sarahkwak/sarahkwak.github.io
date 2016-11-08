@@ -197,7 +197,7 @@
 </div>
 
 <h4>Initialize</h4>
-<p>When a class is bone, one thing is always going to happen. Run initialize method. Initialize will always execute every time we create a new instance of the class. We can take advantage this automatic initialization process to set an object's state at the time of the object's creation. </p>
+<p>Initialize will always execute every time we create a new instance of the class. We can take advantage this automatic initialization process to set an object's state at the time of the object's creation. </p>
 <p>Inside initialize method, we can pass the valiable and value.</p>
 <div class=text-editor>
   class Person
@@ -235,7 +235,9 @@
   # attr_accessor will do both of aboves
 
 </div>
-
+<img src='Screen-shot/instance_v.png' class='sublime' />
+<p>This is interesting case. In general, when you ahve attr_accessor, you don't want to create method to change variable. Look at line 22-25, the gettingOld method. This method is trying to change 'age' by 1. You would think that you will just do age += 1 but that will throw an error: undefined method `+' for nil:NilClass (NoMethodError)</p>
+<p>Why is that? first, 'age' is a local variable so it is not going to be available outside of gettingOld method. Although don't we have att_accessor? which as both reader and setter? Despite the fact that we can access 'age' without having '@' in other places like amIOld method, we aren't able to change 'age' value. We must change @age.  </p>
 <h4>So what's the difference between Object and Class?</h4>
 <p> A class is the blueprint from which individual objects are created. In object-oriented terms, we say that your bicycle is an instance of the class of objects known as bicycles.</p>
 </div>
