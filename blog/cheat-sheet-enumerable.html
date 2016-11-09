@@ -49,9 +49,11 @@
     <p>Reduce takes in an array and reduce to a single value.It does this by iterating through a list, keeping and transforming a running total along the way. This running total can be a single value like 0, 3.7, “abcdefg”, a collection ([], {}), or anything else, really. Each iteration starts with the return value of the previous iteration and does something with it.</p>
     <div class=text-editor>
 (5..10).reduce(:+)   #=> 45
-(5..10).reduce(0) { |sum, num| sum+= (num * num + 1)} #=> 361
-(5..10).inject(1) { |product, n| product * n } #=> 151200
-# inject and reduce are interchangable. argument is initial value
+(5..10).reduce(0){|sum, num| sum+= (num * num + 1)} #=> 361
+(5..10).inject(1){|product, n| product * n } 
+#=> 151200
+  # inject and reduce are interchangable. 
+
     </div>
 
     <p>Let’s look at a slightly more complicated case. reduce can be used to implement just about any other collection function, from map to sort to select. Here is a way to emulate select using reduce.
