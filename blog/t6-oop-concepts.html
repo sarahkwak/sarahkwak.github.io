@@ -67,8 +67,9 @@
   <li>The arguments that a Song will take are title and artist and both are accessible(becuase they are instance variable with @)</li>
 </ul>
 <h4>Blocks</h4>
-<p><strong>Blocks</strong> are one of ruby's most powerful features. In fact, blocks are actually a type of 'syntax' in the ruby language. They are a little bit different from objects and method definitions. block can be expressed by 'do...end' or {   }. The difference is that the curly braces have a higher priority inside of the ruby interpreter.</p>
+<p><strong>Blocks</strong> are one of ruby's most powerful features. In fact, blocks are actually a type of 'syntax' in the ruby language. They are a little bit different from objects and method definitions. Blocks are one of the very few exceptions to the "everything is an object" rule in Ruby. Blocks are not objects, and they can't be saved to variables. block can be expressed by 'do...end' or {   }. Passing blocks is one way to pass functions as arguments to other functions. The difference is that the curly braces have a higher priority inside of the ruby interpreter.</p>
 <div class=text-editor>
+  # example 1
   def print(&block)
     puts "hello world"
     block.call
@@ -76,7 +77,17 @@
 
   puts print{puts "hello again"}
 
-  #block is expressed with '&'. It doesn't execute unless you 'call' them
+  # example 2
+  def some_adding(a, b, my_proc)
+    my_block.call(a, b)
+  end 
+
+  add = proc { |x, y| x + y }
+
+  some_adding(8, 9, add) #=> 25
+
+  # The block is expressed with '&'. It doesn't execute unless you 'call' them
+  # The proc add is passed as a parameter to the method some_adding. 
 
 </div>
 <p>This example itself isn't very useful unless we like to explore many different ways to print out stuff. The reason block is a powerful tool is that there are many useful 'keywords' like 'BEGIN', 'END', 'rescue', 'raise' and 'ensure'. Let's see some examples</p>
@@ -183,6 +194,7 @@
 <p>One very important lesson here. If you forget to put attr :title, this code will not run and give you error on undefined local veriable or method 'title'. Very important to put attr reader if you want to call the method outside of the class.</p>
 
 <h4>Procs and Lambdas</h4>
+<p>Proc objects are blocks of code that can be bound to a set of local variables. You can think of a proc object as a "saved" block. Procs are a great way of keeping your code DRY.</p>
 <p>Procs and Lambdas are closures. They are blocks of code that can be assigned to variables. Proc (short for Process) is more meaningful and broad concept including blocks and lambdas. Therefore many rubist write in uppercase'Procs' but in lowercase 'blocks' and 'lambdas'. It is also because blocks and lambdas do not have their own class.</p>
 
 
@@ -195,6 +207,9 @@
   => ArgumentError: tried to create Proc object without a block
   my_proc = proc {}
   => #< Proc:0x007fa278b1ecf8@(irb):18 >
+
+  multifying = proc { |x| x.inject(&:+) }
+  multifying.call([1,2,3]) #=> 6
 
   #How to create lambdas
   my_lambda = lambda {} # or
