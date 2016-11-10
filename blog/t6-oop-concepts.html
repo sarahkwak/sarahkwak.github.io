@@ -15,57 +15,8 @@
 <div class=tech-div>
 <h4>Ruby's Methods</h4>
 <p>Before start talking about Blocks, Procs and Lambdas, maybe it is worth to see why ruby is called an "Object-Oriented" Language</p>
-<p>While I was learning about how to use ruby's Class, it becomes NOT so clear that why we use Class and why it is so special? And why suddenly everyone talks about 'object oriented language'? When I deal with String and Fixnum - this was much easier for me to undertnad that 'object' means. Objects have behavior and may contain data, data to which they alone control access. Then.. is Class very different than string or integer? What is class and why it is important?</p>
+<p>While I was learning about how to use ruby's Class, it becomes NOT so clear that why we use Class and why it is so special? And why suddenly everyone talks about 'object oriented language'? When I deal with String and Fixnum - this was much easier for me to undertnad that 'object' means. Objects have behavior and may contain data, data to which they alone control access. </p>
 
-<p style = "font-size: 20px">So what is Class?</p>
-<p><strong>Class</strong> is a blueprint for the construction of similar objects. A class defines:</p>
-<ul style = "font-size: 18px">
-  <li>Methods - definitions of behavior</li>
-  <li>Attributes - definitions of variables</li>
-</ul>
-<p>Methods get invoked in response to messages. The same method name can be defined by many different objects; it's up to ruby to find and invoke the right method of the correct object for any sent message. </p>
-
-<p>String and Fixnum are also ruby's existing <strong>Class</strong>. Although it is not visible, we instantiate string class and uses methods and attribute that allows using 'string' class.</p>
-<p>When we create an object, no matter how brilliant it is, they can not know everything possible. So they are communicate each other and exchange information. It can be called 'collaborate'. To collaborate, an object must know something about others. Knowing creates a 'dependency'. If not managed carefully, these dependencies will strangle your application.</p>
-
-<h3>Understanding Dependencies</h3>
-
-<div class=text-editor>
-  class Song
-    attr :title, :artist
-    def initialize(title, artist)
-      @title = title
-      @artist = artist
-    end
-
-    def play
-      puts "#{@title} by #{@artist} is now playing"
-    end
-  end
-
-  class Playlist
-    attr :song
-    def initialize(song)
-      @song = song
-    end
-
-    def a_list
-      Song.new(song.title, song.artist).play
-    end
-  end
-
-  bury_our_friends = Song.new("Bury our Friends", "Sleater Kinney")
-  Playlist.new(bury_our_friends).a_list
-  #This will return
-  # Bury our Friends by Sleater Kinney is now playing
-
-</div>
-<p>In this example, the Playlist class recognizes the following: </p>
-<ul style="font-size: 18px">
-  <li>The name of another class Song to exist.</li>
-  <li>The method name play to exist inside of Song class</li>
-  <li>The arguments that a Song will take are title and artist and both are accessible(becuase they are instance variable with @)</li>
-</ul>
 <h4>Blocks</h4>
 <p><strong>Blocks</strong> are one of ruby's most powerful features. In fact, blocks are actually a type of 'syntax' in the ruby language. They are a little bit different from objects and method definitions. Blocks are one of the very few exceptions to the "everything is an object" rule in Ruby. Blocks are not objects, and they can't be saved to variables. block can be expressed by 'do...end' or {   }. Passing blocks is one way to pass functions as arguments to other functions. The difference is that the curly braces have a higher priority inside of the ruby interpreter.</p>
 <div class=text-editor>
@@ -195,7 +146,7 @@
 
 <h4>Procs and Lambdas</h4>
 <p>Proc objects are blocks of code that can be bound to a set of local variables. You can think of a proc object as a "saved" block. Procs are a great way of keeping your code DRY.</p>
-<p>Procs and Lambdas are closures. They are blocks of code that can be assigned to variables. Proc (short for Process) is more meaningful and broad concept including blocks and lambdas. Therefore many rubist write in uppercase'Procs' but in lowercase 'blocks' and 'lambdas'. It is also because blocks and lambdas do not have their own class.</p>
+<p>They are blocks of code that can be assigned to variables. Proc (short for Process) is more meaningful and broad concept including blocks and lambdas. Therefore many rubist write in uppercase'Procs' but in lowercase 'blocks' and 'lambdas'. It is also because blocks and lambdas do not have their own class.</p>
 
 
 <div class=text-editor>
@@ -209,7 +160,8 @@
   => #< Proc:0x007fa278b1ecf8@(irb):18 >
 
   multifying = proc { |x| x.inject(&:+) }
-  multifying.call([1,2,3]) #=> 6
+  multifying.call([1,2,3]) #=> 6proc_square_number = proc { |x| x * x }
+proc_sum_array     = proc { |x| x.inject(&:+) }
 
   #How to create lambdas
   my_lambda = lambda {} # or
@@ -300,6 +252,9 @@
   # proc will return inside of proc
   # lambda will continue the method and return the final return
   </div>
+  <h4>Closure</h4>
+  <p>Blocks, Procs and Lambdas are closures in Ruby. Closure is a function/method that can be passed around like an object and remembers the value of variables no longer in scope.</p>
+  <img src='Screen-shot/block_special.png' class='sublime' />
 </div>
 <hr>
       <footer>
