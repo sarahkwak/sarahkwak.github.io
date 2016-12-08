@@ -46,7 +46,7 @@
 		<p>This looks really complex but it is not. The add_follwer_num_path and remove_follower_num_path will add or remove users to startup. In this case, the caching need to dynamically update not only startup but user count becuase of 'belongs_to' relationship. Simply add 'touch: true' in belongs_to, it allows expiring caching for the object and the parent record as well.</p>
 
 		<p> :counter_cache </p>
-		<p>The :counter_cache option can be used to make finding the number of belonging objects more efficient. This will add column in the containing model so it will effectively retrive counter of the objects.</p>
+		<p>The :counter_cache option can be used to make finding the number of belonging objects more efficient. This will add column in the containing model so it will effectively retrieve counter of the objects.</p>
 
 		<p>Of course, for more detailed information about Rail's caching, <a href='http://guides.rubyonrails.org/caching_with_rails.html'>here </a> is the Rails Guide.</p>
 		</main>
