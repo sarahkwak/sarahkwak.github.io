@@ -573,3 +573,16 @@ main img {
 .big-img {
   width: 80%;
 }
+mark {
+  background-color: #d6d6c2;
+}
+.rails-comp {
+  background-color: #ecffb3;
+  padding: 1%;
+  font-size: 1.2em;
+}
+
+.rails-comp li{
+  padding-left: 1%;
+  margin: 1%;
+}
