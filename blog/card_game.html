@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Card Game</title>
+	<link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
+	<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+	<script src="card_game.js"></script>
+	<link rel="stylesheet" type="text/css" href="stylesheets/card_game.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class='player-board'>
+			<h1>Match Maker</h1>
+			<button class='start'>Start</button>
+			<div class="score-board">
+				<p>SCORE</p>
+				<p id='score'>0</p>
+			</div>
+			<div class="time-board">
+				<p id="time">TIME</p>
+			</div>
+			<div class="hidden result">
+				GAME OVER
+			</div>
+		</div>
+
+		<div class='game-board'>	
+			<div class="card-container"></div>			
+		</div>
+	</div> 
+</div>
+
+</body>
