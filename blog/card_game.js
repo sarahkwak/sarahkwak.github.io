@@ -72,7 +72,7 @@ Game.prototype.verifyMatching = function(flip_count, card, id) {
 		previous_id = id
 	} else {
 		if ((previous_card !== card) && (previous_card[0] === card[0])) {
-			score ++
+			this.score ++
 			this.updateScore(score);
 			this.hideMatchingCard(previous_card, previous_id, card, id)
 		} else {
@@ -99,7 +99,7 @@ Game.prototype.turnBackNonMatchingCard = function(card1, card1_id, card2, card2_
 	el2.firstChild.src = 'cardpack/back.png';
 }
 Game.prototype.updateScore = function() {
-	$('#score').text(score);
+	$('#score').text(this.score);
 }
 Game.prototype.gameContinue = function() {
 	if (score == 28){
