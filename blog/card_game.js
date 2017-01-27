@@ -31,7 +31,7 @@ function Game(thisCard) {
 Game.prototype.startGame = function(){
 	$('.card-container div').css("pointer-events", "auto")
   display = document.querySelector('#time');
-  this.startTimer(60*3, display);
+  this.startTimer(4, display);
 };
 
 Game.prototype.startTimer = function(duration, display) {
@@ -46,7 +46,7 @@ Game.prototype.startTimer = function(duration, display) {
     display.textContent = minutes + ":" + seconds;
 
     if (--timer < 0) {
-       gameOver()
+       mygame.gameOver()
        timer = 0;
     } 
   }, 1000);
