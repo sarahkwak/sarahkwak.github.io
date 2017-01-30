@@ -18,6 +18,7 @@
 	    </div>
 			<p><strong>What is Ruby's Symbol and why is it awesome? </p></strong>
 			<p>A Symbol is the most basic Ruby object you can create. It's just a name and an internal ID. Symbols are useful because a given symbol name refers to the same object throughout a Ruby program. Symbols are more efficient than strings. Two strings with the same contents are two different objects, but for any given name there is only one Symbol object. This can save both time and memory.</p>
+			<p><mark>There are several differences between the implementation of symbols and strings. The most important thing about symbols is that they are <strong>immutable</strong>. This means that they will never have their value changed. Because of this, symbols are instantiated faster than strings and some operations like comparing two symbols is also faster.</mark></p>
 			<p>In database, when we use hash, it is perfectly make sense that we use symbol as a key rather than string. </p>
 			<img src='Screen-shot/object_id.png' class='sublime' />
 			<p>Notice that the object_id of user and user1 are same? Because the keys are symbol.</p>
