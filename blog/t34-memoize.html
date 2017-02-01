@@ -65,12 +65,12 @@
 	<h4>What about nil? </h4>
 	<p>The problem is that when right side of the expression returns nil, it will perform the expensive fetches again. So instead of using <mark>||=</mark>, consider if / else statement. </p>
 	<div class="tutorial">
-  class User < ActiveRecord::Base
-   def twitter_followers
-    return @twitter_followers if defined? @twitter_followers
-    @twitter_followers = twitter_user.followers
-   end
-  end
+	class User < ActiveRecord::Base
+	 def twitter_followers
+	  return @twitter_followers if defined? @twitter_followers
+	  @twitter_followers = twitter_user.followers
+	 end
+	end
 	</div>
 	<p>In order to understand the above example, let's talk about 'defined?'. 'defined?' is <strong>Conditional Execution</strong>. <mark>defined?</mark> operator returns nil if its argument (which can be an arbitrary expression) is not defined, otherwise it returns a description of that argument. If the argument is <mark>yield, defined?</mark> returns the string 'yield' if a code block is associated with the current context. Here are the examples.</p>
 	<div class="tutorial">
@@ -88,8 +88,33 @@
 	<h4>What about parameters?</h4>
 	<p>We have some memoization patterns that work well for simple accessors. <strong>But what if you want to memoize a method that takes parameters?</strong></p>
 	<div class="tutorial">
-		
+	#app/models/city.rb
+	class City < ActiveRecord::Base
+	  def self.top_cities(order_by)
+	    where(top_city: true).order(order_by).to_a
+	  end
+	end
 	</div>
+	<p>It turns out that Ruby's <mark>Hash</mark> has an initalizer that works perfectly for this situation. Before going into this, let's look at what new { |hash, key| block } statement.</p>
+	<p>The block passed after the new keyword is pattern to create default value. When you pass block after Hash.new, it will creates a new default object each time. For instance</p>
+	<div class="tutorial">
+	h = Hash.new {|hash, key| hash[key] = 'Go Fish: #{key}'}
+	h['c']  => 'Go Fish: c'
+	h['d'].update!  => 'GO FISH: D'
+	h.keys => ['c', 'd']
+	</div>
+	<p>Now, look at this example</p>
+	<div class="tutorial">
+	class City < ActiveRecord::Base
+	  def self.top_cities(order_by)
+	    @top_cities ||= Hash.new do |hash, key|
+	      h[key] = where(top_city: true).order(key).to_a
+	    end
+	    @top_cities[order_by]
+	  end
+	end
+	</div>
+	<p><strong>No matter what you pass into order_by, the correct result will get memoized.</strong>Since the block is only called when the key doesn't exist, you don't have to worry about the result of the block being nil or false.</p>
 	</body>
 
 	<hr>
