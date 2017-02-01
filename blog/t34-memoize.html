@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8">
+	<head>
+	  <title>🐾 Teach Brian How to Code</title>
+	  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Pacifico" rel="stylesheet">
+	  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+	</head>
+
+	<body>
+	  <div class="sub-div">
+	    <p><a href="../index.html">Back to Home</a></p>
+	  </div>
+    <div class="blog_title">
+    	<h1>&nbsp;What is Ruby's ||= Really Does</h1>
+      <h2>Feb 1, 2017</h2>
+    </div>
+    <p><strong>A common misconception is that a ||= b is equivalent to <mark>a = a ||= b</mark>, but it behaves like <mark> a || a = b</mark></strong></p>
+    <p>In <mark>a = a || b</mark>, a is set to something by the statement on every run, whereas with <mark> a || a = b</mark>, a is only set if a is logically false (i.e. if it's <mark>nil or false</mark>) because || is 'short circuiting'. That is if the left hand side of the || comparison is true, there is no need to check the right hand side.</p>
+    <div class="tutorial">
+   case1. When 'a' is nil or false
+   a = nil 
+   b = 7
+   a ||= b 	
+     a => <mark>7</mark>
+     b => <mark>7</mark>
+    </div>
+
+		<div class="tutorial">
+   case2. When 'a' has a truethy value
+   a = 17
+   b = 19
+   a ||= b
+     a => <mark>17</mark>
+     b => <mark>19</mark>
+		</div>
+
+	<h4>Simple Memoization with ||= </h4>
+	<p>Memoizataion is a technique you can use to speed up your accessor methods. It caches the results of methods that do time-consuming work, work that only needs to be done onece. In Rails, you see memoization used so often that it even included a <a href='http://apidock.com/rails/v3.2.13/ActiveSupport/Memoizable/memoize'>module that would memoize methods</a> for you. We will see that later.</p>
+
+	<div class="tutorial">
+	class User < ActiveRecord::Base
+	  def twitter_followers
+		@twitter_followers ||= twitter_user.followers
+	  end
+ 	end 
+	</div>
+	<p>The twitter_followers interpreted to: </p>
+	<p><mark>@twitter_followers = @twitter_followers || twitter_user.followers</mark>. That means that you'll only make the network call the first time you call <mark>twitter_followers</mark>, and future calls will just return the value of the instance variable <mark>@twitter_followers</mark></p>
+
+	<h4>Multi-line memoization</h4>
+	<div class="tutorial">
+	class User < ActiveRecord::Base
+	  def main_address
+	    @main_address ||= begin
+	      maybe_main_address = home_address if prefers_home_address?
+	      maybe_main_address = work_address unless maybe_main_address
+	      maybe_main_address = address.first unless maybe_main_address
+	    end
+	  end 
+	end
+	</div>
+
+	<p>The <mark>begin..end</mark> creates a block of code in Ruby that can be treated as a single thing. That's why ||= works just as well here as it did before.</p>
+	<h4>What about nil? </h4>
+	<p>The problem is that when right side of the expression returns nil, it will perform the expensive fetches again. So instead of using <mark>||=</mark>, consider if / else statement. </p>
+	<div class="tutorial">
+  class User < ActiveRecord::Base
+   def twitter_followers
+    return @twitter_followers if defined? @twitter_followers
+    @twitter_followers = twitter_user.followers
+   end
+  end
+	</div>
+	<p>In order to understand the above example, let's talk about 'defined?'. 'defined?' is <strong>Conditional Execution</strong>. <mark>defined?</mark> operator returns nil if its argument (which can be an arbitrary expression) is not defined, otherwise it returns a description of that argument. If the argument is <mark>yield, defined?</mark> returns the string 'yield' if a code block is associated with the current context. Here are the examples.</p>
+	<div class="tutorial">
+	defined? 1 => "expression"
+	defined? String  => 'constant'
+	definedd? c = 1  => 'assignment'
+	a = 1
+	defined? a  => 'local_variable'
+	b = nil 
+	defined?  b  => 'local_variable'
+	defined? dd  => nil
+	dd = 3 if defined? dd  => 3
+	</div>
+	<p>So go back to the our exmample of <mark>@twitter_followers</mark>, if it returns nil, instead of </p>
+	<h4>What about parameters?</h4>
+	<p>We have some memoization patterns that work well for simple accessors. <strong>But what if you want to memoize a method that takes parameters?</strong></p>
+	<div class="tutorial">
+		
+	</div>
+	</body>
+
+	<hr>
+	<footer>
+	  Sarah Kwak 2015 &#169; copyrights
+	</footer>
+</html>
