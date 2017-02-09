@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8">
+	<head>
+	  <title>🐾 Teach Brian How to Code</title>
+	  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Pacifico" rel="stylesheet">
+	  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+	</head>
+
+	<body>
+	  <div class="sub-div">
+	    <p><a href="../index.html">Back to Home</a></p>
+	  </div>
+    <div class="blog_title">
+    	<h1>&nbsp;OOP Composition vs Inheritance</h1>
+      <h2>Feb 8, 2017</h2>
+    </div>
+    <p>Be aware. This is heavy topic. Composition vs Inheritance is the topic that I would love to ignore and think as something that I've never have to worry about in real life. It's not that this is hard to understand or anything but I feel like it's not really useful in real life application. AND as always I WAS WRONG.</p>
+    <p><strong>Designing object-oriented software is hard, and designing </strong><mark>reusable </mark><strong> object-oriented software is even harder.</strong></p>
+    <h4>Quick Conclusion and the Theory</h4>
+    <p>In a composition-based system, the various components get combined togeter at run-time to create the desired behavior. This allows flexibility to build behavior dynamically without having to resort to clever metaprogramming tricks.</p>
+    <p>Composition has a few downsides too. It tends to add more indirection to a system. It can also be more work to assemble all the components together into the deesired behavior. Anything that can be implemented via inheritance can alternatively be implemented using composition.</p>
+    <p>Use inheritance when the cost of indirection and construction of a composition-based approach is higher than the benefits of encapsulated responsibilities and flexibilities. </p>
+    <h4>Inheritance: Alter Before and After</h4>
+    <p>So we all know how inheritance works. It inherites from parent class so the child can have exactly same behavior. For example:</p>
+    <div class="tutorial">
+  class Parent
+    def hello(person)
+      puts "Dad, say hi to #{person}"
+    end 
+  end
+
+  class Child < Parent 
+    def hello(person)
+      puts "Son, say hi to #{person}"
+      super
+      puts "Guesswhat, #{person}"
+    end
+  end 
+
+  son = Child.new
+  son.hello('sister')
+  => 
+  Son, say hi to sister
+  Dad, say hi to sister
+  Guesswhat, sister
+    </div>
+    <p><mark>super</mark> calls the same name method of the parent class, if it exists. Also it passes all the arguments to the parent class method as well. </p>
+    <h4>using super() with initialize</h4>
+  </body>
+	<div class="tutorial">
+  class Parent
+    def initialize(person) 
+      @person = person
+    end 
+
+    def hello
+      puts "Dad, say hi #{person} "
+    end 
+  end
+
+  class Child < Parent 
+    def initialize(person)
+      @person = person
+      super
+    end
+  end 	
+
+  father = Parent.new("sister")
+  son = Child.new("brother")
+  son.hello => Dad, say hi brother
+	</div>
+
+	<h4>Composition</h4>
+	<p></p>
+  <hr>
+	<footer>
+	  Sarah Kwak 2015
+	</footer>
+</html>
