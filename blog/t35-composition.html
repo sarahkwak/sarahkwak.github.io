@@ -71,8 +71,43 @@
   son.hello => Dad, say hi brother
 	</div>
 
-	<h4>Composition</h4>
-	<p></p>
+		<h4>Composition</h4>
+		<p>When to use compositon? Well, there is no right answer for it. Someone told me that composition is about behavior and inheritance is about state but that's very vague statement in my opinion. Both inheritance and composition are great way to DRY code. Here is simple example: </p>
+		<div class="tutorial">
+  class Language
+    def speak(type)
+      if type == 'dog'
+        puts 'I am hungry'
+      elsif type == 'cat'
+        puts'meow'
+      end
+    end 
+  end 
+
+  class Dog
+    def initialize
+       @language = Language.new
+    end
+
+    def bark
+      @language.speak('dog')
+    end 
+  end 
+
+  class Cat
+    def initialize 
+      @language = Language.new
+    end
+
+    def meow
+      @langauge.speak('cat')
+    end
+  end 
+
+  brian = Dog.new
+  brian.bark => I am hungry
+		</div>
+		<p>Perhaps this example does not really explan why we need to use language class instead of separate 'bark' and 'meow' function in the dog and cat classes but you can imagine this can be very useful when there are bunch of similar dog and cat classes and have similar behaviors. When ther eis change os how they speak, instead of visiting all classes, you can only change Language class. </p>
   <hr>
 	<footer>
 	  Sarah Kwak 2015
