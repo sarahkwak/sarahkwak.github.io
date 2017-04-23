@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8">
+	<head>
+	  <title>🐾 Teach Brian How to Code</title>
+	  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Pacifico" rel="stylesheet">
+	  <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+	</head>
+
+	<body>
+	  <div class="sub-div">
+	    <p><a href="../index.html">Back to Home</a></p>
+	  </div>
+    <div class="blog_title">
+    	<h1>&nbsp;Yield Like Pro</h1>
+      <h2>Apr 23, 2017</h2>
+    </div>
+    <p>I'm currently reading Agile Web Development with Rails 5 and following steps to create simple book store web. It is basic rails app but I'm actually suprised the fact that how things the author do differently. I also enjoy every page and learn new tricks and rails' way of doing things! There are so much to learn but here are some of things that I've learned.</p>
+    <p>The task is to creating helper method <strong>hidden_div_items</strong>to render partial if there is a cart.</p>
+    <div class="tutorial">
+    <% if @cart %>
+      <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+        <%= render @cart %>
+      <% end %>
+    <% end %>
+
+    def hidden_div_if(condition, attributes = {}, &block)
+      if condition
+        attributes["style"] = "display:none;"
+      end
+        content_tag("div", attributes, &block)
+    end
+    </div>
+
+    <p>First, I haven't used content_tag before so that's something new. If you aren't familier with this, click <a href="https://apidock.com/rails/ActionView/Helpers/TagHelper/content_tag">here</a>. Basically, it will create html tag for you. You can pass the tag as symbol ':div', or string "div". If you look at the apidock, the last arg of the content_tag is '&block'. </p>
+    <div class="tutorial">
+      content_tag(name, content_or_options_with_block = nil, options = nil, escape = true, &block)
+    </div>
+    <p>By definition, it "Returns an <strong>HTML block tag </strong>of type name surrounding the content. Add HTML attributes by passing an <strong>attributes hash</strong> to options."</p>
+
+    <p>Now, let's get into '&block' and 'yield' busineses.</p>
+    <div class="tutorial">
+    def print_myself(arg, &block)
+      yield(arg)
+    end
+
+    print_myself("Horay!!") do |word|
+      puts word
+    end
+            ===== OR =====
+    print_myself("Horay!!") { |word| puts word }
+    </div>
+    <p>Both print_myself will call the &block with arg. When you call the function, your block looks kind of funny. It looks like completely different entity from arg. BUT this is a part of attributes for the print_myself. </p>
+    <p>In the above example of hidden_div_if, it looks even weirder because it looks like we are passing 2 arguments - @cart.line_items.empty? and id: 'cart' and the hidden_div_if is also taking 2 arguments and make attributes as an empty hash by default. So here is what's going on: </p>
+    <ol class='ordered-list'>
+      <li>id: 'cart' is going to be convert as attributes[:id] => 'cart'. If you are printing attributes inside of hidden_div_if, it will say: {:id=>"cart"} </li>
+      <li>attributes["style"] = "display:none;" is adding 'style' option to the attributes, which is an option of content_tag. The name 'attributes' is optional. </li>
+      <li>&block - This is what is passed and execute when the function is called. Means, it will yield <%= render @cart %>. Basically, the content_tag will 'yield' the &block. </li>
+    </ul>
+  </body>
+</html>

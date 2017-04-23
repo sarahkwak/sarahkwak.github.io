@@ -360,10 +360,6 @@ img.transparent {
 .summary {
   font-size: 1.5em;
 }
-sql_list {
-  line-height: 30%;
-  text-indent: 10px;
-}
 .visit-counter {
   float: right;
   padding: 20px;
@@ -476,7 +472,7 @@ main img {
   display: inline;
   animation-name: ruby;
   animation-duration: 5s;
-  animation-timing-function: linear;  
+  animation-timing-function: linear;
   animation-iteration-count: 3;
   animation-direction: alternate;
   z-index: -1;
@@ -585,4 +581,7 @@ mark {
 .rails-comp li{
   padding-left: 1%;
   margin: 1%;
+}
+.ordered-list li{
+  line-height: 1.5;
 }
