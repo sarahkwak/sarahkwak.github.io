@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8">
+  <head>
+    <title>Teach Brian How to Code</title>
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+    <div class="post_blog_title">
+      <h1>&nbsp;Gang Of Four - Ruby Decorator</h1>
+      <h2>Aug 12, 2017&nbsp;</h2>
+    </div>
+    <p>A Decorator is a design pattern. <strong>It Attaches additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.</strong></p>
+    <div class="tutorial">
+      module Milk
+        def cost
+          super + 0.4
+        end
+      end
+
+      module Sugar
+        def cost
+          super + 0.2
+        end
+      end
+
+      class Coffee
+        def cost
+          2
+        end
+      end
+
+
+      java = Coffee.new
+      java.extend(Milk) # => 2.4
+      java.extend(Sugar) # => 2.6
+      java.cost   # 2.6
+    </div>
+    <p>This magical 'extend' looks bit intimidating. Plus the argument it passes are module (Milk and Sugar), not a class. and <strong>super</strong> keywords are in the module, again, not in class. It's bit unusual case but you can see how elegantly it attaches responsibilities to class from those modules. Interesting part is also when it calls <em>`extend(Sugar)`</em> it does not only returns 2 + 0.2, it actually added up Milk price as well. That's because <strong>super</strong> and it gets whatever its value and then added 0.2. </p>
+    <h4>Include vs Extend</h4>
+    <p>Include is a Mixin. When a class `includes` a module (and that's always the case, you don't mixin a class and it throws TypeError), that module's instance methods become available as instance methods of the class.  It's almost as if the module becomes a superclass of the class that uses it. Great thing about including module is that you can include many different classes and inheritance chain. If multiple modules are included, they are added to the chain in order.</p>
+    <p>If a module itself includes other modules, a chain of proxy classes will be added to any class that includes that module, one proxy for each module that is directly or indirectly included.</p>
+    <div class="tutorial">
+      module Cream
+        def fat
+          puts "very fatty"
+        end
+      end
+
+      module Milk
+        include Cream
+
+        def cost
+         0.4
+        end
+      end
+
+      module Cream
+        def cost
+         0.9
+        end
+      end
+
+      class Coffee
+        # include can be chained in order
+        include Milk
+        include Cream
+
+        def cost
+          super + 0.2
+        end
+      end
+
+    Coffee.new.cost # => 1.1
+    Coffee.new.fat # => "very fatty"
+    </div>
+    <p>Extending object isn't also much different. You can mix a module into an object using Object#extend. There is an interesting trick with extend. If you use it within a class definition, the module's methods become class methods. Also extend doesn't care left side of argument. Even string can use method if it is extended. But it is only allow to module to be extended. </p>
+    <div class="tutorial">
+      module Cream
+        def fat
+          puts "very fatty"
+        end
+      end
+
+      module Milk
+        def cost
+         0.4
+        end
+      end
+
+      class Coffee
+        def cost
+          super + 2
+        end
+      end
+
+      Coffee.new.extend(Sugar).cost # => wrong argument type Class (expected Module) (TypeError)
+      Coffee.extend(Cream).fat # => very fatty
+      a = "hello"
+      a.extend(Sugar).cost # => 0.4
+      a.extend(Coffee).cost # => TypeError 'Coffee is not module'
+    </div>
+    <h4>Alternative Decorator - Plain Old Ruby Object Decorator</h4>
+    <p>Ruby allows to passing responsibilities by passing objects around as an argument using initialize. </p>
+    <div class="tutorial">
+      class Coffee
+        def cost
+          2
+        end
+
+        def origin
+          "Colombia"
+        end
+      end
+
+      class Milk
+        def initialize(component)
+          @component = component
+        end
+
+        def cost
+          @component.cost + 0.4
+        end
+      end
+
+      coffee = Coffee.new
+      Sugar.new(Milk.new(coffee)).cost  # 2.6
+      Sugar.new(Sugar.new(coffee)).cost # 2.4
+      Sugar.new(Milk.new(coffee)).class # Sugar
+      Milk.new(coffee).origin           # NoMethodError
+    </div>
+    <h4>Alternative Decorator - 'Method Missing' decorator</h4>
+    <div class="tutorial">
+      module Decorator
+        def initialize(component)
+          @component = component
+        end
+
+        def method_missing(meth, *args)
+          if @component.respond_to?(meth)
+            @component.send(meth, *args)
+          else
+            super
+          end
+        end
+
+        def respond_to?(meth)
+          @component.respond_to?(meth)
+        end
+      end
+
+      class Coffee
+        def cost
+          2
+        end
+
+        def origin
+          "Colombia"
+        end
+      end
+
+      class Milk
+        include Decorator
+
+        def cost
+          @component.cost + 0.4
+        end
+      end
+
+      class Sugar
+        include Decorator
+        def cost
+          @component.cost + 0.2
+        end
+      end
+
+      coffee = Coffee.new
+      Sugar.new(Milk.new(coffee)).cost   # 2.6
+      Sugar.new(Sugar.new(coffee)).cost  # 2.4
+      Sugar.new(Milk.new(coffee)).origin # Colombia
+      Sugar.new(Milk.new(coffee)).class  # Sugar
+    </div>
+  </body>

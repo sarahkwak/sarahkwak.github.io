@@ -170,6 +170,19 @@ h8 {
   background-size: 100% auto;
   height: 400px;
 }
+.post_blog_title {
+  width: 100%;
+  background: url("../stylesheets/post_blog_title.jpg");
+  background-size: 100% auto;
+  height:400px;
+  margin-top: -7%;
+}
+.post_blog_title h1 {
+  width: 100%;
+  text-align: center;
+  padding-top: 2%;
+  font-family: 'Saira Semi Condensed', sans-serif;
+}
 .c_title {
   width: 100%;
   background: url('../Screen-shot/desert.png');
