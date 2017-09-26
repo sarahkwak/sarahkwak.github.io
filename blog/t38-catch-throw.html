@@ -59,5 +59,59 @@
       # failure ended up here
     end
     </div>
-    <p>This will clearly shows what foo function supposed to be. If things goes south, it can be handled by rescue. </p>
+    <p>This will clearly shows what foo function supposed to be. If things goes south, it can be handled by rescue. Let's look at another trick called 'Bouncer method'. A Bouncer Method is a method whose sole job is to <strong>raise an exception if it detects an error condition.</strong></p>
+    <div class="tutorial">
+    # original method
+    def send_user_welcome_email(list_of_user_ids)
+      list_of_user_ids.each do |user_id|
+        user = User.find(user_id)
+        send_emai_to_user(user_id)
+        user.welcome_email_sent = true
+      end
+      unless user.save?
+        raise ArgumentError, "user is not valid"
+      end
+      Rails.logger.info "welcome email is sent to #{user}.fullname"
+    end
+    </div>
+    <p>Enter the bouncer method.</p>
+    <div class="tutorial">
+    # bouncer method
+    def check_valid_status(user)
+      unless user.save?
+        raise ArgumentError, "user is not valid"
+      end
+    end
+
+    # now it can be:
+    def send_user_welcome_email(list_of_user_ids)
+      list_of_user_ids.each do |user_id|
+        user = User.find(user_id)
+        send_emai_to_user(user_id)
+        user.welcome_email_sent = true
+      end
+      check_valid_status(user)
+      Rails.logger.info "welcome email is sent to #{user}.fullname"
+    end
+    </div>
+    <p>We can even go further. We can yield the result of the main method and then raise error if the result is failed.</p>
+    <div class="tutorial">
+    def check_valid_status
+      result = yield
+      unless result.save?
+        raise ArgumentError, "user is not valid"
+      end
+    end
+
+    def send_user_welcome_email(list_of_user_ids)
+      check_valid_status do
+        list_of_user_ids.each do |user_id|
+          user = User.find(user_id)
+          send_emai_to_user(user_id)
+          user.welcome_email_sent = true
+        end
+      end
+    end
+    </div>
+  <p>Conclusion: Use top-level rescue to rescue failure. Think of flow of the method. <em>"When given an intention-revealing name, it can clearly and concisely reveal to the reader exactly what potential failure is being detected. And it can DRY up identical error-checking code in other parts of the program."</em> </p>
   </body>
