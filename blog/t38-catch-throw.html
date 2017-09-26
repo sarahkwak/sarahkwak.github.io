@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8">
+  <head>
+    <title>Teach Brian How to Code</title>
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/blog-stylesheet.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="sub-div">
+      <p><a href="../index.html">Back to Home</a></p>
+    </div>
+    <div class="post_blog_title">
+      <h1>&nbsp;Catch and Throw and Rescue</h1>
+      <h2>Sep 24, 2017&nbsp;</h2>
+    </div>
+    <p>I am currently reading Avdi Grimm's <a href= "https://www.amazon.com/Confident-Ruby-Patterns-Joyful-Coding-ebook/dp/B00ETE0D2S/ref=sr_1_1?ie=UTF8&qid=1506291493&sr=8-1&keywords=confident+ruby">Confident Ruby</a> and it has been great learning curve. I also discoverered <a href="http://rubybookclub.com/episodes/2016/6/11/episode-14">Ruby Book Club podcast</a> by Nadia and Saron and it has been a great journey to read a chapter by chapter and listening ladies discuss about the book.</p>
+    <p>Anyway, I found this chapter - 5.7 Early Termination with Throw, very interesting so would like to introduce to ya all.</p>
+    <h4>So When to use Catch and Throw</h4>
+    <p>First question I need to ask before using catch and throw is that when to use. This is most likely useful when we want to stop the recursive process without throwing an error. </p>
+    <p>Use throw to signal the early termination, and catch to handle it.</p>
+    <div class="tutorial">
+    floor = [["blank", "blank", "blank"],
+             ["gummy", "blank", "blank"],
+             ["blank", "blank", "blank"]]
+
+    catch(:found) do
+      floor.each do |line|
+        line.each do |word|
+          counter += 1
+          if word == "gummy"
+            candy = word
+            throw :found
+          end
+        end
+      end
+    end
+    </div>
+    <p>Catch and Throw could be used more complex cases but in nutshell, it allows the program stops when it found essential value. This pattern also limit outselves using raising Errors to stop the program e.g. raise DoneError in the middle of the method or using <strong>begine, rescue end (BRE) block</strong></p>
+    <p>Avdi Grimm also explains why we should not use BRE block - he says <em>"BRE is the pink lawn Xamingo of Ruby code: it is a distraction and an eyesore wherever it turns up"</em> because it breaks flows of the method.</p>
+    <div class="tutorial">
+    def some_method
+      # do something
+      begin
+        # do more thing
+      rescue
+        # handle error if raises
+      end
+        # do some more work
+    end
+    </div>
+    <p>His suggestion for the error handling case is using top-level rescue clause. </p>
+    <div class="tutorial">
+    def foo
+      # happy path goes here
+    rescue
+      # failure ended up here
+    end
+    </div>
+    <p>This will clearly shows what foo function supposed to be. If things goes south, it can be handled by rescue. </p>
+  </body>
