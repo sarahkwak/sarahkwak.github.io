@@ -1,5 +1,5 @@
 # How to Teach Brian to Code
 
 This is Sarah's tech blog attemp to teach Brian, the dog, how to code
-[Brian coding ruby](https://github.com/sarahkwak/sarahkwak.github.io/blob/master/blog/stylesheets/bri_computer.JPG)
+![Brian coding ruby](https://github.com/sarahkwak/sarahkwak.github.io/blob/master/blog/stylesheets/bri_computer.JPG)
 
